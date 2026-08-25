@@ -69,37 +69,42 @@
       return variants.slice().sort((a, b) => a.title.localeCompare(b.title, "es"));
     }
 
-    function optionLabel(v) {
-      if (v.stock <= 0) return `🚫 ${v.title} (SIN STOCK)`;
-      if (v.stock <= 3) return `🔥 ${v.title} (¡ÚLTIMAS UNIDADES!) 🔥`;
-      return `✅ ${v.title}`;
-    }
-
-    function optionsHTML(variants, selected) {
-      const placeholder = `<option value="" disabled ${!selected ? "selected" : ""}>Seleccionar...</option>`;
-      const opts = sortedVariants(variants).map(v => {
-        const disabled = v.stock <= 0;
-        const isSelected = v.title === selected ? "selected" : "";
-        return `<option value="${v.title}" ${disabled ? "disabled" : ""} ${isSelected}>${optionLabel(v)}</option>`;
-      }).join("");
-      return placeholder + opts;
-    }
-
-    function galleryHTML(variants) {
-      return sortedVariants(variants).map(v => `
-        <div class="thumb-wrap ${v.stock <= 0 ? "out" : ""}">
-          <div class="thumb ${v.stock <= 0 ? "out" : ""}">
+    function galleryHTML(variants, ci) {
+      return sortedVariants(variants).map(v => {
+        const out = v.stock <= 0;
+        const low = !out && v.stock <= 3;
+        return `
+        <div class="thumb-wrap ${out ? "out" : ""}" data-ci="${ci}" data-title="${v.title}">
+          <div class="thumb ${out ? "out" : ""}">
             <img src="${v.image}" alt="${v.title}" loading="lazy">
-            ${v.stock <= 0 ? '<div class="out-label">SIN STOCK</div>' : ""}
+            ${low ? '<div class="low-badge">🔥 ¡ÚLTIMAS UNIDADES!</div>' : ""}
+            ${out ? '<div class="out-label">SIN STOCK</div>' : ""}
+            <div class="count-badge"></div>
           </div>
           <div class="thumb-name">${v.title}</div>
-        </div>`).join("");
+        </div>`;
+      }).join("");
     }
 
-    function findVariant(variants, title) {
-      return variants.find(v => v.title === title);
+    function renderBadges(pack, ci) {
+      const comp = pack.components[ci];
+      const galleryEl = document.getElementById(`gallery-${ci}`);
+      galleryEl.querySelectorAll(".thumb-wrap").forEach(wrap => {
+        const count = selections[ci][wrap.dataset.title] || 0;
+        const thumb = wrap.querySelector(".thumb");
+        const badge = wrap.querySelector(".count-badge");
+        thumb.classList.toggle("selected", count > 0);
+        badge.textContent = count > 0 ? String(count) : "";
+      });
+
+      const total = Object.values(selections[ci]).reduce((a, b) => a + b, 0);
+      document.getElementById(`comp-progress-${ci}`).textContent =
+        total >= comp.qty ? `✅ Elegiste tus ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${comp.qty}`;
+      document.getElementById(`clear-${ci}`).style.display = total > 0 ? "inline-flex" : "none";
     }
 
+    let selections = {};
+    let variantStock = {};
     let selectedShipping = "";
     let selectedPayment = "";
 
@@ -112,9 +117,13 @@
       el.innerHTML = `+ ${formatMoney(shippingCost)} envío = <span class="total">${formatMoney(total)}</span>`;
     }
 
-    function updateSendState(pack, selections) {
+    function countFor(ci) {
+      return Object.values(selections[ci] || {}).reduce((a, b) => a + b, 0);
+    }
+
+    function updateSendState(pack) {
       const totalSlots = pack.components.reduce((sum, c) => sum + c.qty, 0);
-      const filled = Object.values(selections).reduce((sum, arr) => sum + arr.filter(Boolean).length, 0);
+      const filled = pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0);
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
       const ready = filled >= totalSlots && selectedShipping && selectedPayment;
@@ -131,15 +140,15 @@
       }
     }
 
-    function buildWhatsAppLink(pack, selections) {
+    function buildWhatsAppLink(pack) {
       const shipping = SHIPPING_OPTIONS[selectedShipping];
       const payment = PAYMENT_OPTIONS[selectedPayment];
 
       const lines = [`Hola! Quiero pedir el *${pack.name}*:`];
       pack.components.forEach((comp, ci) => {
-        selections[ci].forEach((title, si) => {
-          const label = comp.qty > 1 ? `${comp.label} ${si + 1}` : comp.label;
-          lines.push(`- ${label}: ${title}`);
+        Object.entries(selections[ci]).forEach(([title, count]) => {
+          if (count <= 0) return;
+          lines.push(`- ${comp.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
         });
       });
       lines.push("");
@@ -171,26 +180,23 @@
 
       document.getElementById("page-title").textContent = `${pack.name} | SIMBA Kids UY`;
 
-      const selections = {};
-      pack.components.forEach((c, i) => { selections[i] = new Array(c.qty).fill(""); });
+      selections = {};
+      variantStock = {};
+      pack.components.forEach((c, i) => { selections[i] = {}; });
 
       const componentBlocks = pack.components.map((comp, ci) => {
         const prod = products[comp.product];
-        const slotsHTML = new Array(comp.qty).fill(0).map((_, si) => `
-          <div class="slot">
-            <div class="thumb-preview" id="preview-${ci}-${si}"></div>
-            <label>${comp.label}${comp.qty > 1 ? " " + (si + 1) : ""}</label>
-            <select data-ci="${ci}" data-si="${si}">
-              ${optionsHTML(prod.variants, "")}
-            </select>
-          </div>`).join("");
-
+        variantStock[ci] = {};
+        prod.variants.forEach(v => { variantStock[ci][v.title] = v.stock; });
         return `
           <div class="component-block">
             <h3>${comp.label}${comp.qty > 1 ? ` (elegí ${comp.qty})` : ""}</h3>
-            <div class="hint">Mirá los diseños disponibles y elegilos en la lista de abajo.</div>
-            <div class="gallery">${galleryHTML(prod.variants)}</div>
-            <div class="slots">${slotsHTML}</div>
+            <div class="hint">Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo.</div>
+            <div class="gallery" id="gallery-${ci}">${galleryHTML(prod.variants, ci)}</div>
+            <div class="comp-footer">
+              <span class="comp-progress" id="comp-progress-${ci}">Elegiste 0 de ${comp.qty}</span>
+              <button type="button" class="clear-btn" id="clear-${ci}" style="display:none">Limpiar selección</button>
+            </div>
           </div>`;
       }).join("");
 
@@ -223,15 +229,23 @@
         </div>
       `;
 
-      root.querySelectorAll(".slots select").forEach(select => {
-        select.addEventListener("change", e => {
-          const ci = e.target.dataset.ci, si = e.target.dataset.si;
-          selections[ci][si] = e.target.value;
-          const prod = products[pack.components[ci].product];
-          const variant = findVariant(prod.variants, e.target.value);
-          const preview = document.getElementById(`preview-${ci}-${si}`);
-          preview.innerHTML = variant ? `<img src="${variant.image}" alt="${variant.title}">` : "";
-          updateSendState(pack, selections);
+      pack.components.forEach((comp, ci) => {
+        root.querySelectorAll(`#gallery-${ci} .thumb-wrap:not(.out)`).forEach(wrap => {
+          wrap.addEventListener("click", () => {
+            const title = wrap.dataset.title;
+            const current = selections[ci][title] || 0;
+            if (countFor(ci) >= comp.qty) return;
+            if (current >= variantStock[ci][title]) return;
+            selections[ci][title] = current + 1;
+            renderBadges(pack, ci);
+            updateSendState(pack);
+          });
+        });
+
+        document.getElementById(`clear-${ci}`).addEventListener("click", () => {
+          selections[ci] = {};
+          renderBadges(pack, ci);
+          updateSendState(pack);
         });
       });
 
@@ -242,7 +256,7 @@
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
           updatePriceBreakdown(pack);
-          updateSendState(pack, selections);
+          updateSendState(pack);
         });
       });
 
@@ -252,15 +266,15 @@
           root.querySelectorAll('.option-card[data-group="payment"]').forEach(card => {
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
-          updateSendState(pack, selections);
+          updateSendState(pack);
         });
       });
 
       document.getElementById("send-btn").addEventListener("click", () => {
-        window.open(buildWhatsAppLink(pack, selections), "_blank");
+        window.open(buildWhatsAppLink(pack), "_blank");
       });
 
-      updateSendState(pack, selections);
+      updateSendState(pack);
     }
 
     init();

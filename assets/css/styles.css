@@ -264,52 +264,87 @@ a { color: inherit; text-decoration: none; }
   padding: 3px 2px;
 }
 
-.slots {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.gallery .thumb {
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.08s ease;
 }
 
-.slot {
+.gallery .thumb:active {
+  transform: scale(0.96);
+}
+
+.gallery .thumb.out {
+  cursor: default;
+}
+
+.gallery .thumb.selected {
+  box-shadow: 0 0 0 3px var(--ok), 0 4px 10px rgba(47, 158, 88, 0.35);
+}
+
+.gallery .thumb .count-badge:empty {
+  display: none;
+}
+
+.gallery .thumb .count-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--ok);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 800;
   display: flex;
   align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.gallery .thumb .low-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(232, 158, 56, 0.95);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  padding: 2px 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.comp-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  background: #faf5ff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 10px 14px;
+  margin-top: 4px;
 }
 
-.slot label {
-  min-width: 110px;
-  font-size: 14px;
+.comp-progress {
+  font-size: 13.5px;
+  color: var(--text-muted);
   font-weight: 600;
-  color: var(--text);
 }
 
-.slot select {
-  flex: 1;
-  padding: 9px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: #fff;
+.clear-btn {
+  background: none;
+  border: none;
+  color: var(--out);
   font-family: inherit;
-  font-size: 15px;
-  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
 }
-
-.slot select:invalid { color: var(--text-muted); }
-
-.slot .thumb-preview {
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f3ecf9;
-  flex-shrink: 0;
-}
-
-.slot .thumb-preview img { width: 100%; height: 100%; object-fit: cover; }
 
 .option-list {
   display: flex;
