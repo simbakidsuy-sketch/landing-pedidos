@@ -37,6 +37,9 @@
   <script src="assets/js/data-source.js"></script>
   <script>
     function formatPrice(pack) {
+      if (pack.mode === "individual") {
+        return "$U " + pack.unitPrice.toLocaleString("es-UY") + " c/u";
+      }
       return "$U " + pack.price.toLocaleString("es-UY");
     }
 
@@ -55,13 +58,15 @@
     }
 
     getPacks().then(packs => {
-      const panales = packs.filter(p => p.category === "panales");
-      const agua = packs.filter(p => p.category === "agua");
+      const visible = packs.filter(p => p.active !== false);
+      const panales = visible.filter(p => p.category === "panales");
+      const agua = visible.filter(p => p.category === "agua");
 
       document.getElementById("grid-panales").innerHTML = panales.map(cardHTML).join("");
       document.getElementById("grid-agua").innerHTML = agua.map(cardHTML).join("");
 
       if (agua.length === 0) document.getElementById("agua-section").style.display = "none";
+      if (panales.length === 0) document.getElementById("panales-section").style.display = "none";
     });
   </script>
 </body>

@@ -86,6 +86,17 @@
       }).join("");
     }
 
+    function compProgressText(comp, total) {
+      if (comp.qty === null) {
+        return total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
+      }
+      return total >= comp.qty ? `✅ Elegiste tus ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${comp.qty}`;
+    }
+
+    function componentSatisfied(comp, total) {
+      return comp.qty === null ? total >= 1 : total >= comp.qty;
+    }
+
     function renderBadges(pack, ci) {
       const comp = pack.components[ci];
       const galleryEl = document.getElementById(`gallery-${ci}`);
@@ -97,10 +108,10 @@
         badge.textContent = count > 0 ? String(count) : "";
       });
 
-      const total = Object.values(selections[ci]).reduce((a, b) => a + b, 0);
-      document.getElementById(`comp-progress-${ci}`).textContent =
-        total >= comp.qty ? `✅ Elegiste tus ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${comp.qty}`;
+      const total = countFor(ci);
+      document.getElementById(`comp-progress-${ci}`).textContent = compProgressText(comp, total);
       document.getElementById(`clear-${ci}`).style.display = total > 0 ? "inline-flex" : "none";
+      updatePriceDisplay(pack);
     }
 
     let selections = {};
@@ -108,29 +119,47 @@
     let selectedShipping = "";
     let selectedPayment = "";
 
-    function updatePriceBreakdown(pack) {
-      const el = document.getElementById("price-breakdown");
-      if (!el) return;
-      const shippingCost = selectedShipping ? SHIPPING_OPTIONS[selectedShipping].cost : 0;
-      if (!shippingCost) { el.innerHTML = ""; return; }
-      const total = pack.price + shippingCost;
-      el.innerHTML = `+ ${formatMoney(shippingCost)} envío = <span class="total">${formatMoney(total)}</span>`;
-    }
-
     function countFor(ci) {
       return Object.values(selections[ci] || {}).reduce((a, b) => a + b, 0);
     }
 
+    function updatePriceDisplay(pack) {
+      const mainEl = document.getElementById("price-main");
+      const breakdownEl = document.getElementById("price-breakdown");
+      if (!mainEl || !breakdownEl) return;
+      const shippingCost = selectedShipping ? SHIPPING_OPTIONS[selectedShipping].cost : 0;
+
+      if (pack.mode === "individual") {
+        const totalUnits = pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0);
+        mainEl.textContent = `${formatMoney(pack.unitPrice)} c/u`;
+        if (totalUnits > 0) {
+          const total = pack.unitPrice * totalUnits + shippingCost;
+          const shippingPart = shippingCost ? ` + ${formatMoney(shippingCost)} envío` : "";
+          breakdownEl.innerHTML = `${totalUnits} unidad${totalUnits > 1 ? "es" : ""} × ${formatMoney(pack.unitPrice)}${shippingPart} = <span class="total">${formatMoney(total)}</span>`;
+        } else {
+          breakdownEl.innerHTML = "";
+        }
+        return;
+      }
+
+      mainEl.textContent = formatMoney(pack.price);
+      if (!shippingCost) { breakdownEl.innerHTML = ""; return; }
+      const total = pack.price + shippingCost;
+      breakdownEl.innerHTML = `+ ${formatMoney(shippingCost)} envío = <span class="total">${formatMoney(total)}</span>`;
+    }
+
     function updateSendState(pack) {
-      const totalSlots = pack.components.reduce((sum, c) => sum + c.qty, 0);
-      const filled = pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0);
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
-      const ready = filled >= totalSlots && selectedShipping && selectedPayment;
+      const unmetIndex = pack.components.findIndex((c, ci) => !componentSatisfied(c, countFor(ci)));
+      const ready = unmetIndex === -1 && selectedShipping && selectedPayment;
       btn.disabled = !ready;
 
-      if (filled < totalSlots) {
-        progress.textContent = `Elegiste ${filled} de ${totalSlots} diseños`;
+      if (unmetIndex !== -1) {
+        const comp = pack.components[unmetIndex];
+        progress.textContent = comp.qty === null
+          ? "Elegí al menos un diseño"
+          : `Elegiste ${countFor(unmetIndex)} de ${comp.qty} diseños`;
       } else if (!selectedShipping) {
         progress.textContent = "Elegí el envío o retiro";
       } else if (!selectedPayment) {
@@ -188,13 +217,17 @@
         const prod = products[comp.product];
         variantStock[ci] = {};
         prod.variants.forEach(v => { variantStock[ci][v.title] = v.stock; });
+        const qtyLabel = comp.qty === null ? " (elegí los que quieras)" : (comp.qty > 1 ? ` (elegí ${comp.qty})` : "");
+        const hint = comp.qty === null
+          ? "Tocá una foto para elegirla. Podés tocarla varias veces si querés más de una unidad del mismo diseño."
+          : "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo.";
         return `
           <div class="component-block">
-            <h3>${comp.label}${comp.qty > 1 ? ` (elegí ${comp.qty})` : ""}</h3>
-            <div class="hint">Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo.</div>
+            <h3>${comp.label}${qtyLabel}</h3>
+            <div class="hint">${hint}</div>
             <div class="gallery" id="gallery-${ci}">${galleryHTML(prod.variants, ci)}</div>
             <div class="comp-footer">
-              <span class="comp-progress" id="comp-progress-${ci}">Elegiste 0 de ${comp.qty}</span>
+              <span class="comp-progress" id="comp-progress-${ci}">${compProgressText(comp, 0)}</span>
               <button type="button" class="clear-btn" id="clear-${ci}" style="display:none">Limpiar selección</button>
             </div>
           </div>`;
@@ -206,7 +239,7 @@
           <div class="meta">
             <h1>${pack.name}</h1>
             <div class="subtitle">${pack.subtitle}</div>
-            <div class="price">${formatMoney(pack.price)}</div>
+            <div class="price" id="price-main"></div>
             <div class="price-breakdown" id="price-breakdown"></div>
           </div>
         </div>
@@ -234,7 +267,7 @@
           wrap.addEventListener("click", () => {
             const title = wrap.dataset.title;
             const current = selections[ci][title] || 0;
-            if (countFor(ci) >= comp.qty) return;
+            if (comp.qty !== null && countFor(ci) >= comp.qty) return;
             if (current >= variantStock[ci][title]) return;
             selections[ci][title] = current + 1;
             renderBadges(pack, ci);
@@ -255,7 +288,7 @@
           root.querySelectorAll('.option-card[data-group="shipping"]').forEach(card => {
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
-          updatePriceBreakdown(pack);
+          updatePriceDisplay(pack);
           updateSendState(pack);
         });
       });
@@ -274,6 +307,7 @@
         window.open(buildWhatsAppLink(pack), "_blank");
       });
 
+      updatePriceDisplay(pack);
       updateSendState(pack);
     }
 
