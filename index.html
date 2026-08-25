@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elegí tus diseños | SIMBA Kids UY</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">SIMBA</span>
+    <span class="tagline">Elegí los diseños de tu pedido</span>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>¿Qué pack estás por comprar?</h1>
+      <p>Elegilo, mirá los diseños disponibles, seleccioná los tuyos y enviámelos por WhatsApp.</p>
+    </div>
+
+    <div id="panales-section">
+      <h2 class="section-title">Packs de Pañales</h2>
+      <div class="pack-grid" id="grid-panales"></div>
+    </div>
+
+    <div id="agua-section">
+      <h2 class="section-title">Pañales para el Agua</h2>
+      <div class="pack-grid" id="grid-agua"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">SIMBA Kids UY · Pedidos por diseño</footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/packs.js"></script>
+  <script src="assets/js/data-source.js"></script>
+  <script>
+    function formatPrice(pack) {
+      return "$U " + pack.price.toLocaleString("es-UY");
+    }
+
+    function cardHTML(pack) {
+      const badge = pack.badge ? `<span class="badge">${pack.badge}</span>` : "";
+      return `
+        <a class="pack-card" href="pack.html?slug=${pack.slug}">
+          ${badge}
+          <img src="${pack.image}" alt="${pack.name}" loading="lazy">
+          <div class="info">
+            <div class="name">${pack.name}</div>
+            <div class="subtitle">${pack.subtitle}</div>
+            <div class="price">${formatPrice(pack)}</div>
+          </div>
+        </a>`;
+    }
+
+    getPacks().then(packs => {
+      const panales = packs.filter(p => p.category === "panales");
+      const agua = packs.filter(p => p.category === "agua");
+
+      document.getElementById("grid-panales").innerHTML = panales.map(cardHTML).join("");
+      document.getElementById("grid-agua").innerHTML = agua.map(cardHTML).join("");
+
+      if (agua.length === 0) document.getElementById("agua-section").style.display = "none";
+    });
+  </script>
+</body>
+</html>

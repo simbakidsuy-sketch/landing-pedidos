@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">Elegí tus diseños | SIMBA Kids UY</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">SIMBA</span>
+    <span class="tagline">Elegí los diseños de tu pedido</span>
+  </div>
+
+  <div class="container">
+    <a class="back-link" href="index.html">&larr; Volver a todos los packs</a>
+
+    <div id="pack-root">Cargando...</div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/packs.js"></script>
+  <script src="assets/js/data-source.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const slug = params.get("slug");
+    const root = document.getElementById("pack-root");
+
+    const SHIPPING_OPTIONS = {
+      pickup: {
+        title: "Retiro en Aguada",
+        detail: "A una cuadra del Palacio Legislativo. Coordinamos el retiro luego de confirmada la venta.",
+        message: "Retiro en el pick up de Aguada (a coordinar luego de confirmada la venta)",
+        cost: 0
+      },
+      montevideo: {
+        title: "Envío en Montevideo — +$U 200",
+        detail: "Se suma al total del pedido.",
+        message: "Envío en Montevideo",
+        cost: 200
+      },
+      interior: {
+        title: "Envío al resto del país (DAC)",
+        detail: "El costo del envío se abona al recibir el pedido.",
+        message: "Envío al resto del país por DAC (el costo se abona al recibir el pedido)",
+        cost: 0
+      }
+    };
+
+    const PAYMENT_OPTIONS = {
+      transferencia: {
+        title: "Transferencia bancaria o depósito",
+        detail: "Redes de cobranza (Abitab, Redpagos, etc.)",
+        message: "Transferencia bancaria / depósito en redes de cobranza"
+      },
+      tarjeta: {
+        title: "Link de pago con tarjeta",
+        detail: "Hasta 12 cuotas sin recargo.",
+        message: "Link de pago con tarjeta (hasta 12 cuotas sin recargo)"
+      }
+    };
+
+    function formatMoney(n) {
+      return "$U " + n.toLocaleString("es-UY");
+    }
+
+    function sortedVariants(variants) {
+      return variants.slice().sort((a, b) => a.title.localeCompare(b.title, "es"));
+    }
+
+    function optionLabel(v) {
+      if (v.stock <= 0) return `🚫 ${v.title} (SIN STOCK)`;
+      if (v.stock <= 3) return `🔥 ${v.title} (¡ÚLTIMAS UNIDADES!) 🔥`;
+      return `✅ ${v.title}`;
+    }
+
+    function optionsHTML(variants, selected) {
+      const placeholder = `<option value="" disabled ${!selected ? "selected" : ""}>Seleccionar...</option>`;
+      const opts = sortedVariants(variants).map(v => {
+        const disabled = v.stock <= 0;
+        const isSelected = v.title === selected ? "selected" : "";
+        return `<option value="${v.title}" ${disabled ? "disabled" : ""} ${isSelected}>${optionLabel(v)}</option>`;
+      }).join("");
+      return placeholder + opts;
+    }
+
+    function galleryHTML(variants) {
+      return sortedVariants(variants).map(v => `
+        <div class="thumb-wrap ${v.stock <= 0 ? "out" : ""}">
+          <div class="thumb ${v.stock <= 0 ? "out" : ""}">
+            <img src="${v.image}" alt="${v.title}" loading="lazy">
+            ${v.stock <= 0 ? '<div class="out-label">SIN STOCK</div>' : ""}
+          </div>
+          <div class="thumb-name">${v.title}</div>
+        </div>`).join("");
+    }
+
+    function findVariant(variants, title) {
+      return variants.find(v => v.title === title);
+    }
+
+    let selectedShipping = "";
+    let selectedPayment = "";
+
+    function updatePriceBreakdown(pack) {
+      const el = document.getElementById("price-breakdown");
+      if (!el) return;
+      const shippingCost = selectedShipping ? SHIPPING_OPTIONS[selectedShipping].cost : 0;
+      if (!shippingCost) { el.innerHTML = ""; return; }
+      const total = pack.price + shippingCost;
+      el.innerHTML = `+ ${formatMoney(shippingCost)} envío = <span class="total">${formatMoney(total)}</span>`;
+    }
+
+    function updateSendState(pack, selections) {
+      const totalSlots = pack.components.reduce((sum, c) => sum + c.qty, 0);
+      const filled = Object.values(selections).reduce((sum, arr) => sum + arr.filter(Boolean).length, 0);
+      const btn = document.getElementById("send-btn");
+      const progress = document.getElementById("send-progress");
+      const ready = filled >= totalSlots && selectedShipping && selectedPayment;
+      btn.disabled = !ready;
+
+      if (filled < totalSlots) {
+        progress.textContent = `Elegiste ${filled} de ${totalSlots} diseños`;
+      } else if (!selectedShipping) {
+        progress.textContent = "Elegí el envío o retiro";
+      } else if (!selectedPayment) {
+        progress.textContent = "Elegí el medio de pago";
+      } else {
+        progress.textContent = "¡Listo! Todo elegido.";
+      }
+    }
+
+    function buildWhatsAppLink(pack, selections) {
+      const shipping = SHIPPING_OPTIONS[selectedShipping];
+      const payment = PAYMENT_OPTIONS[selectedPayment];
+
+      const lines = [`Hola! Quiero pedir el *${pack.name}*:`];
+      pack.components.forEach((comp, ci) => {
+        selections[ci].forEach((title, si) => {
+          const label = comp.qty > 1 ? `${comp.label} ${si + 1}` : comp.label;
+          lines.push(`- ${label}: ${title}`);
+        });
+      });
+      lines.push("");
+      lines.push(`Envío/Retiro: ${shipping.message}`);
+      lines.push(`Pago: ${payment.message}`);
+      const text = encodeURIComponent(lines.join("\n"));
+      return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
+    }
+
+    function optionCardsHTML(groupName, options) {
+      return Object.entries(options).map(([value, opt]) => `
+        <label class="option-card" data-group="${groupName}">
+          <input type="radio" name="${groupName}" value="${value}">
+          <div class="option-text">
+            <strong>${opt.title}</strong>
+            <span>${opt.detail}</span>
+          </div>
+        </label>`).join("");
+    }
+
+    async function init() {
+      const [packs, products] = await Promise.all([getPacks(), getProducts()]);
+      const pack = packs.find(p => p.slug === slug);
+
+      if (!pack) {
+        root.innerHTML = "<p>No encontramos ese pack. <a href='index.html'>Volver</a></p>";
+        return;
+      }
+
+      document.getElementById("page-title").textContent = `${pack.name} | SIMBA Kids UY`;
+
+      const selections = {};
+      pack.components.forEach((c, i) => { selections[i] = new Array(c.qty).fill(""); });
+
+      const componentBlocks = pack.components.map((comp, ci) => {
+        const prod = products[comp.product];
+        const slotsHTML = new Array(comp.qty).fill(0).map((_, si) => `
+          <div class="slot">
+            <div class="thumb-preview" id="preview-${ci}-${si}"></div>
+            <label>${comp.label}${comp.qty > 1 ? " " + (si + 1) : ""}</label>
+            <select data-ci="${ci}" data-si="${si}">
+              ${optionsHTML(prod.variants, "")}
+            </select>
+          </div>`).join("");
+
+        return `
+          <div class="component-block">
+            <h3>${comp.label}${comp.qty > 1 ? ` (elegí ${comp.qty})` : ""}</h3>
+            <div class="hint">Mirá los diseños disponibles y elegilos en la lista de abajo.</div>
+            <div class="gallery">${galleryHTML(prod.variants)}</div>
+            <div class="slots">${slotsHTML}</div>
+          </div>`;
+      }).join("");
+
+      root.innerHTML = `
+        <div class="pack-header">
+          <img src="${pack.image}" alt="${pack.name}">
+          <div class="meta">
+            <h1>${pack.name}</h1>
+            <div class="subtitle">${pack.subtitle}</div>
+            <div class="price">${formatMoney(pack.price)}</div>
+            <div class="price-breakdown" id="price-breakdown"></div>
+          </div>
+        </div>
+        ${componentBlocks}
+        <div class="component-block">
+          <h3>Envío o retiro</h3>
+          <div class="option-list" id="shipping-options">
+            ${optionCardsHTML("shipping", SHIPPING_OPTIONS)}
+          </div>
+        </div>
+        <div class="component-block">
+          <h3>Medio de pago</h3>
+          <div class="option-list" id="payment-options">
+            ${optionCardsHTML("payment", PAYMENT_OPTIONS)}
+          </div>
+        </div>
+        <div class="send-bar">
+          <button class="send-btn" id="send-btn" disabled>Enviar diseños por WhatsApp</button>
+          <div class="send-progress" id="send-progress"></div>
+        </div>
+      `;
+
+      root.querySelectorAll(".slots select").forEach(select => {
+        select.addEventListener("change", e => {
+          const ci = e.target.dataset.ci, si = e.target.dataset.si;
+          selections[ci][si] = e.target.value;
+          const prod = products[pack.components[ci].product];
+          const variant = findVariant(prod.variants, e.target.value);
+          const preview = document.getElementById(`preview-${ci}-${si}`);
+          preview.innerHTML = variant ? `<img src="${variant.image}" alt="${variant.title}">` : "";
+          updateSendState(pack, selections);
+        });
+      });
+
+      root.querySelectorAll('input[name="shipping"]').forEach(radio => {
+        radio.addEventListener("change", e => {
+          selectedShipping = e.target.value;
+          root.querySelectorAll('.option-card[data-group="shipping"]').forEach(card => {
+            card.classList.toggle("selected", card.querySelector("input").checked);
+          });
+          updatePriceBreakdown(pack);
+          updateSendState(pack, selections);
+        });
+      });
+
+      root.querySelectorAll('input[name="payment"]').forEach(radio => {
+        radio.addEventListener("change", e => {
+          selectedPayment = e.target.value;
+          root.querySelectorAll('.option-card[data-group="payment"]').forEach(card => {
+            card.classList.toggle("selected", card.querySelector("input").checked);
+          });
+          updateSendState(pack, selections);
+        });
+      });
+
+      document.getElementById("send-btn").addEventListener("click", () => {
+        window.open(buildWhatsAppLink(pack, selections), "_blank");
+      });
+
+      updateSendState(pack, selections);
+    }
+
+    init();
+  </script>
+</body>
+</html>
