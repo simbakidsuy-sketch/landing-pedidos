@@ -42,6 +42,33 @@ window.SIMBA_PACKS = [
     ]
   },
   {
+    "slug": "panal-estandar-individual",
+    "category": "panales",
+    "name": "Pañal Estándar (por unidad)",
+    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "mode": "individual",
+    "unitPrice": 590,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_ECOLOGICO_ESTANDAR_DRYFIT_DE_TELA.png?v=1782122458",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": null }
+    ]
+  },
+  {
+    "slug": "set-x4-panal-estandar",
+    "category": "panales",
+    "name": "Set x4 Pañales Estándar",
+    "subtitle": "4 Pañales Estándar + 4 Absorbentes",
+    "price": 1990,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_GRIS_PARA_WEB.png?v=1784924270",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 }
+    ]
+  },
+  {
     "slug": "descubrimiento",
     "category": "panales",
     "name": "Pack \"Descubrimiento\" 4 Pañales",
