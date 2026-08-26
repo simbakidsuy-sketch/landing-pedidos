@@ -373,15 +373,40 @@ a { color: inherit; text-decoration: none; }
   background: #faf3ff;
 }
 
+.option-card-wrap {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.option-card-wrap:hover {
+  border-color: var(--simba-purple-light);
+}
+
+.option-card-wrap.selected {
+  border-color: var(--simba-purple);
+  background: #faf3ff;
+}
+
+.option-card-wrap .option-card {
+  border: none;
+  background: transparent;
+}
+
+.option-inline-extra:not(:empty) {
+  padding: 0 14px 14px;
+  margin-top: -2px;
+}
+
 .dac-mode-list {
-  margin-top: 14px;
+  margin-bottom: 12px;
 }
 
 .shipping-fields {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 14px;
 }
 
 .field-group {
