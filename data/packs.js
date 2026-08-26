@@ -56,6 +56,34 @@ window.SIMBA_PACKS = [
     ]
   },
   {
+    "slug": "panal-dryfit-cafe-individual",
+    "category": "panales",
+    "name": "Pañal Premium DryFit Café (por unidad)",
+    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "mode": "individual",
+    "unitPrice": 790,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
+    "components": [
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": null }
+    ]
+  },
+  {
+    "slug": "panal-carbon-bambu-individual",
+    "category": "panales",
+    "name": "Pañal Premium Carbón de Bambú (por unidad)",
+    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "mode": "individual",
+    "unitPrice": 850,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_FIBRA_DE_CARBON_842e4064-d9fd-430b-96cd-debf49d7ee3f.png?v=1782122458",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": null }
+    ]
+  },
+  {
     "slug": "set-x4-panal-estandar",
     "category": "panales",
     "name": "Set x4 Pañales Estándar",
@@ -77,20 +105,6 @@ window.SIMBA_PACKS = [
         { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
       ]
     }
-  },
-  {
-    "slug": "panal-dryfit-cafe-individual",
-    "category": "panales",
-    "name": "Pañal Premium DryFit Café (por unidad)",
-    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
-    "mode": "individual",
-    "unitPrice": 790,
-    "currency": "UYU",
-    "active": true,
-    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
-    "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": null }
-    ]
   },
   {
     "slug": "set-x4-panal-dryfit-cafe",
@@ -116,6 +130,29 @@ window.SIMBA_PACKS = [
     }
   },
   {
+    "slug": "set-x4-panal-carbon-bambu",
+    "category": "panales",
+    "name": "Set x4 Pañales Carbón de Bambú",
+    "subtitle": "4 Pañales Premium Carbón de Bambú + 4 Absorbentes",
+    "price": 2990,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_CARBON_PARA_WEB.png?v=1784924270",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 4 }
+    ],
+    "upsell": {
+      "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
+      "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.",
+      "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
+      "mediaType": "video",
+      "options": [
+        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de toallitas de bambú" },
+        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
+      ]
+    }
+  },
+  {
     "slug": "descubrimiento",
     "category": "panales",
     "name": "Pack \"Descubrimiento\" 4 Pañales",
@@ -123,10 +160,50 @@ window.SIMBA_PACKS = [
     "price": 3590,
     "currency": "UYU",
     "badge": "Más vendido",
-    "active": false,
+    "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PACK_DESCUBRIMIENTO_NUEVA_14c0b856-8435-4830-81bc-c07f7f43f694.png?v=1785172615",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 2 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 1 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "chau-dermatitis",
+    "category": "panales",
+    "name": "PACK x4 Chau Dermatitis",
+    "subtitle": "4 Pañales Premium Carbón de Bambú + 8 Absorbentes",
+    "price": 3990,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_CHAU_DERMATITIS_897e02d0-600e-479b-b43e-b874684b48f0.png?v=1785171611",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 4 }
+    ]
+  },
+  {
+    "slug": "pack-noche",
+    "category": "panales",
+    "name": "PACK Noche x2 Pañales",
+    "subtitle": "2 Pañales Premium Carbón de Bambú + 6 Absorbentes",
+    "price": 2290,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PACK_NOCHE_EN_LA_WEB_051f791e-3ebf-4e0e-9ee0-e4ddd9b6d35e.png?v=1785152854",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 2 }
+    ]
+  },
+  {
+    "slug": "set-x2-premium",
+    "category": "panales",
+    "name": "SET x2 Pañales Premium",
+    "subtitle": "1 DryFit Café + 1 Carbón de Bambú + 4 Absorbentes",
+    "price": 1890,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X2_PRIMEROS_PASOS_PREMIUM_SIMBA.png?v=1769589630",
+    "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 1 },
       { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 1 }
     ]
@@ -138,11 +215,114 @@ window.SIMBA_PACKS = [
     "subtitle": "8 Pañales Estándar + Bolsa Impermeable Mediana de regalo",
     "price": 4290,
     "currency": "UYU",
-    "active": false,
+    "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_REUTILIZABLES_ESTANDAR_DRYFIT_SIMBA.png?v=1769503458",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x8-dryfit-cafe",
+    "category": "panales",
+    "name": "PACK x8 Pañales DryFit Café",
+    "subtitle": "8 Pañales Premium DryFit Café + Bolsa Impermeable Mediana de regalo",
+    "price": 5890,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
+    "components": [
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 8 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x8-carbon-bambu",
+    "category": "panales",
+    "name": "PACK x8 Pañales Carbón de Bambú",
+    "subtitle": "8 Pañales Premium Carbón de Bambú + Bolsa Impermeable Mediana de regalo",
+    "price": 6290,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_DE_TELA_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769443642",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 8 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x12-estandar",
+    "category": "panales",
+    "name": "PACK x12 Pañales Estándar",
+    "subtitle": "12 Pañales Estándar + Bolsa Impermeable Mediana de regalo",
+    "price": 5990,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_ESTANDAR.png?v=1769538120",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 12 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x12-dryfit-cafe",
+    "category": "panales",
+    "name": "PACK x12 Pañales DryFit Café",
+    "subtitle": "12 Pañales Premium DryFit Café + Bolsa Impermeable Mediana de regalo",
+    "price": 8490,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_DE_TELA_SIMBA_DRYFIT_CAFE.png?v=1769537625",
+    "components": [
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 12 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x12-carbon-bambu",
+    "category": "panales",
+    "name": "PACK x12 Pañales Carbón de Bambú",
+    "subtitle": "12 Pañales Premium Carbón de Bambú + Bolsa Impermeable Mediana de regalo",
+    "price": 9190,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769537882",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 12 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x10-panaleo-mixto",
+    "category": "panales",
+    "name": "PACK x10 Pañaleo Mixto",
+    "subtitle": "4 Estándar + 3 DryFit Café + 3 Carbón de Bambú + Bolsa Mediana de regalo",
+    "price": 9490,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALEO_MIXTO_DE_SIMBA_PANALES_VARIADOS.png?v=1769504492",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 3 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 3 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "pack-x20-maxima-experiencia",
+    "category": "panales",
+    "name": "PACK x20 Máxima Experiencia",
+    "subtitle": "8 Estándar + 6 DryFit Café + 6 Carbón de Bambú + 3 Bolsas de regalo",
+    "price": 17990,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_MAXIMA_EXPERIENCIA_DE_SIMBA_COMPLETO.png?v=1769504517",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 6 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 6 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 2 },
+      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25 (regalo)", "qty": 1 }
     ]
   }
 ]
