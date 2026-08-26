@@ -31,7 +31,7 @@
       pickup: {
         title: "Retiro en Aguada",
         detail: "A una cuadra del Palacio Legislativo. Coordinamos el retiro luego de confirmada la venta.",
-        message: "Retiro en el pick up de Aguada (a coordinar luego de confirmada la venta)",
+        message: "Retiro en Aguada",
         cost: 0
       },
       montevideo: {
@@ -43,7 +43,7 @@
       interior: {
         title: "Envío al resto del país (DAC)",
         detail: "El costo del envío se abona al recibir el pedido.",
-        message: "Envío al resto del país por DAC (el costo se abona al recibir el pedido)",
+        message: "Envío por DAC",
         cost: 0
       }
     };
@@ -60,6 +60,65 @@
         message: "Link de pago con tarjeta (hasta 12 cuotas sin recargo)"
       }
     };
+
+    const SHIPPING_FIELD_LABELS = {
+      nombre: "Nombre y apellido",
+      direccion: "Dirección de entrega",
+      localidad: "Localidad y departamento",
+      celular: "Celular de contacto"
+    };
+
+    function shippingFieldKeys() {
+      if (selectedShipping === "montevideo") return ["nombre", "direccion", "celular"];
+      if (selectedShipping === "interior") {
+        if (dacMode === "agencia") return ["nombre", "localidad", "celular"];
+        if (dacMode === "domicilio") return ["nombre", "direccion", "localidad", "celular"];
+        return null;
+      }
+      return [];
+    }
+
+    function shippingFieldsHTML(keys) {
+      if (!keys || keys.length === 0) return "";
+      return `<div class="shipping-fields">` + keys.map(k => `
+        <div class="field-group">
+          <label>${SHIPPING_FIELD_LABELS[k]}</label>
+          <input type="text" class="field-input" data-key="${k}" value="${(shippingFields[k] || "").replace(/"/g, "&quot;")}" placeholder="${SHIPPING_FIELD_LABELS[k]}">
+        </div>`).join("") + `</div>`;
+    }
+
+    function renderShippingDetails(pack) {
+      const container = document.getElementById("shipping-details");
+      if (!container) return;
+
+      if (selectedShipping === "interior") {
+        const dacOption = (value, label) => `
+          <label class="option-card ${dacMode === value ? "selected" : ""}">
+            <input type="radio" name="dac-mode" value="${value}" ${dacMode === value ? "checked" : ""}>
+            <div class="option-text"><strong>${label}</strong></div>
+          </label>`;
+        container.innerHTML =
+          `<div class="option-list dac-mode-list">${dacOption("agencia", "Retiro en agencia")}${dacOption("domicilio", "Enviar a mi domicilio")}</div>` +
+          shippingFieldsHTML(shippingFieldKeys());
+
+        container.querySelectorAll('input[name="dac-mode"]').forEach(r => {
+          r.addEventListener("change", e => {
+            dacMode = e.target.value;
+            renderShippingDetails(pack);
+            updateSendState(pack);
+          });
+        });
+      } else {
+        container.innerHTML = shippingFieldsHTML(shippingFieldKeys());
+      }
+
+      container.querySelectorAll(".field-input").forEach(input => {
+        input.addEventListener("input", e => {
+          shippingFields[e.target.dataset.key] = e.target.value;
+          updateSendState(pack);
+        });
+      });
+    }
 
     function formatMoney(n) {
       return "$U " + n.toLocaleString("es-UY");
@@ -118,55 +177,74 @@
     let variantStock = {};
     let selectedShipping = "";
     let selectedPayment = "";
+    let selectedUpsell = null;
+    let dacMode = "";
+    let shippingFields = {};
 
     function countFor(ci) {
       return Object.values(selections[ci] || {}).reduce((a, b) => a + b, 0);
+    }
+
+    function selectedUpsellOption(pack) {
+      if (!pack.upsell || !selectedUpsell) return null;
+      return pack.upsell.options.find(o => o.id === selectedUpsell) || null;
     }
 
     function updatePriceDisplay(pack) {
       const mainEl = document.getElementById("price-main");
       const breakdownEl = document.getElementById("price-breakdown");
       if (!mainEl || !breakdownEl) return;
+
       const shippingCost = selectedShipping ? SHIPPING_OPTIONS[selectedShipping].cost : 0;
+      const upsellOpt = selectedUpsellOption(pack);
+      const upsellCost = upsellOpt ? upsellOpt.price : 0;
+
+      let base;
+      const parts = [];
 
       if (pack.mode === "individual") {
         const totalUnits = pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0);
+        base = pack.unitPrice * totalUnits;
         mainEl.textContent = `${formatMoney(pack.unitPrice)} c/u`;
-        if (totalUnits > 0) {
-          const total = pack.unitPrice * totalUnits + shippingCost;
-          const shippingPart = shippingCost ? ` + ${formatMoney(shippingCost)} envío` : "";
-          breakdownEl.innerHTML = `${totalUnits} unidad${totalUnits > 1 ? "es" : ""} × ${formatMoney(pack.unitPrice)}${shippingPart} = <span class="total">${formatMoney(total)}</span>`;
-        } else {
-          breakdownEl.innerHTML = "";
-        }
-        return;
+        if (totalUnits > 0) parts.push(`${totalUnits} unidad${totalUnits > 1 ? "es" : ""} × ${formatMoney(pack.unitPrice)}`);
+      } else {
+        base = pack.price;
+        mainEl.textContent = formatMoney(pack.price);
       }
 
-      mainEl.textContent = formatMoney(pack.price);
-      if (!shippingCost) { breakdownEl.innerHTML = ""; return; }
-      const total = pack.price + shippingCost;
-      breakdownEl.innerHTML = `+ ${formatMoney(shippingCost)} envío = <span class="total">${formatMoney(total)}</span>`;
+      if (upsellOpt) parts.push(`${upsellOpt.label} (${formatMoney(upsellCost)})`);
+      if (shippingCost) parts.push(`${formatMoney(shippingCost)} envío`);
+
+      if (parts.length === 0) { breakdownEl.innerHTML = ""; return; }
+      const total = base + upsellCost + shippingCost;
+      breakdownEl.innerHTML = `${parts.join(" + ")} = <span class="total">${formatMoney(total)}</span>`;
     }
 
     function updateSendState(pack) {
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
       const unmetIndex = pack.components.findIndex((c, ci) => !componentSatisfied(c, countFor(ci)));
-      const ready = unmetIndex === -1 && selectedShipping && selectedPayment;
-      btn.disabled = !ready;
 
+      let blocking = null;
       if (unmetIndex !== -1) {
         const comp = pack.components[unmetIndex];
-        progress.textContent = comp.qty === null
+        blocking = comp.qty === null
           ? "Elegí al menos un diseño"
           : `Elegiste ${countFor(unmetIndex)} de ${comp.qty} diseños`;
       } else if (!selectedShipping) {
-        progress.textContent = "Elegí el envío o retiro";
-      } else if (!selectedPayment) {
-        progress.textContent = "Elegí el medio de pago";
+        blocking = "Elegí el envío o retiro";
+      } else if (selectedShipping === "interior" && !dacMode) {
+        blocking = "Elegí retiro en agencia o envío a domicilio";
       } else {
-        progress.textContent = "¡Listo! Todo elegido.";
+        const keys = shippingFieldKeys();
+        const missing = (keys || []).some(k => !(shippingFields[k] || "").trim());
+        if (missing) blocking = "Completá tus datos de envío";
       }
+
+      if (!blocking && !selectedPayment) blocking = "Elegí el medio de pago";
+
+      btn.disabled = !!blocking;
+      progress.textContent = blocking || "¡Listo! Todo elegido.";
     }
 
     function buildWhatsAppLink(pack) {
@@ -180,11 +258,41 @@
           lines.push(`- ${comp.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
         });
       });
+      const upsellOpt = selectedUpsellOption(pack);
+      if (upsellOpt) lines.push(`Se agregó: ${upsellOpt.message}`);
       lines.push("");
       lines.push(`Envío/Retiro: ${shipping.message}`);
-      lines.push(`Pago: ${payment.message}`);
+      if (selectedShipping === "interior" && dacMode) {
+        lines.push(`Modalidad: ${dacMode === "agencia" ? "en agencia" : "a domicilio"}`);
+      }
+      (shippingFieldKeys() || []).forEach(k => {
+        const val = (shippingFields[k] || "").trim();
+        if (val) lines.push(`${SHIPPING_FIELD_LABELS[k]}: ${val}`);
+      });
+      lines.push("");
+      lines.push(`Medio de Pago: ${payment.message}`);
       const text = encodeURIComponent(lines.join("\n"));
       return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
+    }
+
+    function upsellHTML(pack) {
+      if (!pack.upsell) return "";
+      const u = pack.upsell;
+      const optionsHTML = u.options.map(o => `
+        <div class="upsell-option" data-id="${o.id}">
+          <strong>${o.label}</strong>
+          <span>${formatMoney(o.price)}</span>
+        </div>`).join("");
+      const media = u.mediaType === "video"
+        ? `<video class="upsell-media" src="${u.media}" autoplay loop muted playsinline></video>`
+        : `<img class="upsell-media" src="${u.media}" alt="${u.title}" loading="lazy">`;
+      return `
+        <div class="upsell-block">
+          <h3>${u.title}</h3>
+          ${media}
+          <p class="upsell-desc">${u.description}</p>
+          <div class="upsell-options">${optionsHTML}</div>
+        </div>`;
     }
 
     function optionCardsHTML(groupName, options) {
@@ -211,6 +319,7 @@
 
       selections = {};
       variantStock = {};
+      selectedUpsell = null;
       pack.components.forEach((c, i) => { selections[i] = {}; });
 
       const componentBlocks = pack.components.map((comp, ci) => {
@@ -244,11 +353,13 @@
           </div>
         </div>
         ${componentBlocks}
+        ${upsellHTML(pack)}
         <div class="component-block">
           <h3>Envío o retiro</h3>
           <div class="option-list" id="shipping-options">
             ${optionCardsHTML("shipping", SHIPPING_OPTIONS)}
           </div>
+          <div id="shipping-details"></div>
         </div>
         <div class="component-block">
           <h3>Medio de pago</h3>
@@ -257,7 +368,7 @@
           </div>
         </div>
         <div class="send-bar">
-          <button class="send-btn" id="send-btn" disabled>Enviar diseños por WhatsApp</button>
+          <button class="send-btn" id="send-btn" disabled>Enviar info por WhatsApp</button>
           <div class="send-progress" id="send-progress"></div>
         </div>
       `;
@@ -285,9 +396,11 @@
       root.querySelectorAll('input[name="shipping"]').forEach(radio => {
         radio.addEventListener("change", e => {
           selectedShipping = e.target.value;
+          if (selectedShipping !== "interior") dacMode = "";
           root.querySelectorAll('.option-card[data-group="shipping"]').forEach(card => {
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
+          renderShippingDetails(pack);
           updatePriceDisplay(pack);
           updateSendState(pack);
         });
@@ -302,6 +415,19 @@
           updateSendState(pack);
         });
       });
+
+      if (pack.upsell) {
+        root.querySelectorAll(".upsell-option").forEach(el => {
+          el.addEventListener("click", () => {
+            const id = el.dataset.id;
+            selectedUpsell = selectedUpsell === id ? null : id;
+            root.querySelectorAll(".upsell-option").forEach(o => {
+              o.classList.toggle("selected", o.dataset.id === selectedUpsell);
+            });
+            updatePriceDisplay(pack);
+          });
+        });
+      }
 
       document.getElementById("send-btn").addEventListener("click", () => {
         window.open(buildWhatsAppLink(pack), "_blank");

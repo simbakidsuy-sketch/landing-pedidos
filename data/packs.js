@@ -66,7 +66,54 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_GRIS_PARA_WEB.png?v=1784924270",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 }
+    ],
+    "upsell": {
+      "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
+      "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.",
+      "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
+      "mediaType": "video",
+      "options": [
+        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de toallitas de bambú" },
+        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
+      ]
+    }
+  },
+  {
+    "slug": "panal-dryfit-cafe-individual",
+    "category": "panales",
+    "name": "Pañal Premium DryFit Café (por unidad)",
+    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "mode": "individual",
+    "unitPrice": 790,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
+    "components": [
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": null }
     ]
+  },
+  {
+    "slug": "set-x4-panal-dryfit-cafe",
+    "category": "panales",
+    "name": "Set x4 Pañales DryFit Café",
+    "subtitle": "4 Pañales Premium DryFit Café + 4 Absorbentes",
+    "price": 2790,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_CAFE_PARA_WEB.png?v=1784924270",
+    "components": [
+      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 4 }
+    ],
+    "upsell": {
+      "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
+      "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.",
+      "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
+      "mediaType": "video",
+      "options": [
+        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de toallitas de bambú" },
+        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
+      ]
+    }
   },
   {
     "slug": "descubrimiento",
