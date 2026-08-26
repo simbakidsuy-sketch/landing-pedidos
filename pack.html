@@ -87,8 +87,26 @@
         </div>`).join("") + `</div>`;
     }
 
+    function shippingOptionsHTML() {
+      return Object.entries(SHIPPING_OPTIONS).map(([value, opt]) => `
+        <div class="option-card-wrap" data-group="shipping" data-value="${value}">
+          <label class="option-card">
+            <input type="radio" name="shipping" value="${value}">
+            <div class="option-text">
+              <strong>${opt.title}</strong>
+              <span>${opt.detail}</span>
+            </div>
+          </label>
+          <div class="option-inline-extra" id="extra-${value}"></div>
+        </div>`).join("");
+    }
+
     function renderShippingDetails(pack) {
-      const container = document.getElementById("shipping-details");
+      Object.keys(SHIPPING_OPTIONS).forEach(v => {
+        const el = document.getElementById(`extra-${v}`);
+        if (el) el.innerHTML = "";
+      });
+      const container = document.getElementById(`extra-${selectedShipping}`);
       if (!container) return;
 
       if (selectedShipping === "interior") {
@@ -235,10 +253,6 @@
         blocking = "Elegí el envío o retiro";
       } else if (selectedShipping === "interior" && !dacMode) {
         blocking = "Elegí retiro en agencia o envío a domicilio";
-      } else {
-        const keys = shippingFieldKeys();
-        const missing = (keys || []).some(k => !(shippingFields[k] || "").trim());
-        if (missing) blocking = "Completá tus datos de envío";
       }
 
       if (!blocking && !selectedPayment) blocking = "Elegí el medio de pago";
@@ -357,9 +371,8 @@
         <div class="component-block">
           <h3>Envío o retiro</h3>
           <div class="option-list" id="shipping-options">
-            ${optionCardsHTML("shipping", SHIPPING_OPTIONS)}
+            ${shippingOptionsHTML()}
           </div>
-          <div id="shipping-details"></div>
         </div>
         <div class="component-block">
           <h3>Medio de pago</h3>
@@ -397,7 +410,7 @@
         radio.addEventListener("change", e => {
           selectedShipping = e.target.value;
           if (selectedShipping !== "interior") dacMode = "";
-          root.querySelectorAll('.option-card[data-group="shipping"]').forEach(card => {
+          root.querySelectorAll('.option-card-wrap[data-group="shipping"]').forEach(card => {
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
           renderShippingDetails(pack);
