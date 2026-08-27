@@ -3,9 +3,10 @@ window.SIMBA_PACKS = [
     "slug": "completar-datos",
     "category": "panales",
     "name": "Coordinar pedido",
-    "subtitle": "Para productos sin diseño (insertos, rollos, etc.) — completá cómo retirás/recibís y cómo pagás.",
+    "subtitle": "Completá cómo retirás o recibís y cómo pagás.",
     "active": false,
     "image": "https://simbakidsuy.com/cdn/shop/files/corto_LOGO_SOLO_NOMBRE_PARA_WEB.jpg?v=1783678826&width=600",
+    "imageStyle": "logo",
     "components": []
   },
   {

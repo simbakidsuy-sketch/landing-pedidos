@@ -330,7 +330,7 @@
 
       root.innerHTML = `
         <div class="pack-header">
-          <img src="${pack.image}" alt="${pack.name}">
+          <img src="${pack.image}" alt="${pack.name}" class="${pack.imageStyle === "logo" ? "logo-image" : ""}">
           <div class="meta">
             <h1>${pack.name}</h1>
             <div class="subtitle">${pack.subtitle}</div>
