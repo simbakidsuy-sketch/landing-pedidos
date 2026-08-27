@@ -27,6 +27,11 @@
       <h2 class="section-title">Pañales para el Agua</h2>
       <div class="pack-grid" id="grid-agua"></div>
     </div>
+
+    <div id="accesorios-section">
+      <h2 class="section-title">Accesorios</h2>
+      <div class="pack-grid" id="grid-accesorios"></div>
+    </div>
   </div>
 
   <footer class="site-footer">SIMBA Kids UY · Pedidos por diseño</footer>
@@ -53,12 +58,15 @@
       const visible = packs.filter(p => p.active !== false);
       const panales = visible.filter(p => p.category === "panales");
       const agua = visible.filter(p => p.category === "agua");
+      const accesorios = visible.filter(p => p.category === "accesorios");
 
       document.getElementById("grid-panales").innerHTML = panales.map(cardHTML).join("");
       document.getElementById("grid-agua").innerHTML = agua.map(cardHTML).join("");
+      document.getElementById("grid-accesorios").innerHTML = accesorios.map(cardHTML).join("");
 
       if (agua.length === 0) document.getElementById("agua-section").style.display = "none";
       if (panales.length === 0) document.getElementById("panales-section").style.display = "none";
+      if (accesorios.length === 0) document.getElementById("accesorios-section").style.display = "none";
     });
   </script>
 </body>

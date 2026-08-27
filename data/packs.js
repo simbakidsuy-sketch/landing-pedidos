@@ -13,7 +13,7 @@ window.SIMBA_PACKS = [
     "slug": "panal-agua-individual",
     "category": "agua",
     "name": "Pañal para el Agua (por unidad)",
-    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 590,
     "currency": "UYU",
@@ -55,7 +55,7 @@ window.SIMBA_PACKS = [
     "slug": "panal-estandar-individual",
     "category": "panales",
     "name": "Pañal Estándar (por unidad)",
-    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 590,
     "currency": "UYU",
@@ -69,7 +69,7 @@ window.SIMBA_PACKS = [
     "slug": "panal-dryfit-cafe-individual",
     "category": "panales",
     "name": "Pañal Premium DryFit Café (por unidad)",
-    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 790,
     "currency": "UYU",
@@ -83,7 +83,7 @@ window.SIMBA_PACKS = [
     "slug": "panal-carbon-bambu-individual",
     "category": "panales",
     "name": "Pañal Premium Carbón de Bambú (por unidad)",
-    "subtitle": "Elegí cuántos querés y de qué diseño, sin límite",
+    "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 850,
     "currency": "UYU",
@@ -161,6 +161,62 @@ window.SIMBA_PACKS = [
         { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
       ]
     }
+  },
+  {
+    "slug": "bolsa-chica-individual",
+    "category": "accesorios",
+    "name": "Bolsa Impermeable Chica 20x25 (por unidad)",
+    "subtitle": "Elegí cuántas querés y de qué diseño",
+    "mode": "individual",
+    "unitPrice": 340,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/BOLSAS_IMPERMEABLES_CHICAS_PARA_PANALES_PARA_EL_AGUA_BALLENITAS_AZUL.png?v=1786708124",
+    "components": [
+      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": null }
+    ]
+  },
+  {
+    "slug": "bolsa-mediana-individual",
+    "category": "accesorios",
+    "name": "Bolsa Impermeable Mediana 30x40 (por unidad)",
+    "subtitle": "Elegí cuántas querés y de qué diseño",
+    "mode": "individual",
+    "unitPrice": 590,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PAJARITOS.png?v=1785934252",
+    "components": [
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "qty": null }
+    ]
+  },
+  {
+    "slug": "bolsa-grande-individual",
+    "category": "accesorios",
+    "name": "Bolsa Impermeable Grande 40x70 (por unidad)",
+    "subtitle": "Elegí cuántas querés y de qué diseño",
+    "mode": "individual",
+    "unitPrice": 980,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PARA_BOLSAS_GRANDES_SIMBA_ECOLOGICOS.png?v=1787234142",
+    "components": [
+      { "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "qty": null }
+    ]
+  },
+  {
+    "slug": "protectores-mamarios-individual",
+    "category": "accesorios",
+    "name": "Protectores Mamarios (por unidad)",
+    "subtitle": "Elegí cuántos querés y de qué opción",
+    "mode": "individual",
+    "unitPrice": 590,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459",
+    "components": [
+      { "product": "protectores-mamarios", "label": "Protectores Mamarios", "qty": null }
+    ]
   },
   {
     "slug": "descubrimiento",
