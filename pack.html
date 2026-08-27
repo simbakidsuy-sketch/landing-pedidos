@@ -35,7 +35,7 @@
         cost: 0
       },
       montevideo: {
-        title: "Envío en Montevideo — +$U 200",
+        title: "Envío en Montevideo — $U 200",
         detail: "Se suma al total del pedido.",
         message: "Envío en Montevideo",
         cost: 200
@@ -69,6 +69,7 @@
     };
 
     function shippingFieldKeys() {
+      if (selectedShipping === "pickup") return ["nombre"];
       if (selectedShipping === "montevideo") return ["nombre", "direccion", "celular"];
       if (selectedShipping === "interior") {
         if (dacMode === "agencia") return ["nombre", "localidad", "celular"];
@@ -188,7 +189,6 @@
       const total = countFor(ci);
       document.getElementById(`comp-progress-${ci}`).textContent = compProgressText(comp, total);
       document.getElementById(`clear-${ci}`).style.display = total > 0 ? "inline-flex" : "none";
-      updatePriceDisplay(pack);
     }
 
     let selections = {};
@@ -206,36 +206,6 @@
     function selectedUpsellOption(pack) {
       if (!pack.upsell || !selectedUpsell) return null;
       return pack.upsell.options.find(o => o.id === selectedUpsell) || null;
-    }
-
-    function updatePriceDisplay(pack) {
-      const mainEl = document.getElementById("price-main");
-      const breakdownEl = document.getElementById("price-breakdown");
-      if (!mainEl || !breakdownEl) return;
-
-      const shippingCost = selectedShipping ? SHIPPING_OPTIONS[selectedShipping].cost : 0;
-      const upsellOpt = selectedUpsellOption(pack);
-      const upsellCost = upsellOpt ? upsellOpt.price : 0;
-
-      let base;
-      const parts = [];
-
-      if (pack.mode === "individual") {
-        const totalUnits = pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0);
-        base = pack.unitPrice * totalUnits;
-        mainEl.textContent = `${formatMoney(pack.unitPrice)} c/u`;
-        if (totalUnits > 0) parts.push(`${totalUnits} unidad${totalUnits > 1 ? "es" : ""} × ${formatMoney(pack.unitPrice)}`);
-      } else {
-        base = pack.price;
-        mainEl.textContent = formatMoney(pack.price);
-      }
-
-      if (upsellOpt) parts.push(`${upsellOpt.label} (${formatMoney(upsellCost)})`);
-      if (shippingCost) parts.push(`${formatMoney(shippingCost)} envío`);
-
-      if (parts.length === 0) { breakdownEl.innerHTML = ""; return; }
-      const total = base + upsellCost + shippingCost;
-      breakdownEl.innerHTML = `${parts.join(" + ")} = <span class="total">${formatMoney(total)}</span>`;
     }
 
     function updateSendState(pack) {
@@ -265,7 +235,9 @@
       const shipping = SHIPPING_OPTIONS[selectedShipping];
       const payment = PAYMENT_OPTIONS[selectedPayment];
 
-      const lines = [`Hola! Quiero pedir el *${pack.name}*:`];
+      const lines = pack.components.length > 0
+        ? [`Hola! Quiero pedir el *${pack.name}*:`]
+        : ["Hola! Te paso mis datos para coordinar mi pedido:"];
       pack.components.forEach((comp, ci) => {
         Object.entries(selections[ci]).forEach(([title, count]) => {
           if (count <= 0) return;
@@ -362,8 +334,6 @@
           <div class="meta">
             <h1>${pack.name}</h1>
             <div class="subtitle">${pack.subtitle}</div>
-            <div class="price" id="price-main"></div>
-            <div class="price-breakdown" id="price-breakdown"></div>
           </div>
         </div>
         ${componentBlocks}
@@ -414,7 +384,6 @@
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
           renderShippingDetails(pack);
-          updatePriceDisplay(pack);
           updateSendState(pack);
         });
       });
@@ -437,7 +406,6 @@
             root.querySelectorAll(".upsell-option").forEach(o => {
               o.classList.toggle("selected", o.dataset.id === selectedUpsell);
             });
-            updatePriceDisplay(pack);
           });
         });
       }
@@ -446,7 +414,6 @@
         window.open(buildWhatsAppLink(pack), "_blank");
       });
 
-      updatePriceDisplay(pack);
       updateSendState(pack);
     }
 

@@ -135,12 +135,6 @@ a { color: inherit; text-decoration: none; }
   flex: 1;
 }
 
-.pack-card .price {
-  font-weight: 700;
-  color: var(--simba-purple);
-  font-size: 17px;
-}
-
 .badge {
   position: absolute;
   margin: 10px;
@@ -181,7 +175,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 .pack-header .meta { flex: 1; min-width: 240px; }
-.pack-header .meta .price { font-size: 22px; color: var(--simba-purple); font-weight: 700; margin-top: 6px; }
 .pack-header .meta .subtitle { color: var(--text-muted); margin-top: 4px; }
 
 .component-block {
@@ -455,17 +448,6 @@ a { color: inherit; text-decoration: none; }
   font-size: 13px;
   color: var(--text-muted);
   margin-top: 2px;
-}
-
-.price-breakdown {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 6px;
-}
-
-.price-breakdown .total {
-  font-weight: 700;
-  color: var(--simba-purple);
 }
 
 .upsell-block {
