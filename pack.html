@@ -48,6 +48,8 @@
       }
     };
 
+    const FREE_SHIPPING_THRESHOLD = 3500;
+
     const PAYMENT_OPTIONS = {
       transferencia: {
         title: "Transferencia bancaria o depósito",
@@ -208,6 +210,16 @@
       return pack.upsell.options.find(o => o.id === selectedUpsell) || null;
     }
 
+    // Precio interno del pedido (no se muestra en la landing, solo se calcula
+    // para incluirlo en el mensaje final de WhatsApp).
+    function orderSubtotal(pack) {
+      const base = pack.mode === "individual"
+        ? pack.unitPrice * pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0)
+        : pack.price;
+      const upsellOpt = selectedUpsellOption(pack);
+      return base + (upsellOpt ? upsellOpt.price : 0);
+    }
+
     function updateSendState(pack) {
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
@@ -257,6 +269,27 @@
       });
       lines.push("");
       lines.push(`Medio de Pago: ${payment.message}`);
+
+      if (pack.components.length > 0) {
+        const subtotal = orderSubtotal(pack);
+        lines.push("");
+        if (selectedShipping === "montevideo") {
+          if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+            lines.push(`Total del pedido: ${formatMoney(subtotal)}`);
+            lines.push("Envío: GRATIS");
+          } else {
+            lines.push(`Sub-total del pedido: ${formatMoney(subtotal)}`);
+            lines.push(`Envío: ${formatMoney(SHIPPING_OPTIONS.montevideo.cost)}`);
+            lines.push(`Total: ${formatMoney(subtotal + SHIPPING_OPTIONS.montevideo.cost)}`);
+          }
+        } else if (selectedShipping === "interior" && subtotal >= FREE_SHIPPING_THRESHOLD) {
+          lines.push(`Total del pedido: ${formatMoney(subtotal)}`);
+          lines.push("Envío: GRATIS");
+        } else {
+          lines.push(`Total del pedido: ${formatMoney(subtotal)}`);
+        }
+      }
+
       const text = encodeURIComponent(lines.join("\n"));
       return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
     }
@@ -339,7 +372,7 @@
         ${componentBlocks}
         ${upsellHTML(pack)}
         <div class="component-block">
-          <h3>Envío o retiro</h3>
+          <h3>Retiro o Envío (gratis para compras mayores a $3.500)</h3>
           <div class="option-list" id="shipping-options">
             ${shippingOptionsHTML()}
           </div>
