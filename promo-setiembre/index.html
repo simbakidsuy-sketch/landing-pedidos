@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promos de Setiembre | SIMBA Kids UY</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">SIMBA</span>
+    <span class="tagline">Promos de Setiembre</span>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <span class="discount-badge hero-badge">HASTA 35% OFF</span>
+      <h1>🔥 Liquidación Final DryFit Café</h1>
+      <p>Solo por setiembre y hasta agotar stock. Elegí tu promo, tus diseños, y coordinamos todo por WhatsApp.</p>
+    </div>
+
+    <div id="promo-section">
+      <div class="pack-grid" id="grid-promo"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">SIMBA Kids UY · Promo válida durante setiembre</footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="data/products.js"></script>
+  <script src="data/packs.js"></script>
+  <script src="assets/js/data-source.js"></script>
+  <script>
+    function discountPercent(original, promo) {
+      return Math.round((1 - promo / original) * 100);
+    }
+
+    function cardPriceHTML(pack) {
+      const promo = pack.mode === "individual" ? pack.unitPrice : pack.price;
+      const suffix = pack.mode === "individual" ? " c/u" : "";
+      const pct = discountPercent(pack.originalPrice, promo);
+      return `
+        <div class="price-tag">
+          <span class="original-price">$U ${pack.originalPrice.toLocaleString("es-UY")}${suffix}</span>
+          <span class="promo-price">$U ${promo.toLocaleString("es-UY")}${suffix}</span>
+          <span class="discount-badge">${pct}% OFF</span>
+        </div>`;
+    }
+
+    function cardHTML(pack) {
+      const badge = pack.badge ? `<span class="badge">${pack.badge}</span>` : "";
+      return `
+        <a class="pack-card" href="pack.html?slug=${pack.slug}">
+          ${badge}
+          <img src="${pack.image}" alt="${pack.name}" loading="lazy">
+          <div class="info">
+            <div class="name">${pack.name}</div>
+            <div class="subtitle">${pack.subtitle}</div>
+            ${cardPriceHTML(pack)}
+          </div>
+        </a>`;
+    }
+
+    getPacks().then(packs => {
+      const visible = packs.filter(p => p.active !== false);
+      document.getElementById("grid-promo").innerHTML = visible.map(cardHTML).join("");
+    });
+  </script>
+</body>
+</html>
