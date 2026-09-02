@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="page-title">Elegí tus diseños | SIMBA Kids UY</title>
 <link rel="stylesheet" href="assets/css/styles.css">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '511844655087071');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
   <div class="topbar">
@@ -345,10 +362,10 @@
         const prod = products[comp.product];
         variantStock[ci] = {};
         prod.variants.forEach(v => { variantStock[ci][v.title] = v.stock; });
-        const qtyLabel = comp.qty === null ? " (elegí los que quieras)" : (comp.qty > 1 ? ` (elegí ${comp.qty})` : "");
-        const hint = comp.qty === null
-          ? "Tocá una foto para elegirla. Podés tocarla varias veces si querés más de una unidad del mismo diseño."
-          : "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo.";
+        const qtyLabel = comp.qty === null ? " (elegí los que quieras)" : ` (elegí ${comp.qty})`;
+        const hint = (comp.qty === null || comp.qty > 1)
+          ? "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo."
+          : "Tocá una foto para elegirla.";
         return `
           <div class="component-block">
             <h3>${comp.label}${qtyLabel}</h3>
@@ -444,6 +461,7 @@
       }
 
       document.getElementById("send-btn").addEventListener("click", () => {
+        if (typeof fbq === "function") fbq("track", "Contact");
         window.open(buildWhatsAppLink(pack), "_blank");
       });
 

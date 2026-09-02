@@ -285,7 +285,7 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_REUTILIZABLES_ESTANDAR_DRYFIT_SIMBA.png?v=1769503458",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -299,7 +299,7 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 8 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -313,7 +313,7 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_DE_TELA_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769443642",
     "components": [
       { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 8 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -327,7 +327,7 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_ESTANDAR.png?v=1769538120",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 12 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -341,7 +341,7 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_DE_TELA_SIMBA_DRYFIT_CAFE.png?v=1769537625",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 12 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -355,7 +355,7 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769537882",
     "components": [
       { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 12 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -371,7 +371,7 @@ window.SIMBA_PACKS = [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 },
       { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 3 },
       { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 3 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
   {
@@ -387,8 +387,8 @@ window.SIMBA_PACKS = [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
       { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 6 },
       { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 6 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 (regalo)", "qty": 2 },
-      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25 (regalo)", "qty": 1 }
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 2 },
+      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25 de Regalo 🎁", "qty": 1 }
     ]
   }
 ]
