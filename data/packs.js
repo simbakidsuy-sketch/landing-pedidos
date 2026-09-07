@@ -31,7 +31,7 @@ window.SIMBA_PACKS = [
     "price": 1390,
     "currency": "UYU",
     "active": true,
-    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_1.png?v=1787003264",
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_1.png?v=1788447901",
     "components": [
       { "product": "panal-agua", "label": "Pañal para el Agua", "qty": 2 },
       { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 }
@@ -45,7 +45,7 @@ window.SIMBA_PACKS = [
     "price": 1590,
     "currency": "UYU",
     "active": true,
-    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_2.png?v=1787003263",
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_2.png?v=1788447908",
     "components": [
       { "product": "panal-agua", "label": "Pañal para el Agua", "qty": 2 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "qty": 1 }
