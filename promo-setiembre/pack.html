@@ -305,10 +305,63 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         <div class="order-summary-line total"><span>Total</span><span>${formatMoney(total)}</span></div>`;
     }
 
+    function setSectionError(errId, listId, msg) {
+      const errEl = document.getElementById(errId);
+      if (errEl) errEl.textContent = msg;
+      if (listId) {
+        const list = document.getElementById(listId);
+        if (list) list.classList.add("has-error");
+      }
+    }
+
+    function clearSectionError(errId, listId) {
+      const errEl = document.getElementById(errId);
+      if (errEl) errEl.textContent = "";
+      if (listId) {
+        const list = document.getElementById(listId);
+        if (list) list.classList.remove("has-error");
+      }
+    }
+
+    // Devuelve la primera sección incompleta (para el scroll + cartel al tocar "Enviar"), o null si está todo listo.
+    function firstUnmetTarget(pack) {
+      for (let ci = 0; ci < pack.components.length; ci++) {
+        const comp = pack.components[ci];
+        if (!componentSatisfied(comp, countFor(ci))) {
+          return {
+            el: document.getElementById(`gallery-${ci}`),
+            show: () => setSectionError(`comp-error-${ci}`, null,
+              comp.qty === null
+                ? "Elegí al menos un diseño"
+                : `Te faltan diseños: elegiste ${countFor(ci)} de ${comp.qty}`)
+          };
+        }
+      }
+      if (!selectedShipping) {
+        return { el: document.getElementById("shipping-options"),
+          show: () => setSectionError("shipping-error", "shipping-options", "Elegí una opción de envío o retiro") };
+      }
+      if (selectedShipping === "interior" && !dacMode) {
+        return { el: document.getElementById("shipping-options"),
+          show: () => setSectionError("shipping-error", "shipping-options", "Elegí retiro en agencia o envío a domicilio") };
+      }
+      if (!selectedPayment) {
+        return { el: document.getElementById("payment-options"),
+          show: () => setSectionError("payment-error", "payment-options", "Elegí un medio de pago") };
+      }
+      return null;
+    }
+
     function updateSendState(pack) {
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
       const unmetIndex = pack.components.findIndex((c, ci) => !componentSatisfied(c, countFor(ci)));
+
+      pack.components.forEach((c, ci) => {
+        if (componentSatisfied(c, countFor(ci))) clearSectionError(`comp-error-${ci}`);
+      });
+      if (selectedShipping && !(selectedShipping === "interior" && !dacMode)) clearSectionError("shipping-error", "shipping-options");
+      if (selectedPayment) clearSectionError("payment-error", "payment-options");
 
       let blocking = null;
       if (unmetIndex !== -1) {
@@ -324,7 +377,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
       if (!blocking && !selectedPayment) blocking = "Elegí el medio de pago";
 
-      btn.disabled = !!blocking;
+      btn.classList.toggle("send-btn--incomplete", !!blocking);
       progress.textContent = blocking || "¡Listo! Todo elegido.";
       renderOrderSummary(pack);
     }
@@ -442,6 +495,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
               <span class="comp-progress" id="comp-progress-${ci}">${compProgressText(comp, 0)}</span>
               <button type="button" class="clear-btn" id="clear-${ci}" style="display:none">Limpiar selección</button>
             </div>
+            <div class="section-error" id="comp-error-${ci}"></div>
           </div>`;
       }).join("");
 
@@ -465,16 +519,18 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           <div class="option-list" id="shipping-options">
             ${shippingOptionsHTML()}
           </div>
+          <div class="section-error" id="shipping-error"></div>
         </div>
         <div class="component-block">
           <h3>Medio de pago</h3>
           <div class="option-list" id="payment-options">
             ${optionCardsHTML("payment", PAYMENT_OPTIONS)}
           </div>
+          <div class="section-error" id="payment-error"></div>
         </div>
         <div class="send-bar">
           <div class="order-summary" id="order-summary"></div>
-          <button class="send-btn" id="send-btn" disabled>Enviar info por WhatsApp</button>
+          <button class="send-btn" id="send-btn">Enviar info por WhatsApp</button>
           <div class="send-progress" id="send-progress"></div>
         </div>
       `;
@@ -535,6 +591,12 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       });
 
       document.getElementById("send-btn").addEventListener("click", () => {
+        const problem = firstUnmetTarget(pack);
+        if (problem) {
+          problem.show();
+          if (problem.el) problem.el.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
         if (typeof fbq === "function") fbq("track", "Contact");
         window.open(buildWhatsAppLink(pack), "_blank");
       });
