@@ -82,12 +82,12 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       transferencia: {
         title: "Transferencia bancaria o depósito",
         detail: "Redes de cobranza (Abitab, Redpagos, etc.)",
-        message: "Transferencia bancaria / depósito en redes de cobranza"
+        message: "Quiero hacer la compra por transferencia bancaria o depósitos en redes de cobranza."
       },
       tarjeta: {
         title: "Link de pago con tarjeta",
         detail: "Hasta 12 cuotas sin recargo.",
-        message: "Link de pago con tarjeta (hasta 12 cuotas sin recargo)"
+        message: "Quiero hacer la compra abonando con un link de pago con tarjeta."
       }
     };
 
@@ -326,22 +326,31 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     }
 
     function buildWhatsAppLink(pack) {
-      const shipping = SHIPPING_OPTIONS[selectedShipping];
       const payment = PAYMENT_OPTIONS[selectedPayment];
 
-      const lines = pack.components.length > 0
-        ? [`Hola! Quiero pedir el *${pack.name}*:`]
-        : ["Hola! Te paso mis datos para coordinar mi pedido:"];
-      pack.components.forEach((comp, ci) => {
-        Object.entries(selections[ci]).forEach(([title, count]) => {
-          if (count <= 0) return;
-          lines.push(`- ${comp.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
+      const lines = ["Hola, quiero hacer un pedido:"];
+
+      if (pack.components.length > 0) {
+        lines.push("");
+        lines.push(`*${pack.name}*:`);
+        pack.components.forEach((comp, ci) => {
+          Object.entries(selections[ci]).forEach(([title, count]) => {
+            if (count <= 0) return;
+            lines.push(`- ${comp.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
+          });
         });
-      });
-      const upsellOpt = selectedUpsellOption(pack);
-      if (upsellOpt) lines.push(`Se agregó: ${upsellOpt.message}`);
+        const upsellOpt = selectedUpsellOption(pack);
+        if (upsellOpt) lines.push(`Se agregó: ${upsellOpt.message}`);
+      }
+
       lines.push("");
-      lines.push(`Envío/Retiro: ${shipping.message}`);
+      lines.push(selectedShipping === "pickup" ? "Te comparto mis datos para el pedido" : "Te comparto mis datos para el envío");
+      lines.push("");
+      if (selectedShipping === "pickup") {
+        lines.push("Retiro en Pick Up Aguada");
+      } else {
+        lines.push(`Envío: ${selectedShipping === "montevideo" ? "Montevideo" : "DAC"}`);
+      }
       if (selectedShipping === "interior" && dacMode) {
         lines.push(`Modalidad: ${dacMode === "agencia" ? "en agencia" : "a domicilio"}`);
       }
@@ -350,7 +359,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         if (val) lines.push(`${SHIPPING_FIELD_LABELS[k]}: ${val}`);
       });
       lines.push("");
-      lines.push(`Medio de Pago: ${payment.message}`);
+      lines.push(payment.message);
 
       if (pack.components.length > 0) {
         const subtotal = orderSubtotal(pack);

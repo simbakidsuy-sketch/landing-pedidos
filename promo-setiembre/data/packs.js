@@ -11,7 +11,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": null }
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": null }
     ],
     "upsells": [
       {
@@ -21,7 +21,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/f3ffdf02279d4f5eae0df8c39821b9ed.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "1abs", "label": "Sumar 1 absorbente", "originalPrice": 250, "price": 200, "message": "1 absorbente combinado de 4 capas" }
+          { "id": "1abs", "label": "Sumar 1 absorbente", "originalPrice": 250, "price": 200, "message": "1 absorbente de 4 capas" }
         ]
       },
       {
@@ -31,7 +31,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "1rollo", "label": "Sumar 1 rollo", "originalPrice": 389, "price": 330, "message": "1 rollo de toallitas de bambú" }
+          { "id": "1rollo", "label": "Sumar 1 rollo", "originalPrice": 389, "price": 330, "message": "1 rollo de bambú" }
         ]
       }
     ]
@@ -47,7 +47,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_CAFE_PARA_WEB.png?v=1784924270",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 4 }
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 4 }
     ],
     "upsells": [
       {
@@ -57,7 +57,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/f3ffdf02279d4f5eae0df8c39821b9ed.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "x4abs", "label": "Sumar pack x4 absorbentes", "originalPrice": 1000, "price": 790, "message": "Pack x4 absorbentes combinados de 4 capas" }
+          { "id": "x4abs", "label": "Sumar pack x4 absorbentes", "originalPrice": 1000, "price": 790, "message": "Pack x 4 absorbentes de 4 capas" }
         ]
       },
       {
@@ -67,8 +67,8 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "1rollo", "label": "Sumar 1 rollo", "originalPrice": 389, "price": 330, "message": "1 rollo de toallitas de bambú" },
-          { "id": "3rollos", "label": "Sumar 3 rollos", "originalPrice": 1170, "price": 970, "message": "3 rollos de toallitas de bambú (pack x3)" }
+          { "id": "1rollo", "label": "Sumar 1 rollo", "originalPrice": 389, "price": 330, "message": "1 rollo de bambú" },
+          { "id": "3rollos", "label": "Sumar 3 rollos", "originalPrice": 1170, "price": 970, "message": "3 rollos de bambú" }
         ]
       }
     ]
@@ -84,7 +84,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 8 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 8 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ],
     "upsells": [
@@ -95,7 +95,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/f3ffdf02279d4f5eae0df8c39821b9ed.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "x8abs", "label": "Sumar pack x8 absorbentes", "originalPrice": 2000, "price": 1520, "message": "Pack x8 absorbentes combinados de 4 capas" }
+          { "id": "x8abs", "label": "Sumar pack x8 absorbentes", "originalPrice": 2000, "price": 1520, "message": "Pack x 8 absorbentes de 4 capas" }
         ]
       },
       {
@@ -105,7 +105,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "3rollos", "label": "Sumar 3 rollos", "originalPrice": 1170, "price": 970, "message": "3 rollos de toallitas de bambú (pack x3)" }
+          { "id": "3rollos", "label": "Sumar 3 rollos", "originalPrice": 1170, "price": 970, "message": "3 rollos de bambú" }
         ]
       }
     ]
@@ -121,7 +121,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_DE_TELA_SIMBA_DRYFIT_CAFE.png?v=1769537625",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 12 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 12 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ],
     "upsells": [
@@ -132,7 +132,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/f3ffdf02279d4f5eae0df8c39821b9ed.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "x12abs", "label": "Sumar pack x12 absorbentes", "originalPrice": 3000, "price": 2190, "message": "Pack x12 absorbentes combinados de 4 capas" }
+          { "id": "x12abs", "label": "Sumar pack x12 absorbentes", "originalPrice": 3000, "price": 2190, "message": "Pack x 12 absorbentes de 4 capas" }
         ]
       },
       {
@@ -142,7 +142,7 @@ window.SIMBA_PACKS = [
         "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
         "mediaType": "video",
         "options": [
-          { "id": "3rollos", "label": "Sumar 3 rollos", "originalPrice": 1170, "price": 970, "message": "3 rollos de toallitas de bambú (pack x3)" }
+          { "id": "3rollos", "label": "Sumar 3 rollos", "originalPrice": 1170, "price": 970, "message": "3 rollos de bambú" }
         ]
       }
     ]

@@ -12,7 +12,7 @@ window.SIMBA_PACKS = [
   {
     "slug": "panal-agua-individual",
     "category": "agua",
-    "name": "Pañal para el Agua (por unidad)",
+    "name": "Pañal de Agua (por unidad)",
     "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 590,
@@ -20,7 +20,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PANAL_DE_AGUA_SUELTO.jpg?v=1764337025",
     "components": [
-      { "product": "panal-agua", "label": "Pañal para el Agua", "qty": null }
+      { "product": "panal-agua", "label": "Pañal de Agua", "qty": null }
     ]
   },
   {
@@ -33,7 +33,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_1.png?v=1788447901",
     "components": [
-      { "product": "panal-agua", "label": "Pañal para el Agua", "qty": 2 },
+      { "product": "panal-agua", "label": "Pañal de Agua", "qty": 2 },
       { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 }
     ]
   },
@@ -47,7 +47,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_2.png?v=1788447908",
     "components": [
-      { "product": "panal-agua", "label": "Pañal para el Agua", "qty": 2 },
+      { "product": "panal-agua", "label": "Pañal de Agua", "qty": 2 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "qty": 1 }
     ]
   },
@@ -68,7 +68,7 @@ window.SIMBA_PACKS = [
   {
     "slug": "panal-dryfit-cafe-individual",
     "category": "panales",
-    "name": "Pañal Premium DryFit Café (por unidad)",
+    "name": "Pañal Café (por unidad)",
     "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 790,
@@ -76,13 +76,13 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": null }
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": null }
     ]
   },
   {
     "slug": "panal-carbon-bambu-individual",
     "category": "panales",
-    "name": "Pañal Premium Carbón de Bambú (por unidad)",
+    "name": "Pañal Carbón (por unidad)",
     "subtitle": "Elegí cuántos querés y de qué diseño",
     "mode": "individual",
     "unitPrice": 850,
@@ -90,7 +90,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_FIBRA_DE_CARBON_842e4064-d9fd-430b-96cd-debf49d7ee3f.png?v=1782122458",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": null }
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": null }
     ]
   },
   {
@@ -111,8 +111,8 @@ window.SIMBA_PACKS = [
       "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
       "mediaType": "video",
       "options": [
-        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de toallitas de bambú" },
-        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
+        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de bambú" },
+        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de bambú" }
       ]
     }
   },
@@ -126,7 +126,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_CAFE_PARA_WEB.png?v=1784924270",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 4 }
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 4 }
     ],
     "upsell": {
       "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
@@ -134,8 +134,8 @@ window.SIMBA_PACKS = [
       "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
       "mediaType": "video",
       "options": [
-        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de toallitas de bambú" },
-        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
+        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de bambú" },
+        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de bambú" }
       ]
     }
   },
@@ -149,7 +149,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_CARBON_PARA_WEB.png?v=1784924270",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 4 }
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 4 }
     ],
     "upsell": {
       "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
@@ -157,8 +157,8 @@ window.SIMBA_PACKS = [
       "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
       "mediaType": "video",
       "options": [
-        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de toallitas de bambú" },
-        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de toallitas de bambú (pack x3)" }
+        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de bambú" },
+        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de bambú" }
       ]
     }
   },
@@ -230,8 +230,8 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PACK_DESCUBRIMIENTO_NUEVA_14c0b856-8435-4830-81bc-c07f7f43f694.png?v=1785172615",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 2 },
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 1 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 1 }
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 1 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 1 }
     ]
   },
   {
@@ -244,7 +244,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_CHAU_DERMATITIS_897e02d0-600e-479b-b43e-b874684b48f0.png?v=1785171611",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 4 }
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 4 }
     ]
   },
   {
@@ -257,7 +257,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PACK_NOCHE_EN_LA_WEB_051f791e-3ebf-4e0e-9ee0-e4ddd9b6d35e.png?v=1785152854",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 2 }
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 2 }
     ]
   },
   {
@@ -270,8 +270,8 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X2_PRIMEROS_PASOS_PREMIUM_SIMBA.png?v=1769589630",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 1 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 1 }
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 1 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 1 }
     ]
   },
   {
@@ -298,7 +298,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 8 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 8 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
@@ -312,7 +312,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_DE_TELA_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769443642",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 8 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 8 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
@@ -340,7 +340,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_DE_TELA_SIMBA_DRYFIT_CAFE.png?v=1769537625",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 12 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 12 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
@@ -354,7 +354,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769537882",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 12 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 12 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
@@ -369,8 +369,8 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALEO_MIXTO_DE_SIMBA_PANALES_VARIADOS.png?v=1769504492",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 },
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 3 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 3 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 3 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 3 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
     ]
   },
@@ -385,8 +385,8 @@ window.SIMBA_PACKS = [
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_MAXIMA_EXPERIENCIA_DE_SIMBA_COMPLETO.png?v=1769504517",
     "components": [
       { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
-      { "product": "panal-dryfit-cafe", "label": "Pañal Premium DryFit Café", "qty": 6 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Premium Carbón de Bambú", "qty": 6 },
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 6 },
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 6 },
       { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 2 },
       { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25 de Regalo 🎁", "qty": 1 }
     ]
