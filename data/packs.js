@@ -219,6 +219,19 @@ window.SIMBA_PACKS = [
     ]
   },
   {
+    "slug": "set-primeros-pasos",
+    "category": "panales",
+    "name": "Set Primeros Pasos 2 Pañales",
+    "subtitle": "2 Pañales Estándar + 4 Absorbentes y Rollo de Bambú de regalo 🎁",
+    "price": 1850,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PARA_EL_SET_PRIMEROS_PASOS_ESTANDAR_52dea8b2-2991-4479-8976-6208bca49308.png?v=1789474990",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 2 }
+    ]
+  },
+  {
     "slug": "descubrimiento",
     "category": "panales",
     "name": "Pack \"Descubrimiento\" 4 Pañales",
@@ -267,7 +280,7 @@ window.SIMBA_PACKS = [
     "subtitle": "1 DryFit Café + 1 Carbón de Bambú + 4 Absorbentes",
     "price": 1890,
     "currency": "UYU",
-    "active": true,
+    "active": false,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X2_PRIMEROS_PASOS_PREMIUM_SIMBA.png?v=1769589630",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 1 },
