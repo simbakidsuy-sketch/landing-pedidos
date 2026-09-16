@@ -1,26 +1,8 @@
-// Productos madre — landing principal (todos los packs). Actualizado con el
-// catálogo real de Shopify (diseños y stock) el 16/09.
+// Solo los productos madre necesarios para la landing de Preventa Exclusiva.
+// Actualizado con el catálogo real de Shopify (diseños y stock) el 16/09.
 // El stock de acá abajo es solo un respaldo — en vivo (dataSource:"shopify" en config.js)
 // se lee siempre el stock real de Shopify.
 window.SIMBA_PRODUCTS = {
-  "bolsa-grande": {
-    "title": "Bolsa Impermeable Grande 40x70",
-    "shopifyHandle": "bolsa-impermeable-grande-40x70-para-panales-de-tela",
-    "variants": [
-      { "title": "ARCOIRIS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ARCOIRIS.png?v=1787762344", "stock": 0 },
-      { "title": "CELESTE", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/CELESTE.png?v=1787762344", "stock": 0 },
-      { "title": "FLORCITAS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/FLORCITAS.png?v=1787762343", "stock": 0 },
-      { "title": "SELVA", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SELVA.png?v=1787762999", "stock": 2 }
-    ]
-  },
-  "protectores-mamarios": {
-    "title": "Protectores Mamarios Ecológicos (Set x3 pares)",
-    "shopifyHandle": "set-x3-pares-protectores-mamarios-reutilizables",
-    "variants": [
-      { "title": "SET OPCION 1", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTORES_MAMARIOS_SUAVES.png?v=1773080356", "stock": 0 },
-      { "title": "SET OPCION 2", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTORES_MAMARIOS_REUTILIZABLES.png?v=1773080320", "stock": 41 }
-    ]
-  },
   "panal-estandar": {
     "title": "Pañal Estándar (DryFit)",
     "shopifyHandle": "panal-de-bolsillo-estandar-dryfit-doble-barrera",
