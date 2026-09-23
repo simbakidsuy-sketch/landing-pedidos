@@ -44,7 +44,6 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     <div class="hero">
       <h1>💧 ¿Se filtró el pañal?</h1>
       <p>Las filtraciones pueden darse por varios motivos — completá estas preguntas rápidas y nos ayudás a juntar toda la info de una sola vez, así te podemos orientar mejor y más rápido. Es importante que respondas las 8 preguntas: así tenemos toda la información completa y te podemos dar una solución más precisa ✅</p>
-      <div class="progress-counter" id="progress-counter">0 / 8 preguntas respondidas</div>
     </div>
 
     <div class="note-box">
@@ -330,14 +329,12 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function updateSendState() {
       const progress = document.getElementById("send-progress");
       const btn = document.getElementById("send-btn");
-      const counter = document.getElementById("progress-counter");
       const answered = questionsAnswered();
-      if (counter) counter.textContent = `${answered} / 8 preguntas respondidas`;
 
       const failed = checks().find(c => !c.ok);
       clearErrors();
       btn.classList.toggle("send-btn--incomplete", !!failed);
-      progress.textContent = failed ? `${answered}/8 · ${failed.msg}` : "✅ 8/8 · ¡Listo para enviar!";
+      progress.textContent = `${answered}/8 preguntas respondidas`;
     }
 
     const ZONA_LABELS = { piernitas: "Piernitas", espalda: "Espalda", cintura: "Cintura", pancita: "Pancita" };
