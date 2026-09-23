@@ -47,9 +47,20 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       <div class="progress-counter" id="progress-counter">0 / 8 preguntas respondidas</div>
     </div>
 
+    <div class="note-box">
+      📸 <strong>Un dato importante:</strong> si podés, mandanos por WhatsApp fotos y videos de cómo le ajustás el pañal — así vemos más detalles y te podemos ayudar mejor a solucionar la filtración. Es un complemento a esta info, no un reemplazo.
+    </div>
+
     <div id="form-root">
 
-      <div class="component-block" id="q-edad" style="margin-top:0; padding-top:0; border-top:none;">
+      <div class="component-block" id="q-nombre" style="margin-top:0; padding-top:0; border-top:none;">
+        <h3>Nombre del bebé <span style="font-weight:400; color:var(--text-muted);">(opcional, para identificar el caso)</span></h3>
+        <div class="field-group">
+          <input type="text" id="input-nombre" placeholder="Ej: Mateo">
+        </div>
+      </div>
+
+      <div class="component-block" id="q-edad">
         <h3><span class="question-number">1</span>¿Qué edad tiene?</h3>
         <div class="field-group">
           <input type="text" id="input-edad" placeholder="Ej: 8 meses">
@@ -73,7 +84,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       </div>
 
       <div class="component-block" id="q-absorbentes">
-        <h3><span class="question-number">3</span>¿Cuántos absorbentes le estás poniendo a cada pañal?</h3>
+        <h3><span class="question-number">3</span>¿Cuántos absorbentes le estás poniendo durante el <u>DÍA</u> a cada pañal?</h3>
         <div class="option-list" id="list-absorbentes">
           <label class="option-card" data-value="1">
             <input type="radio" name="absorbentes" value="1">
@@ -180,19 +191,6 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           </label>
         </div>
         <div class="section-error" id="err-cuando"></div>
-      </div>
-
-      <div class="component-block" id="q-nombre">
-        <h3>Nombre del bebé <span style="font-weight:400; color:var(--text-muted);">(opcional, para identificar el caso)</span></h3>
-        <div class="field-group">
-          <input type="text" id="input-nombre" placeholder="Ej: Mateo">
-        </div>
-      </div>
-
-      <div class="component-block">
-        <div class="note-box">
-          📸 <strong>Un último paso:</strong> si podés, mandanos por WhatsApp fotos y videos de cómo le ajustás el pañal — así vemos más detalles y te podemos ayudar mejor a solucionar la filtración.
-        </div>
       </div>
 
       <div class="send-bar">
