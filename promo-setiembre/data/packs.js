@@ -8,7 +8,7 @@ window.SIMBA_PACKS = [
     "originalPrice": 790,
     "unitPrice": 629,
     "currency": "UYU",
-    "active": true,
+    "active": false,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": null }
@@ -44,7 +44,7 @@ window.SIMBA_PACKS = [
     "originalPrice": 3160,
     "price": 2350,
     "currency": "UYU",
-    "active": true,
+    "active": false,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_CAFE_PARA_WEB.png?v=1784924270",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 4 }
@@ -81,7 +81,7 @@ window.SIMBA_PACKS = [
     "originalPrice": 7299,
     "price": 5090,
     "currency": "UYU",
-    "active": true,
+    "active": false,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 8 },
@@ -118,7 +118,7 @@ window.SIMBA_PACKS = [
     "originalPrice": 10459,
     "price": 6790,
     "currency": "UYU",
-    "active": true,
+    "active": false,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_DE_TELA_SIMBA_DRYFIT_CAFE.png?v=1769537625",
     "components": [
       { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 12 },
