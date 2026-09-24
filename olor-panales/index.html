@@ -341,7 +341,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function buildWhatsAppLink() {
       const jabonLabel = state.jabon === "otro" ? (state.jabonOtro.trim() || "Otro") : JABON_LABELS[state.jabon];
 
-      const lines = ["Hola! Les completo el cuestionario de mal olor en los pañales:", ""];
+      const lines = ["Hola, les comparto la info sobre cómo estoy lavando los pañales:", ""];
       lines.push(`🧺 Cómo lava: ${LAVADO_LABELS[state.lavado]}`);
       lines.push(`💧 Enjuague inicial sin jabón: ${ENJUAGUE_LABELS[state.enjuague]}`);
       lines.push(`🧼 Jabón que usa: ${jabonLabel}`);
