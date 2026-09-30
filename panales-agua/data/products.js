@@ -63,7 +63,6 @@ window.SIMBA_PRODUCTS = {
       { "title": "ESCAMAS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ESCAMAS_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562477", "stock": 0 },
       { "title": "FLORCITAS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/panal_para_el_agua_12.png?v=1764337025", "stock": 1 },
       { "title": "FONDO DEL MAR", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/FONDO_DEL_MAR_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562477", "stock": 37 },
-      { "title": "NARANJA OASIS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/panal_para_el_agua_9.png?v=1764337025", "stock": 2 },
       { "title": "OASIS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/OASIS_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562476", "stock": 0 },
       { "title": "OLAS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/OLAS_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562477", "stock": 0 },
       { "title": "PECESITOS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PECESITOS_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562477", "stock": 0 },
