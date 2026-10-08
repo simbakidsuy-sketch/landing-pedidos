@@ -39,6 +39,57 @@ window.SIMBA_PACKS = [
     ]
   },
   {
+    "slug": "x8-estandar",
+    "category": "panales",
+    "name": "PACK x8 Pañales Estándar",
+    "subtitle": "8 Pañales Estándar + Bolsa Impermeable Mediana de regalo + 🎁 Pañal de Agua de Regalo",
+    "price": 4290,
+    "currency": "UYU",
+    "badge": "🎁REGALO<br>PREVENTA",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_REUTILIZABLES_ESTANDAR_DRYFIT_SIMBA.png?v=1769503458",
+    "giftNote": "Por ser preventa, sumamos 1 Pañal para el Agua de regalo — elegí el diseño más abajo.",
+    "components": [
+      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 },
+      { "product": "panal-agua", "label": "Pañal de Agua de Regalo 🎁 (Preventa)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "x8-dryfit-cafe",
+    "category": "panales",
+    "name": "PACK x8 Pañales DryFit Café",
+    "subtitle": "8 Pañales Premium DryFit Café + Bolsa Impermeable Mediana de regalo + 🎁 Pañal de Agua de Regalo",
+    "price": 5890,
+    "currency": "UYU",
+    "badge": "🎁REGALO<br>PREVENTA",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
+    "giftNote": "Por ser preventa, sumamos 1 Pañal para el Agua de regalo — elegí el diseño más abajo.",
+    "components": [
+      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 8 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 },
+      { "product": "panal-agua", "label": "Pañal de Agua de Regalo 🎁 (Preventa)", "qty": 1 }
+    ]
+  },
+  {
+    "slug": "x8-carbon-bambu",
+    "category": "panales",
+    "name": "PACK x8 Pañales Carbón de Bambú",
+    "subtitle": "8 Pañales Premium Carbón de Bambú + Bolsa Impermeable Mediana de regalo + 🎁 Pañal de Agua de Regalo",
+    "price": 6290,
+    "currency": "UYU",
+    "badge": "🎁REGALO<br>PREVENTA",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_DE_TELA_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769443642",
+    "giftNote": "Por ser preventa, sumamos 1 Pañal para el Agua de regalo — elegí el diseño más abajo.",
+    "components": [
+      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 8 },
+      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 },
+      { "product": "panal-agua", "label": "Pañal de Agua de Regalo 🎁 (Preventa)", "qty": 1 }
+    ]
+  },
+  {
     "slug": "panaleo-mixto",
     "category": "panales",
     "name": "PACK x10 Pañaleo Mixto",
