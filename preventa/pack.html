@@ -100,12 +100,12 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       transferencia: {
         title: "Transferencia bancaria o depósito",
         detail: "Redes de cobranza (Abitab, Redpagos, etc.)",
-        message: "Quiero hacer la compra por transferencia bancaria o depósitos en redes de cobranza."
+        message: "Voy a abonar por transferencia bancaria o depósito en redes de cobranza, ¿me pasás el número de cuenta?"
       },
       tarjeta: {
         title: "Link de pago con tarjeta",
         detail: "Hasta 12 cuotas sin recargo.",
-        message: "Quiero hacer la compra abonando con un link de pago con tarjeta."
+        message: "Voy a abonar con tarjeta, ¿podrías enviarme el link de pago?"
       }
     };
 
@@ -350,7 +350,9 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
       if (pack.components.length > 0) {
         lines.push("");
-        lines.push(`*${pack.name}*:`);
+        lines.push(`Quiero encargar: *${pack.name}*`);
+        lines.push("");
+        lines.push("Ya vi los diseños, me gustarían estos:");
         pack.components.forEach((comp, ci) => {
           Object.entries(selections[ci]).forEach(([title, count]) => {
             if (count <= 0) return;
@@ -358,25 +360,34 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           });
         });
         const upsellOpt = selectedUpsellOption(pack);
-        if (upsellOpt) lines.push(`Se agregó: ${upsellOpt.message}`);
-        lines.push("📦 Entrega: dentro de los primeros 10 días de noviembre.");
+        if (upsellOpt) {
+          lines.push("");
+          lines.push(`Además, quiero sumar: ${upsellOpt.message}`);
+        }
+        lines.push("");
+        lines.push("Entiendo que me lo entregarían dentro de los primeros 10 días de noviembre.");
       }
 
+      // Solo se usan los datos del tipo de envío elegido (puede haber quedado texto de otra opción).
+      const keys = shippingFieldKeys() || [];
+      const val = k => (keys.includes(k) ? (shippingFields[k] || "").trim() : "");
+
       lines.push("");
-      lines.push(selectedShipping === "pickup" ? "Te comparto mis datos para el pedido" : "Te comparto mis datos para el envío");
-      lines.push("");
+      if (val("nombre")) lines.push(`Mi nombre es ${val("nombre")}.`);
       if (selectedShipping === "pickup") {
-        lines.push("Retiro en Pick Up Aguada");
-      } else {
-        lines.push(`Envío: ${selectedShipping === "montevideo" ? "Montevideo" : "DAC"}`);
+        lines.push("Cuando el pedido esté listo, lo voy a retirar en su Pick-up de Aguada.");
+      } else if (selectedShipping === "montevideo") {
+        lines.push(`Quiero que me lo envíen en Montevideo${val("direccion") ? ` a ${val("direccion")}` : ""}.`);
+      } else if (selectedShipping === "interior") {
+        if (dacMode === "agencia") {
+          lines.push(`Quiero que me lo envíen por DAC, para retirarlo en la agencia${val("localidad") ? ` de ${val("localidad")}` : ""}.`);
+        } else {
+          const donde = [val("direccion"), val("localidad")].filter(Boolean).join(", ");
+          lines.push(`Quiero que me lo envíen por DAC a mi domicilio${donde ? ` en ${donde}` : ""}.`);
+        }
       }
-      if (selectedShipping === "interior" && dacMode) {
-        lines.push(`Modalidad: ${dacMode === "agencia" ? "en agencia" : "a domicilio"}`);
-      }
-      (shippingFieldKeys() || []).forEach(k => {
-        const val = (shippingFields[k] || "").trim();
-        if (val) lines.push(`${SHIPPING_FIELD_LABELS[k]}: ${val}`);
-      });
+      if (val("celular")) lines.push(`Mi celular es ${val("celular")}.`);
+
       lines.push("");
       lines.push(payment.message);
 

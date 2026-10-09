@@ -220,6 +220,9 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function buildWhatsAppLink() {
       const lines = ["Hola, quiero hacer un pedido mayorista:"];
 
+      lines.push("");
+      lines.push("Ya vi los diseños, me gustarían estos:");
+
       COMPONENTS.forEach((comp, ci) => {
         const entries = Object.entries(selections[ci]).filter(([, count]) => count > 0);
         if (entries.length === 0) return;
@@ -230,17 +233,21 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         });
       });
 
+      // Solo se usan los datos del tipo de envío elegido (puede haber quedado texto de otra opción).
+      const keys = shippingFieldKeys() || [];
+      const val = k => (keys.includes(k) ? (shippingFields[k] || "").trim() : "");
+
       lines.push("");
-      lines.push(selectedShipping === "pickup" ? "Te comparto mis datos para el pedido" : "Te comparto mis datos para el envío");
-      lines.push("");
-      lines.push(selectedShipping === "pickup" ? "Retiro en Pick Up Aguada" : "Envío: DAC");
-      if (selectedShipping === "interior" && dacMode) {
-        lines.push(`Modalidad: ${dacMode === "agencia" ? "en agencia" : "a domicilio"}`);
+      if (val("nombre")) lines.push(`Mi nombre es ${val("nombre")}.`);
+      if (selectedShipping === "pickup") {
+        lines.push("Cuando el pedido esté listo, lo voy a retirar en su Pick-up de Aguada.");
+      } else if (dacMode === "agencia") {
+        lines.push(`Quiero que me lo envíen por DAC, para retirarlo en la agencia${val("localidad") ? ` de ${val("localidad")}` : ""}.`);
+      } else {
+        const donde = [val("direccion"), val("localidad")].filter(Boolean).join(", ");
+        lines.push(`Quiero que me lo envíen por DAC a mi domicilio${donde ? ` en ${donde}` : ""}.`);
       }
-      (shippingFieldKeys() || []).forEach(k => {
-        const val = (shippingFields[k] || "").trim();
-        if (val) lines.push(`${SHIPPING_FIELD_LABELS[k]}: ${val}`);
-      });
+      if (val("celular")) lines.push(`Mi celular es ${val("celular")}.`);
 
       const text = encodeURIComponent(lines.join("\n"));
       return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
