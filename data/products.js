@@ -198,5 +198,23 @@ window.SIMBA_PRODUCTS = {
       { "title": "Zorritos L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONZORRITOS.png?v=1787056174", "stock": 10 },
       { "title": "Zorritos XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONZORRITOS.png?v=1787056174", "stock": 25 }
     ]
+  },
+  "remera-uv": {
+    "title": "Remera UV Manga Larga para Bebé",
+    "shopifyHandle": "remera-uv-manga-larga-para-bebe-proteccion-solar",
+    "variants": [
+      { "title": "Arena T1", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_1.png?v=1786962236", "stock": 50 },
+      { "title": "Arena T2", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_1.png?v=1786962236", "stock": 50 },
+      { "title": "Arena T3", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_1.png?v=1786962236", "stock": 50 },
+      { "title": "Azul T1", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_2.png?v=1786962236", "stock": 50 },
+      { "title": "Azul T2", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_2.png?v=1786962236", "stock": 50 },
+      { "title": "Azul T3", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_2.png?v=1786962236", "stock": 50 },
+      { "title": "Rosado T1", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_3.png?v=1786962236", "stock": 50 },
+      { "title": "Rosado T2", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_3.png?v=1786962236", "stock": 50 },
+      { "title": "Rosado T3", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_3.png?v=1786962236", "stock": 50 },
+      { "title": "Verde T1", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_4.png?v=1786962236", "stock": 50 },
+      { "title": "Verde T2", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_4.png?v=1786962236", "stock": 50 },
+      { "title": "Verde T3", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/REMERAS_UV_PARA_LA_PLAYA_O_PISCINA_CON_PROTECCION_SOLAR_4.png?v=1786962236", "stock": 50 }
+    ]
   }
 };

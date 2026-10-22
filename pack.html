@@ -194,6 +194,15 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       }).join("");
     }
 
+    function sizeChartHTML(url) {
+      return `
+        <a class="size-chart" href="${url}" target="_blank" rel="noopener">
+          <div class="size-chart-title">📏 Tabla de talles</div>
+          <img src="${url}" alt="Tabla de talles" loading="lazy">
+          <span>Tocá la imagen para verla en grande</span>
+        </a>`;
+    }
+
     function compProgressText(comp, total) {
       if (comp.qty === null) {
         return total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
@@ -454,6 +463,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           <div class="component-block">
             <h3>${comp.label}${qtyLabel}</h3>
             <div class="hint">${hint}</div>
+            ${comp.sizeChart ? sizeChartHTML(comp.sizeChart) : ""}
             <div class="gallery" id="gallery-${ci}">${galleryHTML(prod.variants, ci)}</div>
             <div class="comp-footer">
               <span class="comp-progress" id="comp-progress-${ci}">${compProgressText(comp, 0)}</span>
