@@ -91,6 +91,16 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
     getPacks().then(packs => {
       const visible = packs.filter(p => p.active !== false);
+
+      if (visible.length === 0) {
+        const badge = document.querySelector(".hero-badge");
+        if (badge) badge.style.display = "none";
+        document.querySelector(".hero h1").textContent = "Promo finalizada";
+        document.querySelector(".hero p").textContent = "Agotamos el stock de la promo — ¡gracias por la increíble respuesta! Seguinos en Instagram para enterarte de las próximas.";
+        document.getElementById("grid-promo").innerHTML = "";
+        return;
+      }
+
       document.getElementById("grid-promo").innerHTML = visible.map(cardHTML).join("");
     });
   </script>

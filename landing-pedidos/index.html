@@ -56,6 +56,16 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       <div class="pack-grid" id="grid-agua"></div>
     </div>
 
+    <div id="ninos-section">
+      <h2 class="section-title">Pañales para Niños</h2>
+      <div class="pack-grid" id="grid-ninos"></div>
+    </div>
+
+    <div id="entrenamiento-section">
+      <h2 class="section-title">Pañal de Entrenamiento</h2>
+      <div class="pack-grid" id="grid-entrenamiento"></div>
+    </div>
+
     <div id="accesorios-section">
       <h2 class="section-title">Accesorios</h2>
       <div class="pack-grid" id="grid-accesorios"></div>
@@ -86,13 +96,19 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       const visible = packs.filter(p => p.active !== false);
       const panales = visible.filter(p => p.category === "panales");
       const agua = visible.filter(p => p.category === "agua");
+      const ninos = visible.filter(p => p.category === "ninos");
+      const entrenamiento = visible.filter(p => p.category === "entrenamiento");
       const accesorios = visible.filter(p => p.category === "accesorios");
 
       document.getElementById("grid-panales").innerHTML = panales.map(cardHTML).join("");
       document.getElementById("grid-agua").innerHTML = agua.map(cardHTML).join("");
+      document.getElementById("grid-ninos").innerHTML = ninos.map(cardHTML).join("");
+      document.getElementById("grid-entrenamiento").innerHTML = entrenamiento.map(cardHTML).join("");
       document.getElementById("grid-accesorios").innerHTML = accesorios.map(cardHTML).join("");
 
       if (agua.length === 0) document.getElementById("agua-section").style.display = "none";
+      if (ninos.length === 0) document.getElementById("ninos-section").style.display = "none";
+      if (entrenamiento.length === 0) document.getElementById("entrenamiento-section").style.display = "none";
       if (panales.length === 0) document.getElementById("panales-section").style.display = "none";
       if (accesorios.length === 0) document.getElementById("accesorios-section").style.display = "none";
     });
