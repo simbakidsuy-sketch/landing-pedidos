@@ -168,5 +168,35 @@ window.SIMBA_PRODUCTS = {
       { "title": "RAYITAS", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/RAYITAS_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562475", "stock": 76 },
       { "title": "VERANO", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/VERANO_PANAL_PARA_EL_AGUA_REUTILIZABLE_SIMBA.png?v=1789562477", "stock": 0 }
     ]
+  },
+  "panal-ninos": {
+    "title": "Pañal Estándar para Niños (talle grande)",
+    "shopifyHandle": "panal-estandar-para-ninos-talles-grandes-incluye-2-absorbentes",
+    "variants": [
+      { "title": "Celeste", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALESPARANINOSGRANDESREUTILIZABLESSIMBAECOLOGICOSCELESTE.png?v=1786966135", "stock": 32 },
+      { "title": "Crema", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALESPARANINOSGRANDESREUTILIZABLESSIMBAECOLOGICOSCREMA.png?v=1786966135", "stock": 33 },
+      { "title": "Gris", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALESPARANINOSGRANDESREUTILIZABLESSIMBAECOLOGICOSGRIS.png?v=1786966135", "stock": 35 },
+      { "title": "Lila", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALESPARANINOSGRANDESREUTILIZABLESSIMBAECOLOGICOSLILA.png?v=1786966135", "stock": 34 },
+      { "title": "Mostaza", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALESPARANINOSGRANDESREUTILIZABLESSIMBAECOLOGICOSMOSTAZA.png?v=1786966135", "stock": 33 },
+      { "title": "Verde", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALESPARANINOSGRANDESREUTILIZABLESSIMBAECOLOGICOSVERDE.png?v=1786966135", "stock": 32 }
+    ]
+  },
+  "panal-entrenamiento": {
+    "title": "Pañal de Entrenamiento/Transición",
+    "shopifyHandle": "panal-de-entrenamiento-transicion-simba-ropa-interior-absorbente",
+    "variants": [
+      { "title": "Espacio L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONESPACIO.png?v=1787056174", "stock": 10 },
+      { "title": "Espacio XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONESPACIO.png?v=1787056174", "stock": 25 },
+      { "title": "Florcitas L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONFLORCITAS.png?v=1787056174", "stock": 10 },
+      { "title": "Florcitas XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONFLORCITAS.png?v=1787056174", "stock": 25 },
+      { "title": "Lazos L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONLAZOS.png?v=1787056174", "stock": 10 },
+      { "title": "Lazos XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONLAZOS.png?v=1787056174", "stock": 25 },
+      { "title": "Perritos L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONPERRITOS.png?v=1787056174", "stock": 10 },
+      { "title": "Perritos XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONPERRITOS.png?v=1787056174", "stock": 25 },
+      { "title": "Zoologico L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONZOOLOGICO.png?v=1787056174", "stock": 10 },
+      { "title": "Zoologico XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONZOOLOGICO.png?v=1787056174", "stock": 25 },
+      { "title": "Zorritos L", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONZORRITOS.png?v=1787056174", "stock": 10 },
+      { "title": "Zorritos XL", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALDEENTRENAMIENTOSIMBAPARANINOSDETRANSICIONZORRITOS.png?v=1787056174", "stock": 25 }
+    ]
   }
 };

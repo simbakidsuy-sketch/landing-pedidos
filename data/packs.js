@@ -52,6 +52,60 @@ window.SIMBA_PACKS = [
     ]
   },
   {
+    "slug": "panal-ninos-individual",
+    "category": "ninos",
+    "name": "Pañal Estándar para Niños (por unidad)",
+    "subtitle": "Talle grande de 18 a 36 kg, incluye 2 absorbentes. Elegí cuántos querés y de qué color",
+    "mode": "individual",
+    "unitPrice": 1490,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PANALES_PARA_NINOS_MAS_GRANDES.png?v=1786978165",
+    "components": [
+      { "product": "panal-ninos", "label": "Pañal para Niños", "qty": null }
+    ]
+  },
+  {
+    "slug": "set-x3-panal-ninos",
+    "category": "ninos",
+    "name": "Set x3 Pañales para Niños",
+    "subtitle": "3 Pañales Estándar XL + 6 Absorbentes",
+    "price": 3890,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/portadawebparaelsetde3panalesparaninosmasgrandes_1.png?v=1786980347",
+    "components": [
+      { "product": "panal-ninos", "label": "Pañal para Niños", "qty": 3 }
+    ]
+  },
+  {
+    "slug": "set-x6-panal-ninos",
+    "category": "ninos",
+    "name": "Set x6 Pañales para Niños",
+    "subtitle": "6 Pañales Estándar XL + 12 Absorbentes",
+    "price": 6690,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/portadawebparaelsetde6panalesparaninosmasgrandes_2.png?v=1786980346",
+    "components": [
+      { "product": "panal-ninos", "label": "Pañal para Niños", "qty": 6 }
+    ]
+  },
+  {
+    "slug": "panal-entrenamiento-individual",
+    "category": "entrenamiento",
+    "name": "Pañal de Entrenamiento (por unidad)",
+    "subtitle": "Ropa interior absorbente. Elegí cuántos querés, el diseño y el talle (L o XL)",
+    "mode": "individual",
+    "unitPrice": 790,
+    "currency": "UYU",
+    "active": true,
+    "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADAPANALDEENTRENAMIENTOWEB.png?v=1787056174",
+    "components": [
+      { "product": "panal-entrenamiento", "label": "Pañal de Entrenamiento", "qty": null }
+    ]
+  },
+  {
     "slug": "panal-estandar-individual",
     "category": "panales",
     "name": "Pañal Estándar (por unidad)",
