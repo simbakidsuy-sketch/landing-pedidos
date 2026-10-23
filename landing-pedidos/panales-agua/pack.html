@@ -194,6 +194,15 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       }).join("");
     }
 
+    function sizeChartHTML(url) {
+      return `
+        <a class="size-chart" href="${url}" target="_blank" rel="noopener">
+          <div class="size-chart-title">📏 Tabla de talles</div>
+          <img src="${url}" alt="Tabla de talles" loading="lazy">
+          <span>Tocá la imagen para verla en grande</span>
+        </a>`;
+    }
+
     function compProgressText(comp, total) {
       if (comp.qty === null) {
         return total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
@@ -228,9 +237,62 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     let selectedUpsell = null;
     let dacMode = "";
     let shippingFields = {};
+    let addonSelections = {};
+    let addonStock = {};
+    let addonOpen = false;
 
     function countFor(ci) {
       return Object.values(selections[ci] || {}).reduce((a, b) => a + b, 0);
+    }
+
+    function addonCount() {
+      return Object.values(addonSelections).reduce((a, b) => a + b, 0);
+    }
+
+    function addonPrice(pack) {
+      return Math.round(pack.addon.basePrice * (1 - pack.addon.discount / 100));
+    }
+
+    // Unidades ya elegidas de un mismo producto (en los componentes del pack y en el extra),
+    // para no pasarse del stock si el cliente elige el mismo diseño en los dos lugares.
+    function unitsUsed(pack, productKey, title) {
+      let n = 0;
+      pack.components.forEach((c, ci) => {
+        if (c.product === productKey) n += (selections[ci][title] || 0);
+      });
+      if (pack.addon && pack.addon.product === productKey) n += (addonSelections[title] || 0);
+      return n;
+    }
+
+    function addonHTML(pack, prod) {
+      const a = pack.addon;
+      return `
+        <div class="addon-block">
+          <div class="addon-question">¿Querés sumar ${a.noun} con ${a.discount}% de descuento?</div>
+          <div class="addon-price">Con el descuento: <strong>${formatMoney(addonPrice(pack))} c/u</strong> <s>${formatMoney(a.basePrice)}</s></div>
+          <button type="button" class="addon-btn" id="addon-btn">Sí, quiero</button>
+          <div class="addon-panel" id="addon-panel" hidden>
+            <div class="hint">Tocá una foto para elegirla. Podés sumar todas las que quieras: si querés el mismo diseño más de una vez, tocala de nuevo.</div>
+            ${a.sizeChart ? sizeChartHTML(a.sizeChart) : ""}
+            <div class="gallery" id="gallery-addon">${galleryHTML(prod.variants, "addon")}</div>
+            <div class="comp-footer">
+              <span class="comp-progress" id="comp-progress-addon">Elegí los que quieras</span>
+              <button type="button" class="clear-btn" id="clear-addon" style="display:none">Limpiar selección</button>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderAddonBadges() {
+      document.querySelectorAll("#gallery-addon .thumb-wrap").forEach(wrap => {
+        const count = addonSelections[wrap.dataset.title] || 0;
+        wrap.querySelector(".thumb").classList.toggle("selected", count > 0);
+        wrap.querySelector(".count-badge").textContent = count > 0 ? String(count) : "";
+      });
+      const total = addonCount();
+      document.getElementById("comp-progress-addon").textContent =
+        total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
+      document.getElementById("clear-addon").style.display = total > 0 ? "inline-flex" : "none";
     }
 
     function selectedUpsellOption(pack) {
@@ -245,7 +307,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         ? pack.unitPrice * pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0)
         : pack.price;
       const upsellOpt = selectedUpsellOption(pack);
-      return base + (upsellOpt ? upsellOpt.price : 0);
+      const addon = pack.addon ? addonCount() * addonPrice(pack) : 0;
+      return base + (upsellOpt ? upsellOpt.price : 0) + addon;
     }
 
     function setSectionError(errId, listId, msg) {
@@ -346,6 +409,14 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           lines.push("");
           lines.push(`Además, quiero sumar: ${upsellOpt.message}`);
         }
+        if (pack.addon && addonCount() > 0) {
+          lines.push("");
+          lines.push(`Además, quiero sumar con ${pack.addon.discount}% de descuento (${formatMoney(addonPrice(pack))} c/u):`);
+          Object.entries(addonSelections).forEach(([title, count]) => {
+            if (count <= 0) return;
+            lines.push(`- ${pack.addon.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
+          });
+        }
       }
 
       // Solo se usan los datos del tipo de envío elegido (puede haber quedado texto de otra opción).
@@ -440,6 +511,10 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       selections = {};
       variantStock = {};
       selectedUpsell = null;
+      addonSelections = {};
+      addonOpen = false;
+      addonStock = {};
+      if (pack.addon) products[pack.addon.product].variants.forEach(v => { addonStock[v.title] = v.stock; });
       pack.components.forEach((c, i) => { selections[i] = {}; });
 
       const componentBlocks = pack.components.map((comp, ci) => {
@@ -454,6 +529,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           <div class="component-block">
             <h3>${comp.label}${qtyLabel}</h3>
             <div class="hint">${hint}</div>
+            ${comp.sizeChart ? sizeChartHTML(comp.sizeChart) : ""}
             <div class="gallery" id="gallery-${ci}">${galleryHTML(prod.variants, ci)}</div>
             <div class="comp-footer">
               <span class="comp-progress" id="comp-progress-${ci}">${compProgressText(comp, 0)}</span>
@@ -473,6 +549,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </div>
         ${componentBlocks}
         ${upsellHTML(pack)}
+        ${pack.addon ? addonHTML(pack, products[pack.addon.product]) : ""}
         <div class="component-block">
           <h3>Retiro o Envío (gratis para compras mayores a $3.500)</h3>
           <div class="option-list" id="shipping-options">
@@ -499,7 +576,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
             const title = wrap.dataset.title;
             const current = selections[ci][title] || 0;
             if (comp.qty !== null && countFor(ci) >= comp.qty) return;
-            if (current >= variantStock[ci][title]) return;
+            if (unitsUsed(pack, comp.product, title) >= variantStock[ci][title]) return;
             selections[ci][title] = current + 1;
             renderBadges(pack, ci);
             updateSendState(pack);
@@ -512,6 +589,35 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           updateSendState(pack);
         });
       });
+
+      if (pack.addon) {
+        const addonBtn = document.getElementById("addon-btn");
+        const addonPanel = document.getElementById("addon-panel");
+        addonBtn.addEventListener("click", () => {
+          addonOpen = !addonOpen;
+          addonPanel.hidden = !addonOpen;
+          addonBtn.textContent = addonOpen ? "No, mejor no" : "Sí, quiero";
+          addonBtn.classList.toggle("addon-btn--open", addonOpen);
+          if (!addonOpen) {
+            addonSelections = {};
+            renderAddonBadges();
+          }
+        });
+
+        root.querySelectorAll("#gallery-addon .thumb-wrap:not(.out)").forEach(wrap => {
+          wrap.addEventListener("click", () => {
+            const title = wrap.dataset.title;
+            if (unitsUsed(pack, pack.addon.product, title) >= addonStock[title]) return;
+            addonSelections[title] = (addonSelections[title] || 0) + 1;
+            renderAddonBadges();
+          });
+        });
+
+        document.getElementById("clear-addon").addEventListener("click", () => {
+          addonSelections = {};
+          renderAddonBadges();
+        });
+      }
 
       root.querySelectorAll('input[name="shipping"]').forEach(radio => {
         radio.addEventListener("change", e => {

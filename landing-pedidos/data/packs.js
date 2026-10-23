@@ -11,6 +11,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "panal-agua-individual",
+    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Pañal de Agua (por unidad)",
     "subtitle": "Elegí cuántos querés y de qué diseño",
@@ -25,6 +26,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "remera-uv-individual",
+    "addon": { "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 },
     "category": "agua",
     "name": "Remera UV Manga Larga (por unidad)",
     "subtitle": "Protección solar para bebé. Elegí cuántas querés, el color y el talle (T1, T2 o T3)",
@@ -34,11 +36,12 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575",
     "components": [
-      { "product": "remera-uv", "label": "Remera UV", "qty": null }
+      { "product": "remera-uv", "label": "Remera UV", "qty": null, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
     ]
   },
   {
     "slug": "promo-playa",
+    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Promo Playa",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Chica",
@@ -53,6 +56,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-matro",
+    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Promo Matro",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Mediana",
@@ -67,6 +71,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-verano",
+    "addon": { "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 },
     "category": "agua",
     "name": "Promo Verano",
     "subtitle": "Pañal para el Agua + Bolsa Impermeable Chica + Remera UV",
@@ -77,7 +82,7 @@ window.SIMBA_PACKS = [
     "components": [
       { "product": "panal-agua", "label": "Pañal de Agua", "qty": 1 },
       { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 },
-      { "product": "remera-uv", "label": "Remera UV", "qty": 1 }
+      { "product": "remera-uv", "label": "Remera UV", "qty": 1, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
     ]
   },
   {
@@ -131,7 +136,7 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADAPANALDEENTRENAMIENTOWEB.png?v=1787056174",
     "components": [
-      { "product": "panal-entrenamiento", "label": "Pañal de Entrenamiento", "qty": null }
+      { "product": "panal-entrenamiento", "label": "Pañal de Entrenamiento", "qty": null, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/Medidas_de_los_panales_de_entrenamiento.jpg?v=1792595341" }
     ]
   },
   {
