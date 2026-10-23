@@ -1,1 +1,232 @@
-placeholder
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu muestra gratis | SIMBA Kids UY</title>
+<link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/Diseno_sin_titulo_2.png?v=1742408340">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tu muestra gratis | SIMBA Kids UY">
+<meta property="og:description" content="Completá tus datos de retiro o envío y coordinamos la entrega de tu muestra.">
+<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/foto_portada_para_las_landing_panales_ecologicos_simba.jpg?v=1788392374">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tu muestra gratis | SIMBA Kids UY">
+<meta name="twitter:description" content="Completá tus datos de retiro o envío y coordinamos la entrega de tu muestra.">
+<meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/foto_portada_para_las_landing_panales_ecologicos_simba.jpg?v=1788392374">
+<link rel="stylesheet" href="styles.css">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '511844655087071');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">SIMBA</span>
+    <span class="tagline">Tu muestra gratis</span>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>🎁 Tu muestra gratis</h1>
+      <p>Elegí si la retirás o si te la enviamos, completá tus datos y nos los mandás por WhatsApp para coordinar la entrega.</p>
+    </div>
+
+    <div class="component-block" style="margin-top:0; padding-top:0; border-top:none;">
+      <h3>Retiro o Envío</h3>
+      <div class="option-list" id="shipping-options"></div>
+      <div class="section-error" id="shipping-error"></div>
+    </div>
+
+    <div class="send-bar">
+      <button class="send-btn" id="send-btn">Enviar mis datos por WhatsApp</button>
+      <div class="send-progress" id="send-progress"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">SIMBA Kids UY</footer>
+
+  <script>
+    window.SIMBA_CONFIG = {
+      whatsappNumber: "59899185641" // +598 99 185 641, formato internacional sin "+" para wa.me
+    };
+  </script>
+  <script>
+    const SHIPPING_OPTIONS = {
+      pickup: {
+        title: "Retiro en Aguada",
+        detail: "A una cuadra del Palacio Legislativo. Coordinamos el retiro por WhatsApp."
+      },
+      montevideo: {
+        title: "Envío en Montevideo",
+        detail: "Coordinamos el envío por WhatsApp."
+      },
+      interior: {
+        title: "Envío al resto del país (DAC)",
+        detail: "Te la enviamos por DAC."
+      }
+    };
+
+    const FIELD_LABELS = {
+      nombre: "Nombre y apellido",
+      direccion: "Dirección de entrega",
+      localidad: "Localidad y departamento",
+      celular: "Celular de contacto"
+    };
+
+    let selectedShipping = "";
+    let dacMode = "";
+    let fields = {};
+
+    function fieldKeys() {
+      if (selectedShipping === "pickup") return ["nombre"];
+      if (selectedShipping === "montevideo") return ["nombre", "direccion", "celular"];
+      if (selectedShipping === "interior") {
+        if (dacMode === "agencia") return ["nombre", "localidad", "celular"];
+        if (dacMode === "domicilio") return ["nombre", "direccion", "localidad", "celular"];
+        return null;
+      }
+      return [];
+    }
+
+    function fieldsHTML(keys) {
+      if (!keys || keys.length === 0) return "";
+      return `<div class="shipping-fields">` + keys.map(k => `
+        <div class="field-group">
+          <label>${FIELD_LABELS[k]}</label>
+          <input type="text" class="field-input" data-key="${k}" value="${(fields[k] || "").replace(/"/g, "&quot;")}" placeholder="${FIELD_LABELS[k]}">
+        </div>`).join("") + `</div>`;
+    }
+
+    function clearError() {
+      document.getElementById("shipping-error").textContent = "";
+      document.getElementById("shipping-options").classList.remove("has-error");
+    }
+
+    function showError(msg) {
+      document.getElementById("shipping-error").textContent = msg;
+      document.getElementById("shipping-options").classList.add("has-error");
+    }
+
+    function renderOptions() {
+      document.getElementById("shipping-options").innerHTML = Object.entries(SHIPPING_OPTIONS).map(([value, opt]) => `
+        <div class="option-card-wrap ${selectedShipping === value ? "selected" : ""}" data-value="${value}">
+          <label class="option-card">
+            <input type="radio" name="shipping" value="${value}" ${selectedShipping === value ? "checked" : ""}>
+            <div class="option-text">
+              <strong>${opt.title}</strong>
+              <span>${opt.detail}</span>
+            </div>
+          </label>
+          <div class="option-inline-extra" id="extra-${value}"></div>
+        </div>`).join("");
+
+      document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+        radio.addEventListener("change", e => {
+          selectedShipping = e.target.value;
+          if (selectedShipping !== "interior") dacMode = "";
+          clearError();
+          renderDetails();
+        });
+      });
+      renderDetails();
+    }
+
+    function renderDetails() {
+      document.querySelectorAll(".option-card-wrap").forEach(card => {
+        card.classList.toggle("selected", card.dataset.value === selectedShipping);
+        const extra = card.querySelector(".option-inline-extra");
+        if (card.dataset.value !== selectedShipping) extra.innerHTML = "";
+      });
+
+      const container = document.getElementById(`extra-${selectedShipping}`);
+      if (!container) return;
+
+      if (selectedShipping === "interior") {
+        const dacOption = (value, label) => `
+          <label class="option-card ${dacMode === value ? "selected" : ""}">
+            <input type="radio" name="dac-mode" value="${value}" ${dacMode === value ? "checked" : ""}>
+            <div class="option-text"><strong>${label}</strong></div>
+          </label>`;
+        container.innerHTML =
+          `<div class="option-list dac-mode-list">${dacOption("agencia", "Retiro en agencia")}${dacOption("domicilio", "Enviar a mi domicilio")}</div>` +
+          fieldsHTML(fieldKeys());
+
+        container.querySelectorAll('input[name="dac-mode"]').forEach(r => {
+          r.addEventListener("change", e => {
+            dacMode = e.target.value;
+            clearError();
+            renderDetails();
+          });
+        });
+      } else {
+        container.innerHTML = fieldsHTML(fieldKeys());
+      }
+
+      container.querySelectorAll(".field-input").forEach(input => {
+        input.addEventListener("input", e => {
+          fields[e.target.dataset.key] = e.target.value;
+          clearError();
+        });
+      });
+    }
+
+    // Solo se usan los datos del tipo de entrega elegido (puede haber quedado texto de otra opción).
+    function val(k) {
+      return (fieldKeys() || []).includes(k) ? (fields[k] || "").trim() : "";
+    }
+
+    function validate() {
+      if (!selectedShipping) return "Elegí retiro o envío";
+      if (selectedShipping === "interior" && !dacMode) return "Elegí retiro en agencia o envío a domicilio";
+      const missing = (fieldKeys() || []).filter(k => !val(k));
+      if (missing.length > 0) return `Completá: ${missing.map(k => FIELD_LABELS[k].toLowerCase()).join(", ")}`;
+      return null;
+    }
+
+    function buildWhatsAppLink() {
+      const lines = ["Hola, quiero recibir mi muestra gratis de pañales:", ""];
+      lines.push(`Mi nombre es ${val("nombre")}.`);
+      if (selectedShipping === "pickup") {
+        lines.push("Cuando esté lista, la voy a retirar en su Pick-up de Aguada.");
+      } else if (selectedShipping === "montevideo") {
+        lines.push(`Quiero que me la envíen en Montevideo a ${val("direccion")}.`);
+      } else if (dacMode === "agencia") {
+        lines.push(`Quiero que me la envíen por DAC, para retirarla en la agencia de ${val("localidad")}.`);
+      } else {
+        lines.push(`Quiero que me la envíen por DAC a mi domicilio en ${val("direccion")}, ${val("localidad")}.`);
+      }
+      if (val("celular")) lines.push(`Mi celular es ${val("celular")}.`);
+
+      return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+    }
+
+    document.getElementById("send-btn").addEventListener("click", () => {
+      const problem = validate();
+      if (problem) {
+        showError(problem);
+        document.getElementById("shipping-options").scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      if (typeof fbq === "function") fbq("track", "Contact");
+      window.open(buildWhatsAppLink(), "_blank");
+    });
+
+    renderOptions();
+  </script>
+</body>
+</html>
