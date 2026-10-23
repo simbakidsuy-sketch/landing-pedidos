@@ -1,6 +1,7 @@
 window.SIMBA_PACKS = [
   {
     "slug": "panal-agua-individual",
+    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Pañal de Agua (por unidad)",
     "subtitle": "Elegí cuántos querés y de qué diseño",
@@ -15,6 +16,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "remera-uv-individual",
+    "addon": { "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 },
     "category": "agua",
     "name": "Remera UV Manga Larga (por unidad)",
     "subtitle": "Protección solar para bebé. Elegí cuántas querés, el color y el talle (T1, T2 o T3)",
@@ -29,6 +31,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-playa",
+    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Promo Playa",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Chica",
@@ -43,6 +46,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-matro",
+    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Promo Matro",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Mediana",
@@ -57,6 +61,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-verano",
+    "addon": { "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 },
     "category": "agua",
     "name": "Promo Verano",
     "subtitle": "Pañal para el Agua + Bolsa Impermeable Chica + Remera UV",
