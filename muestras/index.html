@@ -72,14 +72,22 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         detail: "A una cuadra del Palacio Legislativo. Coordinamos el retiro por WhatsApp."
       },
       montevideo: {
-        title: "Envío en Montevideo",
-        detail: "Coordinamos el envío por WhatsApp."
+        title: "Envío en Montevideo — $U 200",
+        detail: "La muestra es gratis, el envío se abona por transferencia: los datos de la cuenta van incluidos en el mensaje."
       },
       interior: {
         title: "Envío al resto del país (DAC)",
         detail: "Te la enviamos por DAC."
       }
     };
+
+    const MONTEVIDEO_SHIPPING_COST = 200;
+
+    const BANK_ACCOUNT = [
+      "Banco ITAÚ - Cuenta Corriente",
+      "Número: 3404311",
+      "A nombre de Marcelo Pampinella"
+    ];
 
     const FIELD_LABELS = {
       nombre: "Nombre y apellido",
@@ -211,6 +219,14 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         lines.push(`Quiero que me la envíen por DAC a mi domicilio en ${val("direccion")}, ${val("localidad")}.`);
       }
       if (val("celular")) lines.push(`Mi celular es ${val("celular")}.`);
+
+      if (selectedShipping === "montevideo") {
+        lines.push("");
+        lines.push(`El envío en Montevideo tiene un costo de $U ${MONTEVIDEO_SHIPPING_COST}, que voy a abonar por transferencia a esta cuenta:`);
+        BANK_ACCOUNT.forEach(l => lines.push(l));
+        lines.push("");
+        lines.push("Cuando realice la transferencia, les envío el comprobante por acá.");
+      }
 
       return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
     }
