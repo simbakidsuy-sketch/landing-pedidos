@@ -131,7 +131,7 @@ window.SIMBA_PACKS = [
     "name": "Pañal de Entrenamiento (por unidad)",
     "subtitle": "Ropa interior absorbente. Elegí cuántos querés, el diseño y el talle (L o XL)",
     "mode": "individual",
-    "unitPrice": 790,
+    "unitPrice": 650,
     "currency": "UYU",
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADAPANALDEENTRENAMIENTOWEB.png?v=1787056174",
