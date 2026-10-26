@@ -310,7 +310,7 @@ window.SIMBA_PACKS = [
     "slug": "set-primeros-pasos",
     "category": "panales",
     "name": "Set Primeros Pasos 2 Pañales",
-    "subtitle": "2 Pañales Estándar + 4 Absorbentes y Rollo de Bambú de regalo 🎁",
+    "subtitle": "2 Pañales Estándar + 4 Absorbentes + Rollo de Bambú",
     "price": 1850,
     "currency": "UYU",
     "active": true,
