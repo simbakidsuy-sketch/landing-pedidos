@@ -59,7 +59,7 @@ window.SIMBA_PACKS = [
       { "product": "panal-agua", "label": "Pañal de Agua", "qty": 2 },
       { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 }
     ],
-    "addon": { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 790, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
+    "addon": { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
   },
   {
     "slug": "promo-verano",
