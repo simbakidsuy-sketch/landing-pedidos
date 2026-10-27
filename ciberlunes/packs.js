@@ -110,6 +110,7 @@ window.SIMBA_PACKS = [
       "noun": "una Promo Playa adicional",
       "discount": 25,
       "fixedPrice": 1140,
+      "basePrice": 1520,
       "components": [
         { "product": "panal-agua", "label": "Pañal de Agua", "qty": 2 },
         { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 }

@@ -347,6 +347,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return `
         <div class="addon-block" id="addon-block">
           <div class="addon-question">¿Querés sumar ${a.noun} con ${a.discount}% de descuento?</div>
+          <div class="addon-price"><strong>${formatMoney(addonUnitPrice())}</strong> <s>${formatMoney(a.basePrice)}</s>${t === "bundle" ? "" : " c/u"}</div>
           <button type="button" class="addon-btn" id="addon-btn">Sí, quiero</button>
           <div class="addon-panel" id="addon-panel" hidden>${panel}</div>
         </div>`;
