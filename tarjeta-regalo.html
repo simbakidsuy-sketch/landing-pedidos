@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta de Obsequio | SIMBA Kids UY</title>
+<link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/Diseno_sin_titulo_2.png?v=1742408340">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SIMBA Kids UY - Tarjeta de Obsequio">
+<meta property="og:description" content="Regalá SIMBA: elegí el monto y la familia arma su pedido con lo que quiera.">
+<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ChatGPTImage11ago2026_19_30_27.png?v=1786488314">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SIMBA Kids UY - Tarjeta de Obsequio">
+<meta name="twitter:description" content="Regalá SIMBA: elegí el monto y la familia arma su pedido con lo que quiera.">
+<meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ChatGPTImage11ago2026_19_30_27.png?v=1786488314">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  .field-group textarea {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    min-height: 70px;
+    resize: vertical;
+  }
+  .field-group textarea:focus { outline: none; border-color: var(--simba-purple); }
+  .how-it-works { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.6; }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '511844655087071');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">SIMBA</span>
+    <span class="tagline">Regalá SIMBA</span>
+  </div>
+
+  <div class="container">
+    <a class="back-link" href="index.html">&larr; Volver a todos los packs</a>
+
+    <div class="pack-header">
+      <img src="https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ChatGPTImage11ago2026_19_30_27.png?v=1786488314" alt="Tarjeta de Obsequio SIMBA">
+      <div class="meta">
+        <h1>Tarjeta de Obsequio "Para Regalar"</h1>
+        <div class="subtitle">¿No sabés qué regalarle a la familia? Con esta tarjeta eligen ellos sus productos SIMBA favoritos 🎁</div>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <h3>¿Cómo funciona?</h3>
+      <ol class="how-it-works">
+        <li>Elegís el monto que querés regalar.</li>
+        <li>Nos mandás el pedido por WhatsApp y hacés el pago.</li>
+        <li>Te enviamos el voucher por WhatsApp, con un cupón por el monto elegido.</li>
+        <li>Se lo pasás a la familia: arman su pedido en simbakidsuy.com con lo que quieran y aplican el cupón al finalizar la compra 💜</li>
+      </ol>
+      <div class="hint" style="margin-top:8px">El cupón es de un solo uso, vale para toda la tienda y no se combina con otros cupones o promociones.</div>
+    </div>
+
+    <div class="component-block">
+      <h3>Monto a regalar</h3>
+      <div class="option-list" id="amount-options"></div>
+      <div class="section-error" id="amount-error"></div>
+    </div>
+
+    <div class="component-block">
+      <h3>Tus datos</h3>
+      <div class="shipping-fields">
+        <div class="field-group">
+          <label for="f-nombre">Nombre y apellido</label>
+          <input type="text" id="f-nombre" placeholder="Nombre y apellido">
+        </div>
+        <div class="field-group">
+          <label for="f-para">¿Para quién es? (opcional)</label>
+          <input type="text" id="f-para" placeholder="Ej.: familia de Sofi y Juan">
+        </div>
+        <div class="field-group">
+          <label for="f-dedicatoria">Dedicatoria para el voucher (opcional)</label>
+          <textarea id="f-dedicatoria" placeholder="Ej.: ¡Felicidades por la llegada de Martina!"></textarea>
+        </div>
+      </div>
+      <div class="section-error" id="name-error"></div>
+    </div>
+
+    <div class="component-block">
+      <h3>Medio de pago</h3>
+      <div class="option-list" id="payment-options"></div>
+      <div class="section-error" id="payment-error"></div>
+    </div>
+
+    <div class="send-bar">
+      <button class="send-btn send-btn--incomplete" id="send-btn">Enviar pedido por WhatsApp</button>
+      <div class="send-progress" id="send-progress"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/config.js"></script>
+  <script>
+    const AMOUNT_OPTIONS = {
+      "2000": { title: "$U 2.000", detail: "Un detalle para empezar.", value: 2000 },
+      "3500": { title: "$U 3.500", detail: "Un regalo intermedio.", value: 3500 },
+      "5500": { title: "$U 5.500", detail: "Un regalo completo.", value: 5500 }
+    };
+
+    // Mismos textos que pack.html, para que el bot reconozca el medio de pago.
+    const PAYMENT_OPTIONS = {
+      transferencia: {
+        title: "Transferencia bancaria o depósito",
+        detail: "Redes de cobranza (Abitab, Redpagos, etc.)",
+        message: "Voy a abonar por transferencia bancaria o depósito en redes de cobranza, ¿me pasás el número de cuenta?"
+      },
+      tarjeta: {
+        title: "Link de pago con tarjeta",
+        detail: "Hasta 12 cuotas sin recargo.",
+        message: "Voy a abonar con tarjeta, ¿podrías enviarme el link de pago?"
+      }
+    };
+
+    let selectedAmount = "";
+    let selectedPayment = "";
+
+    function formatMoney(n) {
+      return "$U " + n.toLocaleString("es-UY");
+    }
+
+    function optionCardsHTML(groupName, options) {
+      return Object.entries(options).map(([value, opt]) => `
+        <label class="option-card" data-group="${groupName}">
+          <input type="radio" name="${groupName}" value="${value}">
+          <div class="option-text">
+            <strong>${opt.title}</strong>
+            <span>${opt.detail}</span>
+          </div>
+        </label>`).join("");
+    }
+
+    function wireOptions(groupName, onChange) {
+      document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
+        radio.addEventListener("change", e => {
+          onChange(e.target.value);
+          document.querySelectorAll(`.option-card[data-group="${groupName}"]`).forEach(card => {
+            card.classList.toggle("selected", card.querySelector("input").checked);
+          });
+          updateSendState();
+        });
+      });
+    }
+
+    const val = id => document.getElementById(id).value.trim();
+
+    function blockingReason() {
+      if (!selectedAmount) return { msg: "Elegí el monto a regalar", errId: "amount-error", el: "amount-options" };
+      if (!val("f-nombre")) return { msg: "Completá tu nombre", errId: "name-error", el: "f-nombre" };
+      if (!selectedPayment) return { msg: "Elegí el medio de pago", errId: "payment-error", el: "payment-options" };
+      return null;
+    }
+
+    function updateSendState() {
+      const b = blockingReason();
+      document.getElementById("send-btn").classList.toggle("send-btn--incomplete", !!b);
+      document.getElementById("send-progress").textContent = b ? b.msg : "";
+      ["amount-error", "name-error", "payment-error"].forEach(id => {
+        if (!b || b.errId !== id) document.getElementById(id).textContent = "";
+      });
+    }
+
+    function buildWhatsAppLink() {
+      const amount = AMOUNT_OPTIONS[selectedAmount];
+      const lines = ["Hola, quiero hacer un pedido:", ""];
+      lines.push(`Quiero encargar: *Tarjeta de Obsequio "Para Regalar" de ${formatMoney(amount.value)}*`);
+      if (val("f-para")) lines.push(`Es para: ${val("f-para")}`);
+      if (val("f-dedicatoria")) lines.push(`Dedicatoria: ${val("f-dedicatoria")}`);
+      lines.push("");
+      lines.push(`Mi nombre es ${val("f-nombre")}.`);
+      lines.push("Es una tarjeta de regalo: no lleva envío, el voucher me lo mandan por WhatsApp.");
+      lines.push("");
+      lines.push(PAYMENT_OPTIONS[selectedPayment].message);
+      lines.push("");
+      lines.push(`Total del pedido: ${formatMoney(amount.value)}`);
+      const text = encodeURIComponent(lines.join("\n"));
+      return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
+    }
+
+    document.getElementById("amount-options").innerHTML = optionCardsHTML("amount", AMOUNT_OPTIONS);
+    document.getElementById("payment-options").innerHTML = optionCardsHTML("payment", PAYMENT_OPTIONS);
+    wireOptions("amount", v => { selectedAmount = v; });
+    wireOptions("payment", v => { selectedPayment = v; });
+    document.getElementById("f-nombre").addEventListener("input", updateSendState);
+
+    // Permite abrir la página con un monto ya elegido: tarjeta-regalo.html?monto=3500
+    const preset = new URLSearchParams(location.search).get("monto");
+    if (preset && AMOUNT_OPTIONS[preset]) {
+      const radio = document.querySelector(`input[name="amount"][value="${preset}"]`);
+      radio.checked = true;
+      radio.dispatchEvent(new Event("change"));
+    }
+
+    document.getElementById("send-btn").addEventListener("click", () => {
+      const b = blockingReason();
+      if (b) {
+        document.getElementById(b.errId).textContent = b.msg;
+        document.getElementById(b.el).scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      if (typeof fbq === "function") fbq("track", "Contact");
+      window.open(buildWhatsAppLink(), "_blank");
+    });
+
+    updateSendState();
+  </script>
+</body>
+</html>
