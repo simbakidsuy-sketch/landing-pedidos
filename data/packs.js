@@ -11,7 +11,6 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "panal-agua-individual",
-    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Pañal de Agua (por unidad)",
     "subtitle": "Elegí cuántos querés y de qué diseño",
@@ -21,12 +20,20 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PANAL_DE_AGUA_SUELTO.jpg?v=1764337025",
     "components": [
-      { "product": "panal-agua", "label": "Pañal de Agua", "qty": null }
+      {
+        "product": "panal-agua",
+        "label": "Pañal de Agua",
+        "qty": null
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340 },
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
     ]
   },
   {
     "slug": "remera-uv-individual",
-    "addon": { "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 },
     "category": "agua",
     "name": "Remera UV Manga Larga (por unidad)",
     "subtitle": "Protección solar para bebé. Elegí cuántas querés, el color y el talle (T1, T2 o T3)",
@@ -36,12 +43,20 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575",
     "components": [
-      { "product": "remera-uv", "label": "Remera UV", "qty": null, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
+      {
+        "product": "remera-uv",
+        "label": "Remera UV",
+        "qty": null,
+        "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235"
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340 },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
     ]
   },
   {
     "slug": "promo-playa",
-    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Promo Playa",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Chica",
@@ -50,13 +65,24 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_1.png?v=1788447901",
     "components": [
-      { "product": "panal-agua", "label": "Pañal de Agua", "qty": 2 },
-      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 }
+      {
+        "product": "panal-agua",
+        "label": "Pañal de Agua",
+        "qty": 2
+      },
+      {
+        "product": "bolsa-chica",
+        "label": "Bolsa Impermeable Chica 20x25",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
     ]
   },
   {
     "slug": "promo-matro",
-    "addon": { "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
     "category": "agua",
     "name": "Promo Matro",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Mediana",
@@ -65,13 +91,24 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_2.png?v=1788447908",
     "components": [
-      { "product": "panal-agua", "label": "Pañal de Agua", "qty": 2 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "qty": 1 }
+      {
+        "product": "panal-agua",
+        "label": "Pañal de Agua",
+        "qty": 2
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
     ]
   },
   {
     "slug": "promo-verano",
-    "addon": { "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 },
     "category": "agua",
     "name": "Promo Verano",
     "subtitle": "Pañal para el Agua + Bolsa Impermeable Chica + Remera UV",
@@ -80,9 +117,27 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROMO_DE_PANALES_PARA_EL_AGUA_COLECCION_2026_3.png?v=1787002806",
     "components": [
-      { "product": "panal-agua", "label": "Pañal de Agua", "qty": 1 },
-      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": 1 },
-      { "product": "remera-uv", "label": "Remera UV", "qty": 1, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
+      {
+        "product": "panal-agua",
+        "label": "Pañal de Agua",
+        "qty": 1
+      },
+      {
+        "product": "bolsa-chica",
+        "label": "Bolsa Impermeable Chica 20x25",
+        "qty": 1
+      },
+      {
+        "product": "remera-uv",
+        "label": "Remera UV",
+        "qty": 1,
+        "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235"
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
     ]
   },
   {
@@ -96,7 +151,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PANALES_PARA_NINOS_MAS_GRANDES.png?v=1786978165",
     "components": [
-      { "product": "panal-ninos", "label": "Pañal para Niños", "qty": null }
+      {
+        "product": "panal-ninos",
+        "label": "Pañal para Niños",
+        "qty": null
+      }
     ]
   },
   {
@@ -109,7 +168,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/portadawebparaelsetde3panalesparaninosmasgrandes_1.png?v=1786980347",
     "components": [
-      { "product": "panal-ninos", "label": "Pañal para Niños", "qty": 3 }
+      {
+        "product": "panal-ninos",
+        "label": "Pañal para Niños",
+        "qty": 3
+      }
     ]
   },
   {
@@ -122,7 +185,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/portadawebparaelsetde6panalesparaninosmasgrandes_2.png?v=1786980346",
     "components": [
-      { "product": "panal-ninos", "label": "Pañal para Niños", "qty": 6 }
+      {
+        "product": "panal-ninos",
+        "label": "Pañal para Niños",
+        "qty": 6
+      }
     ]
   },
   {
@@ -136,7 +203,15 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADAPANALDEENTRENAMIENTOWEB.png?v=1787056174",
     "components": [
-      { "product": "panal-entrenamiento", "label": "Pañal de Entrenamiento", "qty": null, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/Medidas_de_los_panales_de_entrenamiento.jpg?v=1792595341" }
+      {
+        "product": "panal-entrenamiento",
+        "label": "Pañal de Entrenamiento",
+        "qty": null,
+        "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/Medidas_de_los_panales_de_entrenamiento.jpg?v=1792595341"
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 20, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
     ]
   },
   {
@@ -150,7 +225,16 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_ECOLOGICO_ESTANDAR_DRYFIT_DE_TELA.png?v=1782122458",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": null }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": null
+      }
+    ],
+    "addons": [
+      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   },
   {
@@ -164,7 +248,16 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_DRYFIT_CAFE.png?v=1764271343",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": null }
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": null
+      }
+    ],
+    "addons": [
+      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   },
   {
@@ -178,7 +271,16 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_DE_BOLSILLO_PREMIUM_FIBRA_DE_CARBON_842e4064-d9fd-430b-96cd-debf49d7ee3f.png?v=1782122458",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": null }
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": null
+      }
+    ],
+    "addons": [
+      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   },
   {
@@ -191,18 +293,17 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_GRIS_PARA_WEB.png?v=1784924270",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 4
+      }
     ],
-    "upsell": {
-      "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
-      "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.",
-      "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
-      "mediaType": "video",
-      "options": [
-        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de bambú" },
-        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de bambú" }
-      ]
-    }
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890 }
+    ]
   },
   {
     "slug": "set-x4-panal-dryfit-cafe",
@@ -214,18 +315,17 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_DRY_CAFE_PARA_WEB.png?v=1784924270",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 4 }
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 4
+      }
     ],
-    "upsell": {
-      "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
-      "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.",
-      "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
-      "mediaType": "video",
-      "options": [
-        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de bambú" },
-        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de bambú" }
-      ]
-    }
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890 }
+    ]
   },
   {
     "slug": "set-x4-panal-carbon-bambu",
@@ -237,18 +337,17 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X4_PANALES_ESTANDAR_CARBON_PARA_WEB.png?v=1784924270",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 4 }
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 4
+      }
     ],
-    "upsell": {
-      "title": "Te recomendamos sumar un rollo de bambú (100 toallitas)",
-      "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.",
-      "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4",
-      "mediaType": "video",
-      "options": [
-        { "id": "1rollo", "label": "Sumar 1 rollo", "price": 389, "message": "1 rollo de bambú" },
-        { "id": "3rollos", "label": "Sumar 3 rollos", "price": 1099, "message": "3 rollos de bambú" }
-      ]
-    }
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890 }
+    ]
   },
   {
     "slug": "bolsa-chica-individual",
@@ -261,7 +360,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/BOLSAS_IMPERMEABLES_CHICAS_PARA_PANALES_PARA_EL_AGUA_BALLENITAS_AZUL.png?v=1786708124",
     "components": [
-      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "qty": null }
+      {
+        "product": "bolsa-chica",
+        "label": "Bolsa Impermeable Chica 20x25",
+        "qty": null
+      }
     ]
   },
   {
@@ -275,7 +378,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PAJARITOS.png?v=1785934252",
     "components": [
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "qty": null }
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40",
+        "qty": null
+      }
     ]
   },
   {
@@ -289,7 +396,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PARA_BOLSAS_GRANDES_SIMBA_ECOLOGICOS.png?v=1787234142",
     "components": [
-      { "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "qty": null }
+      {
+        "product": "bolsa-grande",
+        "label": "Bolsa Impermeable Grande 40x70",
+        "qty": null
+      }
     ]
   },
   {
@@ -303,7 +414,11 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459",
     "components": [
-      { "product": "protectores-mamarios", "label": "Protectores Mamarios", "qty": null }
+      {
+        "product": "protectores-mamarios",
+        "label": "Protectores Mamarios",
+        "qty": null
+      }
     ]
   },
   {
@@ -316,7 +431,16 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PARA_EL_SET_PRIMEROS_PASOS_ESTANDAR_52dea8b2-2991-4479-8976-6208bca49308.png?v=1789474990",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 2 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 2
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   },
   {
@@ -330,9 +454,26 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PACK_DESCUBRIMIENTO_NUEVA_14c0b856-8435-4830-81bc-c07f7f43f694.png?v=1785172615",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 2 },
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 1 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 1 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 2
+      },
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 1
+      },
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   },
   {
@@ -345,7 +486,15 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_CHAU_DERMATITIS_897e02d0-600e-479b-b43e-b874684b48f0.png?v=1785171611",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 4 }
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 4
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 }
     ]
   },
   {
@@ -358,7 +507,15 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PACK_NOCHE_EN_LA_WEB_051f791e-3ebf-4e0e-9ee0-e4ddd9b6d35e.png?v=1785152854",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 2 }
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 2
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389 }
     ]
   },
   {
@@ -371,8 +528,16 @@ window.SIMBA_PACKS = [
     "active": false,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SET_X2_PRIMEROS_PASOS_PREMIUM_SIMBA.png?v=1769589630",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 1 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 1 }
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 1
+      },
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 1
+      }
     ]
   },
   {
@@ -385,8 +550,21 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_REUTILIZABLES_ESTANDAR_DRYFIT_SIMBA.png?v=1769503458",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 8
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099 },
+      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690 }
     ]
   },
   {
@@ -399,8 +577,21 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_ECOLOGICOS_SIMBA_PREMIUM_DRYFIT_CAFE.png?v=1769443766",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 8 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 8
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099 },
+      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690 }
     ]
   },
   {
@@ -413,8 +604,21 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/8_PANALES_DE_TELA_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769443642",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 8 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 8
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099 },
+      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690 }
     ]
   },
   {
@@ -427,8 +631,21 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_ESTANDAR.png?v=1769538120",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 12 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 12
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099 }
     ]
   },
   {
@@ -441,8 +658,21 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_DE_TELA_SIMBA_DRYFIT_CAFE.png?v=1769537625",
     "components": [
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 12 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 12
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099 }
     ]
   },
   {
@@ -455,8 +685,21 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/12_PANALES_REUTILIZABLES_SIMBA_PREMIUM_FIBRA_DE_CARBON.png?v=1769537882",
     "components": [
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 12 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 12
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099 }
     ]
   },
   {
@@ -469,10 +712,31 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANALEO_MIXTO_DE_SIMBA_PANALES_VARIADOS.png?v=1769504492",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 4 },
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 3 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 3 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 4
+      },
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 3
+      },
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 3
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "noun": "una bolsa impermeable grande", "discount": 10, "basePrice": 980 },
+      { "type": "plain", "label": "Pack x5 Rollos de Bambú", "noun": "un pack de 5 rollos de bambú", "discount": 10, "basePrice": 1590 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   },
   {
@@ -485,11 +749,36 @@ window.SIMBA_PACKS = [
     "active": true,
     "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_MAXIMA_EXPERIENCIA_DE_SIMBA_COMPLETO.png?v=1769504517",
     "components": [
-      { "product": "panal-estandar", "label": "Pañal Estándar", "qty": 8 },
-      { "product": "panal-dryfit-cafe", "label": "Pañal Café", "qty": 6 },
-      { "product": "panal-carbon-bambu", "label": "Pañal Carbón", "qty": 6 },
-      { "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁", "qty": 2 },
-      { "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25 de Regalo 🎁", "qty": 1 }
+      {
+        "product": "panal-estandar",
+        "label": "Pañal Estándar",
+        "qty": 8
+      },
+      {
+        "product": "panal-dryfit-cafe",
+        "label": "Pañal Café",
+        "qty": 6
+      },
+      {
+        "product": "panal-carbon-bambu",
+        "label": "Pañal Carbón",
+        "qty": 6
+      },
+      {
+        "product": "bolsa-mediana",
+        "label": "Bolsa Impermeable Mediana 30x40 de Regalo 🎁",
+        "qty": 2
+      },
+      {
+        "product": "bolsa-chica",
+        "label": "Bolsa Impermeable Chica 20x25 de Regalo 🎁",
+        "qty": 1
+      }
+    ],
+    "addons": [
+      { "type": "designs", "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "noun": "una bolsa impermeable grande", "discount": 10, "basePrice": 980 },
+      { "type": "plain", "label": "Pack x5 Rollos de Bambú", "noun": "un pack de 5 rollos de bambú", "discount": 10, "basePrice": 1590 },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
     ]
   }
 ]
