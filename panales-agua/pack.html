@@ -318,6 +318,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         <div class="addon-block" id="addon-block-${k}">
           <div class="addon-question">¿Querés sumar ${a.noun} con ${a.discount}% de descuento?</div>
           <div class="addon-price">Con el descuento: <strong>${formatMoney(addonUnitPrice(a))} c/u</strong> <s>${formatMoney(a.basePrice)}</s></div>
+          ${a.media ? `<video class="upsell-media" src="${a.media}" autoplay loop muted playsinline></video>` : ""}
+          ${a.description ? `<p class="upsell-desc">${a.description}</p>` : ""}
           <button type="button" class="addon-btn" id="addon-btn-${k}">Sí, quiero</button>
           <div class="addon-panel" id="addon-panel-${k}" hidden>${panel}</div>
         </div>`;
