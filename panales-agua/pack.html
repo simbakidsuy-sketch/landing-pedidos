@@ -98,6 +98,19 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       celular: "Celular de contacto"
     };
 
+    // ---------- Estado ----------
+    let PACK = null;
+    let ADDONS = [];              // extras con descuento del pack (pack.addons)
+    let stockMap = {};            // producto -> { diseño: stock }
+    const SELECTORS = {};         // id del selector -> { product, qty (null = sin límite) }
+    const SEL = {};               // id del selector -> { diseño: cantidad }
+    const ADDON_STATE = [];       // por extra: { open, qty } (qty solo para extras sin diseños)
+    let selectedShipping = "";
+    let selectedPayment = "";
+    let selectedUpsell = null;
+    let dacMode = "";
+    let shippingFields = {};
+
     function shippingFieldKeys() {
       if (selectedShipping === "pickup") return ["nombre"];
       if (selectedShipping === "montevideo") return ["nombre", "direccion", "celular"];
@@ -132,7 +145,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </div>`).join("");
     }
 
-    function renderShippingDetails(pack) {
+    function renderShippingDetails() {
       Object.keys(SHIPPING_OPTIONS).forEach(v => {
         const el = document.getElementById(`extra-${v}`);
         if (el) el.innerHTML = "";
@@ -153,8 +166,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         container.querySelectorAll('input[name="dac-mode"]').forEach(r => {
           r.addEventListener("change", e => {
             dacMode = e.target.value;
-            renderShippingDetails(pack);
-            updateSendState(pack);
+            renderShippingDetails();
+            updateSendState();
           });
         });
       } else {
@@ -164,7 +177,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       container.querySelectorAll(".field-input").forEach(input => {
         input.addEventListener("input", e => {
           shippingFields[e.target.dataset.key] = e.target.value;
-          updateSendState(pack);
+          updateSendState();
         });
       });
     }
@@ -177,12 +190,13 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return variants.slice().sort((a, b) => a.title.localeCompare(b.title, "es"));
     }
 
-    function galleryHTML(variants, ci) {
+    // ---------- Galerías de diseños ----------
+    function galleryHTML(variants, id) {
       return sortedVariants(variants).map(v => {
         const out = v.stock <= 0;
         const low = !out && v.stock <= 3;
         return `
-        <div class="thumb-wrap ${out ? "out" : ""}" data-ci="${ci}" data-title="${v.title}">
+        <div class="thumb-wrap ${out ? "out" : ""}" data-id="${id}" data-title="${v.title}">
           <div class="thumb ${out ? "out" : ""}">
             <img src="${v.image}" alt="${v.title}" loading="lazy">
             ${low ? '<div class="low-badge">🔥 ¡ÚLTIMAS UNIDADES!</div>' : ""}
@@ -203,112 +217,161 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </a>`;
     }
 
-    function compProgressText(comp, total) {
-      if (comp.qty === null) {
-        return total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
-      }
-      return total >= comp.qty ? `✅ Elegiste tus ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${comp.qty}`;
+    function registerSelector(id, product, qty) {
+      SELECTORS[id] = { product, qty };
+      SEL[id] = {};
+    }
+
+    function selTotal(id) {
+      return Object.values(SEL[id] || {}).reduce((a, b) => a + b, 0);
+    }
+
+    // Unidades ya elegidas de un mismo producto en cualquier parte de la página
+    // (componentes del pack y extras), para no pasarse del stock si el cliente
+    // repite un diseño en dos lugares.
+    function unitsUsed(product, title) {
+      return Object.keys(SELECTORS).reduce(
+        (n, id) => n + (SELECTORS[id].product === product ? (SEL[id][title] || 0) : 0), 0);
+    }
+
+    function progressText(qty, total) {
+      if (qty === null) return total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
+      return total >= qty ? `✅ Elegiste tus ${qty} diseño${qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${qty}`;
+    }
+
+    function selectorHTML(id, prod, qty, sizeChart, hintText) {
+      const hint = hintText || ((qty === null || qty > 1)
+        ? "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo."
+        : "Tocá una foto para elegirla.");
+      return `
+        <div class="hint">${hint}</div>
+        ${sizeChart ? sizeChartHTML(sizeChart) : ""}
+        <div class="gallery" id="gallery-${id}">${galleryHTML(prod.variants, id)}</div>
+        <div class="comp-footer">
+          <span class="comp-progress" id="progress-${id}">${progressText(qty, 0)}</span>
+          <button type="button" class="clear-btn" id="clear-${id}" style="display:none">Limpiar selección</button>
+        </div>`;
+    }
+
+    function paint(id) {
+      document.querySelectorAll(`#gallery-${id} .thumb-wrap`).forEach(wrap => {
+        const count = SEL[id][wrap.dataset.title] || 0;
+        wrap.querySelector(".thumb").classList.toggle("selected", count > 0);
+        wrap.querySelector(".count-badge").textContent = count > 0 ? String(count) : "";
+      });
+      const total = selTotal(id);
+      document.getElementById(`progress-${id}`).textContent = progressText(SELECTORS[id].qty, total);
+      document.getElementById(`clear-${id}`).style.display = total > 0 ? "inline-flex" : "none";
+    }
+
+    function bindSelector(id) {
+      const s = SELECTORS[id];
+      document.querySelectorAll(`#gallery-${id} .thumb-wrap:not(.out)`).forEach(wrap => {
+        wrap.addEventListener("click", () => {
+          const title = wrap.dataset.title;
+          if (s.qty !== null && selTotal(id) >= s.qty) return;
+          if (unitsUsed(s.product, title) >= stockMap[s.product][title]) return;
+          SEL[id][title] = (SEL[id][title] || 0) + 1;
+          paint(id);
+          updateSendState();
+        });
+      });
+      document.getElementById(`clear-${id}`).addEventListener("click", () => {
+        SEL[id] = {};
+        paint(id);
+        updateSendState();
+      });
     }
 
     function componentSatisfied(comp, total) {
       return comp.qty === null ? total >= 1 : total >= comp.qty;
     }
 
-    function renderBadges(pack, ci) {
-      const comp = pack.components[ci];
-      const galleryEl = document.getElementById(`gallery-${ci}`);
-      galleryEl.querySelectorAll(".thumb-wrap").forEach(wrap => {
-        const count = selections[ci][wrap.dataset.title] || 0;
-        const thumb = wrap.querySelector(".thumb");
-        const badge = wrap.querySelector(".count-badge");
-        thumb.classList.toggle("selected", count > 0);
-        badge.textContent = count > 0 ? String(count) : "";
-      });
-
-      const total = countFor(ci);
-      document.getElementById(`comp-progress-${ci}`).textContent = compProgressText(comp, total);
-      document.getElementById(`clear-${ci}`).style.display = total > 0 ? "inline-flex" : "none";
+    // ---------- Extras con descuento ----------
+    function addonUnitPrice(a) {
+      return Math.round(a.basePrice * (1 - a.discount / 100));
     }
 
-    let selections = {};
-    let variantStock = {};
-    let selectedShipping = "";
-    let selectedPayment = "";
-    let selectedUpsell = null;
-    let dacMode = "";
-    let shippingFields = {};
-    let addonSelections = {};
-    let addonStock = {};
-    let addonOpen = false;
-
-    function countFor(ci) {
-      return Object.values(selections[ci] || {}).reduce((a, b) => a + b, 0);
+    // Cantidad de unidades de un extra: diseños elegidos (type "designs") o cantidad (type "plain").
+    function addonUnits(k) {
+      const st = ADDON_STATE[k];
+      if (!st.open) return 0;
+      return ADDONS[k].type === "plain" ? st.qty : selTotal(`a${k}`);
     }
 
-    function addonCount() {
-      return Object.values(addonSelections).reduce((a, b) => a + b, 0);
-    }
-
-    function addonPrice(pack) {
-      return Math.round(pack.addon.basePrice * (1 - pack.addon.discount / 100));
-    }
-
-    // Unidades ya elegidas de un mismo producto (en los componentes del pack y en el extra),
-    // para no pasarse del stock si el cliente elige el mismo diseño en los dos lugares.
-    function unitsUsed(pack, productKey, title) {
-      let n = 0;
-      pack.components.forEach((c, ci) => {
-        if (c.product === productKey) n += (selections[ci][title] || 0);
-      });
-      if (pack.addon && pack.addon.product === productKey) n += (addonSelections[title] || 0);
-      return n;
-    }
-
-    function addonHTML(pack, prod) {
-      const a = pack.addon;
+    function addonHTML(k, prod) {
+      const a = ADDONS[k];
+      let panel;
+      if (a.type === "plain") {
+        panel = `
+          <div class="qty-stepper">
+            <span>Cantidad:</span>
+            <button type="button" class="qty-btn" id="qty-minus-${k}">−</button>
+            <strong id="qty-value-${k}">1</strong>
+            <button type="button" class="qty-btn" id="qty-plus-${k}">+</button>
+          </div>`;
+      } else {
+        panel = selectorHTML(`a${k}`, prod, null, a.sizeChart,
+          "Tocá una foto para elegirla. Podés sumar todas las que quieras: si querés el mismo diseño más de una vez, tocala de nuevo.");
+      }
       return `
-        <div class="addon-block">
+        <div class="addon-block" id="addon-block-${k}">
           <div class="addon-question">¿Querés sumar ${a.noun} con ${a.discount}% de descuento?</div>
-          <div class="addon-price">Con el descuento: <strong>${formatMoney(addonPrice(pack))} c/u</strong> <s>${formatMoney(a.basePrice)}</s></div>
-          <button type="button" class="addon-btn" id="addon-btn">Sí, quiero</button>
-          <div class="addon-panel" id="addon-panel" hidden>
-            <div class="hint">Tocá una foto para elegirla. Podés sumar todas las que quieras: si querés el mismo diseño más de una vez, tocala de nuevo.</div>
-            ${a.sizeChart ? sizeChartHTML(a.sizeChart) : ""}
-            <div class="gallery" id="gallery-addon">${galleryHTML(prod.variants, "addon")}</div>
-            <div class="comp-footer">
-              <span class="comp-progress" id="comp-progress-addon">Elegí los que quieras</span>
-              <button type="button" class="clear-btn" id="clear-addon" style="display:none">Limpiar selección</button>
-            </div>
-          </div>
+          <div class="addon-price">Con el descuento: <strong>${formatMoney(addonUnitPrice(a))} c/u</strong> <s>${formatMoney(a.basePrice)}</s></div>
+          <button type="button" class="addon-btn" id="addon-btn-${k}">Sí, quiero</button>
+          <div class="addon-panel" id="addon-panel-${k}" hidden>${panel}</div>
         </div>`;
     }
 
-    function renderAddonBadges() {
-      document.querySelectorAll("#gallery-addon .thumb-wrap").forEach(wrap => {
-        const count = addonSelections[wrap.dataset.title] || 0;
-        wrap.querySelector(".thumb").classList.toggle("selected", count > 0);
-        wrap.querySelector(".count-badge").textContent = count > 0 ? String(count) : "";
+    function wireAddon(k) {
+      const a = ADDONS[k];
+      const st = ADDON_STATE[k];
+      const btn = document.getElementById(`addon-btn-${k}`);
+      const panel = document.getElementById(`addon-panel-${k}`);
+
+      btn.addEventListener("click", () => {
+        st.open = !st.open;
+        panel.hidden = !st.open;
+        btn.textContent = st.open ? "No, mejor no" : "Sí, quiero";
+        btn.classList.toggle("addon-btn--open", st.open);
+        if (a.type === "plain") {
+          st.qty = st.open ? 1 : 0;
+          document.getElementById(`qty-value-${k}`).textContent = "1";
+        } else if (!st.open) {
+          SEL[`a${k}`] = {};
+          paint(`a${k}`);
+        }
+        updateSendState();
       });
-      const total = addonCount();
-      document.getElementById("comp-progress-addon").textContent =
-        total > 0 ? `Elegiste ${total} diseño${total > 1 ? "s" : ""}` : "Elegí los que quieras";
-      document.getElementById("clear-addon").style.display = total > 0 ? "inline-flex" : "none";
+
+      if (a.type === "plain") {
+        document.getElementById(`qty-minus-${k}`).addEventListener("click", () => {
+          st.qty = Math.max(1, st.qty - 1);
+          document.getElementById(`qty-value-${k}`).textContent = String(st.qty);
+        });
+        document.getElementById(`qty-plus-${k}`).addEventListener("click", () => {
+          st.qty += 1;
+          document.getElementById(`qty-value-${k}`).textContent = String(st.qty);
+        });
+      } else {
+        bindSelector(`a${k}`);
+      }
     }
 
-    function selectedUpsellOption(pack) {
-      if (!pack.upsell || !selectedUpsell) return null;
-      return pack.upsell.options.find(o => o.id === selectedUpsell) || null;
+    function selectedUpsellOption() {
+      if (!PACK.upsell || !selectedUpsell) return null;
+      return PACK.upsell.options.find(o => o.id === selectedUpsell) || null;
     }
 
     // Precio interno del pedido (no se muestra en la landing, solo se calcula
     // para incluirlo en el mensaje final de WhatsApp).
-    function orderSubtotal(pack) {
-      const base = pack.mode === "individual"
-        ? pack.unitPrice * pack.components.reduce((sum, c, ci) => sum + countFor(ci), 0)
-        : pack.price;
-      const upsellOpt = selectedUpsellOption(pack);
-      const addon = pack.addon ? addonCount() * addonPrice(pack) : 0;
-      return base + (upsellOpt ? upsellOpt.price : 0) + addon;
+    function orderSubtotal() {
+      const base = PACK.mode === "individual"
+        ? PACK.unitPrice * PACK.components.reduce((sum, c, ci) => sum + selTotal(`c${ci}`), 0)
+        : PACK.price;
+      const upsellOpt = selectedUpsellOption();
+      const addons = ADDONS.reduce((sum, a, k) => sum + addonUnits(k) * addonUnitPrice(a), 0);
+      return base + (upsellOpt ? upsellOpt.price : 0) + addons;
     }
 
     function setSectionError(errId, listId, msg) {
@@ -330,16 +393,17 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     }
 
     // Devuelve la primera sección incompleta (para el scroll + cartel al tocar "Enviar"), o null si está todo listo.
-    function firstUnmetTarget(pack) {
-      for (let ci = 0; ci < pack.components.length; ci++) {
-        const comp = pack.components[ci];
-        if (!componentSatisfied(comp, countFor(ci))) {
+    function firstUnmetTarget() {
+      for (let ci = 0; ci < PACK.components.length; ci++) {
+        const comp = PACK.components[ci];
+        const total = selTotal(`c${ci}`);
+        if (!componentSatisfied(comp, total)) {
           return {
-            el: document.getElementById(`gallery-${ci}`),
+            el: document.getElementById(`gallery-c${ci}`),
             show: () => setSectionError(`comp-error-${ci}`, null,
               comp.qty === null
                 ? "Elegí al menos un diseño"
-                : `Te faltan diseños: elegiste ${countFor(ci)} de ${comp.qty}`)
+                : `Te faltan diseños: elegiste ${total} de ${comp.qty}`)
           };
         }
       }
@@ -358,24 +422,24 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return null;
     }
 
-    function updateSendState(pack) {
+    function updateSendState() {
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
-      const unmetIndex = pack.components.findIndex((c, ci) => !componentSatisfied(c, countFor(ci)));
+      const unmetIndex = PACK.components.findIndex((c, ci) => !componentSatisfied(c, selTotal(`c${ci}`)));
 
       // Limpiar los carteles de error de las secciones que ya se completaron.
-      pack.components.forEach((c, ci) => {
-        if (componentSatisfied(c, countFor(ci))) clearSectionError(`comp-error-${ci}`);
+      PACK.components.forEach((c, ci) => {
+        if (componentSatisfied(c, selTotal(`c${ci}`))) clearSectionError(`comp-error-${ci}`);
       });
       if (selectedShipping && !(selectedShipping === "interior" && !dacMode)) clearSectionError("shipping-error", "shipping-options");
       if (selectedPayment) clearSectionError("payment-error", "payment-options");
 
       let blocking = null;
       if (unmetIndex !== -1) {
-        const comp = pack.components[unmetIndex];
+        const comp = PACK.components[unmetIndex];
         blocking = comp.qty === null
           ? "Elegí al menos un diseño"
-          : `Elegiste ${countFor(unmetIndex)} de ${comp.qty} diseños`;
+          : `Elegiste ${selTotal(`c${unmetIndex}`)} de ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}`;
       } else if (!selectedShipping) {
         blocking = "Elegí el envío o retiro";
       } else if (selectedShipping === "interior" && !dacMode) {
@@ -388,35 +452,40 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       progress.textContent = blocking || "¡Listo! Todo elegido.";
     }
 
-    function buildWhatsAppLink(pack) {
+    function buildWhatsAppLink() {
       const payment = PAYMENT_OPTIONS[selectedPayment];
 
       const lines = ["Hola, quiero hacer un pedido:"];
 
-      if (pack.components.length > 0) {
+      if (PACK.components.length > 0) {
         lines.push("");
-        lines.push(`Quiero encargar: *${pack.name}*`);
+        lines.push(`Quiero encargar: *${PACK.name}*`);
         lines.push("");
         lines.push("Ya vi los diseños, me gustarían estos:");
-        pack.components.forEach((comp, ci) => {
-          Object.entries(selections[ci]).forEach(([title, count]) => {
+        PACK.components.forEach((comp, ci) => {
+          Object.entries(SEL[`c${ci}`]).forEach(([title, count]) => {
             if (count <= 0) return;
             lines.push(`- ${comp.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
           });
         });
-        const upsellOpt = selectedUpsellOption(pack);
+        const upsellOpt = selectedUpsellOption();
         if (upsellOpt) {
           lines.push("");
           lines.push(`Además, quiero sumar: ${upsellOpt.message}`);
         }
-        if (pack.addon && addonCount() > 0) {
+        ADDONS.forEach((a, k) => {
+          if (addonUnits(k) <= 0) return;
           lines.push("");
-          lines.push(`Además, quiero sumar con ${pack.addon.discount}% de descuento (${formatMoney(addonPrice(pack))} c/u):`);
-          Object.entries(addonSelections).forEach(([title, count]) => {
-            if (count <= 0) return;
-            lines.push(`- ${pack.addon.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
-          });
-        }
+          lines.push(`Además, quiero sumar con ${a.discount}% de descuento (${formatMoney(addonUnitPrice(a))} c/u):`);
+          if (a.type === "plain") {
+            lines.push(`- ${a.label}${ADDON_STATE[k].qty > 1 ? ` (x${ADDON_STATE[k].qty})` : ""}`);
+          } else {
+            Object.entries(SEL[`a${k}`]).forEach(([title, count]) => {
+              if (count <= 0) return;
+              lines.push(`- ${a.label}: ${title}${count > 1 ? ` (x${count})` : ""}`);
+            });
+          }
+        });
       }
 
       // Solo se usan los datos del tipo de envío elegido (puede haber quedado texto de otra opción).
@@ -442,8 +511,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       lines.push("");
       lines.push(payment.message);
 
-      if (pack.components.length > 0) {
-        const subtotal = orderSubtotal(pack);
+      if (PACK.components.length > 0) {
+        const subtotal = orderSubtotal();
         lines.push("");
         if (selectedShipping === "montevideo") {
           if (subtotal >= FREE_SHIPPING_THRESHOLD) {
@@ -506,35 +575,29 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         return;
       }
 
+      PACK = pack;
+      ADDONS = pack.addons || [];
       document.getElementById("page-title").textContent = `${pack.name} | SIMBA Kids UY`;
 
-      selections = {};
-      variantStock = {};
-      selectedUpsell = null;
-      addonSelections = {};
-      addonOpen = false;
-      addonStock = {};
-      if (pack.addon) products[pack.addon.product].variants.forEach(v => { addonStock[v.title] = v.stock; });
-      pack.components.forEach((c, i) => { selections[i] = {}; });
+      const productKeys = new Set(pack.components.map(c => c.product));
+      ADDONS.forEach(a => { if (a.type !== "plain") productKeys.add(a.product); });
+      productKeys.forEach(k => {
+        stockMap[k] = {};
+        products[k].variants.forEach(v => { stockMap[k][v.title] = v.stock; });
+      });
+
+      pack.components.forEach((comp, ci) => registerSelector(`c${ci}`, comp.product, comp.qty));
+      ADDONS.forEach((a, k) => {
+        ADDON_STATE[k] = { open: false, qty: 0 };
+        if (a.type !== "plain") registerSelector(`a${k}`, a.product, null);
+      });
 
       const componentBlocks = pack.components.map((comp, ci) => {
-        const prod = products[comp.product];
-        variantStock[ci] = {};
-        prod.variants.forEach(v => { variantStock[ci][v.title] = v.stock; });
         const qtyLabel = comp.qty === null ? " (elegí los que quieras)" : ` (elegí ${comp.qty})`;
-        const hint = (comp.qty === null || comp.qty > 1)
-          ? "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo."
-          : "Tocá una foto para elegirla.";
         return `
           <div class="component-block">
             <h3>${comp.label}${qtyLabel}</h3>
-            <div class="hint">${hint}</div>
-            ${comp.sizeChart ? sizeChartHTML(comp.sizeChart) : ""}
-            <div class="gallery" id="gallery-${ci}">${galleryHTML(prod.variants, ci)}</div>
-            <div class="comp-footer">
-              <span class="comp-progress" id="comp-progress-${ci}">${compProgressText(comp, 0)}</span>
-              <button type="button" class="clear-btn" id="clear-${ci}" style="display:none">Limpiar selección</button>
-            </div>
+            ${selectorHTML(`c${ci}`, products[comp.product], comp.qty, comp.sizeChart)}
             <div class="section-error" id="comp-error-${ci}"></div>
           </div>`;
       }).join("");
@@ -549,7 +612,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </div>
         ${componentBlocks}
         ${upsellHTML(pack)}
-        ${pack.addon ? addonHTML(pack, products[pack.addon.product]) : ""}
+        ${ADDONS.map((a, k) => addonHTML(k, a.type === "plain" ? null : products[a.product])).join("")}
         <div class="component-block">
           <h3>Retiro o Envío (gratis para compras mayores a $3.500)</h3>
           <div class="option-list" id="shipping-options">
@@ -570,54 +633,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </div>
       `;
 
-      pack.components.forEach((comp, ci) => {
-        root.querySelectorAll(`#gallery-${ci} .thumb-wrap:not(.out)`).forEach(wrap => {
-          wrap.addEventListener("click", () => {
-            const title = wrap.dataset.title;
-            const current = selections[ci][title] || 0;
-            if (comp.qty !== null && countFor(ci) >= comp.qty) return;
-            if (unitsUsed(pack, comp.product, title) >= variantStock[ci][title]) return;
-            selections[ci][title] = current + 1;
-            renderBadges(pack, ci);
-            updateSendState(pack);
-          });
-        });
-
-        document.getElementById(`clear-${ci}`).addEventListener("click", () => {
-          selections[ci] = {};
-          renderBadges(pack, ci);
-          updateSendState(pack);
-        });
-      });
-
-      if (pack.addon) {
-        const addonBtn = document.getElementById("addon-btn");
-        const addonPanel = document.getElementById("addon-panel");
-        addonBtn.addEventListener("click", () => {
-          addonOpen = !addonOpen;
-          addonPanel.hidden = !addonOpen;
-          addonBtn.textContent = addonOpen ? "No, mejor no" : "Sí, quiero";
-          addonBtn.classList.toggle("addon-btn--open", addonOpen);
-          if (!addonOpen) {
-            addonSelections = {};
-            renderAddonBadges();
-          }
-        });
-
-        root.querySelectorAll("#gallery-addon .thumb-wrap:not(.out)").forEach(wrap => {
-          wrap.addEventListener("click", () => {
-            const title = wrap.dataset.title;
-            if (unitsUsed(pack, pack.addon.product, title) >= addonStock[title]) return;
-            addonSelections[title] = (addonSelections[title] || 0) + 1;
-            renderAddonBadges();
-          });
-        });
-
-        document.getElementById("clear-addon").addEventListener("click", () => {
-          addonSelections = {};
-          renderAddonBadges();
-        });
-      }
+      pack.components.forEach((comp, ci) => bindSelector(`c${ci}`));
+      ADDONS.forEach((a, k) => wireAddon(k));
 
       root.querySelectorAll('input[name="shipping"]').forEach(radio => {
         radio.addEventListener("change", e => {
@@ -626,8 +643,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           root.querySelectorAll('.option-card-wrap[data-group="shipping"]').forEach(card => {
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
-          renderShippingDetails(pack);
-          updateSendState(pack);
+          renderShippingDetails();
+          updateSendState();
         });
       });
 
@@ -637,7 +654,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           root.querySelectorAll('.option-card[data-group="payment"]').forEach(card => {
             card.classList.toggle("selected", card.querySelector("input").checked);
           });
-          updateSendState(pack);
+          updateSendState();
         });
       });
 
@@ -654,17 +671,17 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       }
 
       document.getElementById("send-btn").addEventListener("click", () => {
-        const problem = firstUnmetTarget(pack);
+        const problem = firstUnmetTarget();
         if (problem) {
           problem.show();
           if (problem.el) problem.el.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
         if (typeof fbq === "function") fbq("track", "Contact");
-        window.open(buildWhatsAppLink(pack), "_blank");
+        window.open(buildWhatsAppLink(), "_blank");
       });
 
-      updateSendState(pack);
+      updateSendState();
     }
 
     init();
