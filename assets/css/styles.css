@@ -694,3 +694,36 @@ footer.site-footer {
   color: var(--text-muted);
   margin-bottom: 12px;
 }
+
+/* ---- Extras por cantidad (sin diseños) y varios extras seguidos ---- */
+
+.addon-block + .addon-block {
+  margin-top: 16px;
+}
+
+.qty-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 16px;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #e3a49d;
+  background: #fff;
+  color: #a2403a;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qty-stepper strong {
+  min-width: 24px;
+  text-align: center;
+  font-size: 20px;
+}
