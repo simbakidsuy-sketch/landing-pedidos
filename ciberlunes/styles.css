@@ -780,3 +780,7 @@ footer.site-footer {
 .addon-sub:first-child {
   margin-top: 0;
 }
+
+.addon-block + .addon-block {
+  margin-top: 16px;
+}

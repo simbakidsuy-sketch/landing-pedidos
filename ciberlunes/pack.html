@@ -99,15 +99,15 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
     // ---------- Estado ----------
     let PACK = null;
+    let ADDONS = [];              // extras con descuento del pack (pack.addons)
     let stockMap = {};            // producto -> { diseño: stock }
     const SELECTORS = {};         // id del selector -> { product, qty (null = sin límite) }
     const SEL = {};               // id del selector -> { diseño: cantidad }
+    const ADDON_STATE = [];       // por extra: { open, qty } (qty solo para extras sin diseños)
     let selectedShipping = "";
     let selectedPayment = "";
     let dacMode = "";
     let shippingFields = {};
-    let addonOpen = false;
-    let addonQty = 0;             // solo para extras sin diseños (type "plain")
 
     // ---------- Envío ----------
     function shippingFieldKeys() {
@@ -248,10 +248,10 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return total >= qty ? `✅ Elegiste tus ${qty} diseño${qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${qty}`;
     }
 
-    function selectorHTML(id, prod, qty, sizeChart) {
-      const hint = (qty === null || qty > 1)
+    function selectorHTML(id, prod, qty, sizeChart, hintText) {
+      const hint = hintText || ((qty === null || qty > 1)
         ? "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo."
-        : "Tocá una foto para elegirla.";
+        : "Tocá una foto para elegirla.");
       return `
         <div class="hint">${hint}</div>
         ${sizeChart ? sizeChartHTML(sizeChart) : ""}
@@ -292,97 +292,106 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       });
     }
 
-    // ---------- Extra con descuento ----------
-    function addonType() {
-      return PACK.addon ? (PACK.addon.type || "designs") : null;
+    function componentSatisfied(comp, total) {
+      return comp.qty === null ? total >= 1 : total >= comp.qty;
     }
 
-    function addonSelectorIds() {
-      const t = addonType();
-      if (t === "designs") return ["ad"];
-      if (t === "bundle") return PACK.addon.components.map((c, k) => `b${k}`);
-      return [];
-    }
-
-    function addonUnitPrice() {
-      const a = PACK.addon;
+    // ---------- Extras con descuento ----------
+    function addonUnitPrice(a) {
       return a.fixedPrice != null ? a.fixedPrice : Math.round(a.basePrice * (1 - a.discount / 100));
     }
 
-    function bundleComplete() {
-      return PACK.addon.components.every((c, k) => selTotal(`b${k}`) >= c.qty);
+    function bundleIds(k) {
+      return ADDONS[k].components.map((c, j) => `b${k}_${j}`);
     }
 
-    function addonUnits() {
-      if (!PACK.addon || !addonOpen) return 0;
-      const t = addonType();
-      if (t === "designs") return selTotal("ad");
-      if (t === "plain") return addonQty;
-      return bundleComplete() ? 1 : 0;
+    function bundleComplete(k) {
+      return ADDONS[k].components.every((c, j) => selTotal(`b${k}_${j}`) >= c.qty);
     }
 
-    function addonIncomplete() {
-      return !!PACK.addon && addonOpen && addonType() === "bundle" && !bundleComplete();
+    // Cantidad de unidades de un extra: diseños elegidos ("designs"), cantidad ("plain") o 1 combo completo ("bundle").
+    function addonUnits(k) {
+      const st = ADDON_STATE[k];
+      if (!st.open) return 0;
+      const t = ADDONS[k].type;
+      if (t === "plain") return st.qty;
+      if (t === "bundle") return bundleComplete(k) ? 1 : 0;
+      return selTotal(`a${k}`);
     }
 
-    function addonHTML(products) {
-      const a = PACK.addon;
-      const t = addonType();
-      let panel = "";
-      if (t === "designs") {
-        panel = selectorHTML("ad", products[a.product], null, a.sizeChart);
-      } else if (t === "plain") {
+    function addonIncomplete(k) {
+      return ADDONS[k].type === "bundle" && ADDON_STATE[k].open && !bundleComplete(k);
+    }
+
+    function addonSelectorIds(k) {
+      const t = ADDONS[k].type;
+      if (t === "bundle") return bundleIds(k);
+      return t === "plain" ? [] : [`a${k}`];
+    }
+
+    function addonHTML(k, products) {
+      const a = ADDONS[k];
+      let panel;
+      if (a.type === "plain") {
         panel = `
           <div class="qty-stepper">
             <span>Cantidad:</span>
-            <button type="button" class="qty-btn" id="qty-minus">−</button>
-            <strong id="qty-value">1</strong>
-            <button type="button" class="qty-btn" id="qty-plus">+</button>
+            <button type="button" class="qty-btn" id="qty-minus-${k}">−</button>
+            <strong id="qty-value-${k}">1</strong>
+            <button type="button" class="qty-btn" id="qty-plus-${k}">+</button>
           </div>`;
+      } else if (a.type === "bundle") {
+        panel = a.components.map((c, j) =>
+          `<h4 class="addon-sub">${c.label} (elegí ${c.qty})</h4>${selectorHTML(`b${k}_${j}`, products[c.product], c.qty)}`).join("") +
+          `<div class="section-error" id="addon-error-${k}"></div>`;
       } else {
-        panel = a.components.map((c, k) =>
-          `<h4 class="addon-sub">${c.label} (elegí ${c.qty})</h4>${selectorHTML(`b${k}`, products[c.product], c.qty)}`).join("") +
-          `<div class="section-error" id="addon-error"></div>`;
+        panel = selectorHTML(`a${k}`, products[a.product], null, a.sizeChart,
+          "Tocá una foto para elegirla. Podés sumar todas las que quieras: si querés el mismo diseño más de una vez, tocala de nuevo.");
       }
+      const unit = a.type === "bundle" ? "" : " c/u";
       return `
-        <div class="addon-block" id="addon-block">
+        <div class="addon-block" id="addon-block-${k}">
           <div class="addon-question">¿Querés sumar ${a.noun} con ${a.discount}% de descuento?</div>
-          <div class="addon-price"><strong>${formatMoney(addonUnitPrice())}</strong> <s>${formatMoney(a.basePrice)}</s>${t === "bundle" ? "" : " c/u"}</div>
-          <button type="button" class="addon-btn" id="addon-btn">Sí, quiero</button>
-          <div class="addon-panel" id="addon-panel" hidden>${panel}</div>
+          <div class="addon-price">Con el descuento: <strong>${formatMoney(addonUnitPrice(a))}${unit}</strong> <s>${formatMoney(a.basePrice)}</s></div>
+          ${a.media ? `<video class="upsell-media" src="${a.media}" autoplay loop muted playsinline></video>` : ""}
+          ${a.description ? `<p class="upsell-desc">${a.description}</p>` : ""}
+          <button type="button" class="addon-btn" id="addon-btn-${k}">Sí, quiero</button>
+          <div class="addon-panel" id="addon-panel-${k}" hidden>${panel}</div>
         </div>`;
     }
 
-    function wireAddon() {
-      const btn = document.getElementById("addon-btn");
-      const panel = document.getElementById("addon-panel");
+    function wireAddon(k) {
+      const a = ADDONS[k];
+      const st = ADDON_STATE[k];
+      const btn = document.getElementById(`addon-btn-${k}`);
+      const panel = document.getElementById(`addon-panel-${k}`);
 
       btn.addEventListener("click", () => {
-        addonOpen = !addonOpen;
-        panel.hidden = !addonOpen;
-        btn.textContent = addonOpen ? "No, mejor no" : "Sí, quiero";
-        btn.classList.toggle("addon-btn--open", addonOpen);
-        if (addonType() === "plain") {
-          addonQty = addonOpen ? 1 : 0;
-          document.getElementById("qty-value").textContent = "1";
+        st.open = !st.open;
+        panel.hidden = !st.open;
+        btn.textContent = st.open ? "No, mejor no" : "Sí, quiero";
+        btn.classList.toggle("addon-btn--open", st.open);
+        if (a.type === "plain") {
+          st.qty = st.open ? 1 : 0;
+          document.getElementById(`qty-value-${k}`).textContent = "1";
         }
-        if (!addonOpen) {
-          addonSelectorIds().forEach(id => { SEL[id] = {}; paint(id); });
-          clearSectionError("addon-error");
+        if (!st.open) {
+          addonSelectorIds(k).forEach(id => { SEL[id] = {}; paint(id); });
+          clearSectionError(`addon-error-${k}`);
         }
         updateSendState();
       });
 
-      addonSelectorIds().forEach(bindSelector);
+      addonSelectorIds(k).forEach(bindSelector);
 
-      if (addonType() === "plain") {
-        document.getElementById("qty-minus").addEventListener("click", () => {
-          addonQty = Math.max(1, addonQty - 1);
-          document.getElementById("qty-value").textContent = String(addonQty);
+      if (a.type === "plain") {
+        document.getElementById(`qty-minus-${k}`).addEventListener("click", () => {
+          st.qty = Math.max(1, st.qty - 1);
+          document.getElementById(`qty-value-${k}`).textContent = String(st.qty);
         });
-        document.getElementById("qty-plus").addEventListener("click", () => {
-          addonQty += 1;
-          document.getElementById("qty-value").textContent = String(addonQty);
+        document.getElementById(`qty-plus-${k}`).addEventListener("click", () => {
+          st.qty += 1;
+          document.getElementById(`qty-value-${k}`).textContent = String(st.qty);
         });
       }
     }
@@ -391,7 +400,10 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     // Precio interno del pedido (no se muestra en la landing, solo se calcula
     // para incluirlo en el mensaje final de WhatsApp).
     function orderSubtotal() {
-      return PACK.price + (PACK.addon ? addonUnits() * addonUnitPrice() : 0);
+      const base = PACK.mode === "individual"
+        ? Math.round(PACK.unitPrice * PACK.components.reduce((sum, c, ci) => sum + selTotal(`c${ci}`), 0))
+        : PACK.price;
+      return base + ADDONS.reduce((sum, a, k) => sum + addonUnits(k) * addonUnitPrice(a), 0);
     }
 
     function setSectionError(errId, listId, msg) {
@@ -416,19 +428,23 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function firstUnmetTarget() {
       for (let ci = 0; ci < PACK.components.length; ci++) {
         const comp = PACK.components[ci];
-        if (selTotal(`c${ci}`) < comp.qty) {
+        const total = selTotal(`c${ci}`);
+        if (!componentSatisfied(comp, total)) {
           return {
             el: document.getElementById(`gallery-c${ci}`),
             show: () => setSectionError(`comp-error-${ci}`, null,
-              `Te faltan diseños: elegiste ${selTotal(`c${ci}`)} de ${comp.qty}`)
+              comp.qty === null
+                ? "Elegí al menos un diseño"
+                : `Te faltan diseños: elegiste ${total} de ${comp.qty}`)
           };
         }
       }
-      if (addonIncomplete()) {
+      const kInc = ADDONS.findIndex((a, k) => addonIncomplete(k));
+      if (kInc !== -1) {
         return {
-          el: document.getElementById("addon-block"),
-          show: () => setSectionError("addon-error", null,
-            `Completá los diseños de ${PACK.addon.label} o tocá "No, mejor no"`)
+          el: document.getElementById(`addon-block-${kInc}`),
+          show: () => setSectionError(`addon-error-${kInc}`, null,
+            `Completá los diseños de ${ADDONS[kInc].label} o tocá "No, mejor no"`)
         };
       }
       if (!selectedShipping) {
@@ -449,21 +465,24 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function updateSendState() {
       const btn = document.getElementById("send-btn");
       const progress = document.getElementById("send-progress");
-      const unmetIndex = PACK.components.findIndex((c, ci) => selTotal(`c${ci}`) < c.qty);
+      const unmetIndex = PACK.components.findIndex((c, ci) => !componentSatisfied(c, selTotal(`c${ci}`)));
+      const kInc = ADDONS.findIndex((a, k) => addonIncomplete(k));
 
       PACK.components.forEach((c, ci) => {
-        if (selTotal(`c${ci}`) >= c.qty) clearSectionError(`comp-error-${ci}`);
+        if (componentSatisfied(c, selTotal(`c${ci}`))) clearSectionError(`comp-error-${ci}`);
       });
-      if (!addonIncomplete()) clearSectionError("addon-error");
+      ADDONS.forEach((a, k) => { if (!addonIncomplete(k)) clearSectionError(`addon-error-${k}`); });
       if (selectedShipping && !(selectedShipping === "interior" && !dacMode)) clearSectionError("shipping-error", "shipping-options");
       if (selectedPayment) clearSectionError("payment-error", "payment-options");
 
       let blocking = null;
       if (unmetIndex !== -1) {
-        const need = PACK.components[unmetIndex].qty;
-        blocking = `Elegiste ${selTotal(`c${unmetIndex}`)} de ${need} diseño${need > 1 ? "s" : ""}`;
-      } else if (addonIncomplete()) {
-        blocking = `Completá los diseños de ${PACK.addon.label}`;
+        const comp = PACK.components[unmetIndex];
+        blocking = comp.qty === null
+          ? "Elegí al menos un diseño"
+          : `Elegiste ${selTotal(`c${unmetIndex}`)} de ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}`;
+      } else if (kInc !== -1) {
+        blocking = `Completá los diseños de ${ADDONS[kInc].label}`;
       } else if (!selectedShipping) {
         blocking = "Elegí el envío o retiro";
       } else if (selectedShipping === "interior" && !dacMode) {
@@ -495,21 +514,21 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         PACK.components.forEach((comp, ci) => designLines(`c${ci}`, comp.label).forEach(l => lines.push(l)));
       }
 
-      if (PACK.addon && addonUnits() > 0) {
-        const a = PACK.addon;
-        const t = addonType();
+      ADDONS.forEach((a, k) => {
+        if (addonUnits(k) <= 0) return;
         lines.push("");
-        if (t === "designs") {
-          lines.push(`Además, quiero sumar con ${a.discount}% de descuento (${formatMoney(addonUnitPrice())} c/u):`);
-          designLines("ad", a.label).forEach(l => lines.push(l));
-        } else if (t === "plain") {
-          lines.push(`Además, quiero sumar con ${a.discount}% de descuento (${formatMoney(addonUnitPrice())} c/u):`);
-          lines.push(`- ${a.label}${addonQty > 1 ? ` (x${addonQty})` : ""}`);
-        } else {
-          lines.push(`Además, quiero sumar ${a.noun} con ${a.discount}% de descuento (${formatMoney(addonUnitPrice())}):`);
-          a.components.forEach((c, k) => designLines(`b${k}`, c.label).forEach(l => lines.push(l)));
+        if (a.type === "bundle") {
+          lines.push(`Además, quiero sumar ${a.noun} con ${a.discount}% de descuento (${formatMoney(addonUnitPrice(a))}):`);
+          a.components.forEach((c, j) => designLines(`b${k}_${j}`, c.label).forEach(l => lines.push(l)));
+          return;
         }
-      }
+        lines.push(`Además, quiero sumar con ${a.discount}% de descuento (${formatMoney(addonUnitPrice(a))} c/u):`);
+        if (a.type === "plain") {
+          lines.push(`- ${a.label}${ADDON_STATE[k].qty > 1 ? ` (x${ADDON_STATE[k].qty})` : ""}`);
+        } else {
+          designLines(`a${k}`, a.label).forEach(l => lines.push(l));
+        }
+      });
 
       // Solo se usan los datos del tipo de envío elegido (puede haber quedado texto de otra opción).
       const keys = shippingFieldKeys() || [];
@@ -572,26 +591,35 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         return;
       }
 
+      ADDONS = PACK.addons || [];
       document.getElementById("page-title").textContent = `${PACK.name} | Ciberlunes | SIMBA Kids UY`;
 
       const productKeys = new Set(PACK.components.map(c => c.product));
-      if (PACK.addon && PACK.addon.product) productKeys.add(PACK.addon.product);
-      if (PACK.addon && PACK.addon.components) PACK.addon.components.forEach(c => productKeys.add(c.product));
+      ADDONS.forEach(a => {
+        if (a.type === "bundle") a.components.forEach(c => productKeys.add(c.product));
+        else if (a.type !== "plain") productKeys.add(a.product);
+      });
       productKeys.forEach(k => {
         stockMap[k] = {};
         products[k].variants.forEach(v => { stockMap[k][v.title] = v.stock; });
       });
 
       PACK.components.forEach((comp, ci) => registerSelector(`c${ci}`, comp.product, comp.qty));
-      if (addonType() === "designs") registerSelector("ad", PACK.addon.product, null);
-      if (addonType() === "bundle") PACK.addon.components.forEach((c, k) => registerSelector(`b${k}`, c.product, c.qty));
+      ADDONS.forEach((a, k) => {
+        ADDON_STATE[k] = { open: false, qty: 0 };
+        if (a.type === "bundle") a.components.forEach((c, j) => registerSelector(`b${k}_${j}`, c.product, c.qty));
+        else if (a.type !== "plain") registerSelector(`a${k}`, a.product, null);
+      });
 
-      const componentBlocks = PACK.components.map((comp, ci) => `
-        <div class="component-block">
-          <h3>${comp.label} (elegí ${comp.qty})</h3>
-          ${selectorHTML(`c${ci}`, products[comp.product], comp.qty, comp.sizeChart)}
-          <div class="section-error" id="comp-error-${ci}"></div>
-        </div>`).join("");
+      const componentBlocks = PACK.components.map((comp, ci) => {
+        const qtyLabel = comp.qty === null ? " (elegí los que quieras)" : ` (elegí ${comp.qty})`;
+        return `
+          <div class="component-block">
+            <h3>${comp.label}${qtyLabel}</h3>
+            ${selectorHTML(`c${ci}`, products[comp.product], comp.qty, comp.sizeChart)}
+            <div class="section-error" id="comp-error-${ci}"></div>
+          </div>`;
+      }).join("");
 
       root.innerHTML = `
         <div class="pack-header">
@@ -604,7 +632,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </div>
         ${PACK.components.length === 0 ? '<div class="pack-note">Este pack viene listo: no hace falta elegir diseños 🙌</div>' : ""}
         ${componentBlocks}
-        ${PACK.addon ? addonHTML(products) : ""}
+        ${ADDONS.map((a, k) => addonHTML(k, products)).join("")}
         <div class="component-block">
           <h3>Retiro o Envío (gratis para compras mayores a $3.500)</h3>
           <div class="option-list" id="shipping-options">
@@ -626,7 +654,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       `;
 
       PACK.components.forEach((comp, ci) => bindSelector(`c${ci}`));
-      if (PACK.addon) wireAddon();
+      ADDONS.forEach((a, k) => wireAddon(k));
 
       root.querySelectorAll('input[name="shipping"]').forEach(radio => {
         radio.addEventListener("change", e => {
