@@ -51,7 +51,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     const COMPONENTS = [
       { product: "panal-agua", label: "Pañales para el Agua" },
       { product: "bolsa-chica", label: "Bolsa Impermeable Chica 20x25" },
-      { product: "bolsa-mediana", label: "Bolsa Impermeable Mediana 30x40" }
+      { product: "bolsa-mediana", label: "Bolsa Impermeable Mediana 30x40" },
+      { product: "remera-uv", label: "Remeras UV Manga Larga", sizeChart: "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
     ];
 
     const root = document.getElementById("form-root");
@@ -151,6 +152,15 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
     function sortedVariants(variants) {
       return variants.slice().sort((a, b) => a.title.localeCompare(b.title, "es"));
+    }
+
+    function sizeChartHTML(url) {
+      return `
+        <a class="size-chart" href="${url}" target="_blank" rel="noopener">
+          <div class="size-chart-title">📏 Tabla de talles</div>
+          <img src="${url}" alt="Tabla de talles" loading="lazy">
+          <span>Tocá la imagen para verla en grande</span>
+        </a>`;
     }
 
     function galleryHTML(variants, ci) {
@@ -280,6 +290,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         return `
           <div class="component-block" ${ci === 0 ? 'style="margin-top:0; padding-top:0; border-top:none;"' : ""}>
             <h3>${comp.label}</h3>
+            ${comp.sizeChart ? sizeChartHTML(comp.sizeChart) : ""}
             <div class="hint">Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo.</div>
             <div class="gallery" id="gallery-${ci}">${galleryHTML(prod.variants, ci)}</div>
             <div class="comp-footer">
