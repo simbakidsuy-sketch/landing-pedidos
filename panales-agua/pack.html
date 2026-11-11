@@ -454,10 +454,11 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       progress.textContent = blocking || "¡Listo! Todo elegido.";
     }
 
-    function buildWhatsAppLink() {
+    function buildWhatsAppLink(codigo) {
       const payment = PAYMENT_OPTIONS[selectedPayment];
 
       const lines = ["Hola, quiero hacer un pedido:"];
+      if (codigo) lines.push(`Código de reserva: *${codigo}*`);
 
       if (PACK.components.length > 0) {
         lines.push("");
@@ -535,6 +536,40 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
       const text = encodeURIComponent(lines.join("\n"));
       return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
+    }
+
+    // Reserva en el ERP de Simba: aparta los diseños elegidos en el momento (vence a las 48 h hábiles si no se paga)
+    const ERP_RESERVAS = "https://erp.simbakidsuy.com/api/reservas";
+    function nuevoCodigo() {
+      const letras = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let c = "R-";
+      for (let i = 0; i < 5; i++) c += letras[Math.floor(Math.random() * letras.length)];
+      return c;
+    }
+    function reservaPayload(codigo) {
+      const keys = shippingFieldKeys() || [];
+      const val = k => (keys.includes(k) ? (shippingFields[k] || "").trim() : "");
+      const items = sel => Object.entries(sel || {}).filter(([, n]) => n > 0).map(([title, count]) => ({ title, count }));
+      const upsellOpt = selectedUpsellOption();
+      return {
+        codigo,
+        pack: { slug: PACK.slug, name: PACK.name },
+        componentes: PACK.components.map((c, ci) => ({ product: c.product, label: c.label, items: items(SEL[`c${ci}`]) })),
+        agregados: ADDONS.map((a, k) => (addonUnits(k) <= 0 ? null : a.type === "plain"
+          ? { label: a.label, type: "plain", qty: ADDON_STATE[k].qty }
+          : { product: a.product, label: a.label, type: "designs", items: items(SEL[`a${k}`]) })).filter(Boolean),
+        upsell: upsellOpt ? upsellOpt.message : null,
+        cliente: val("nombre"), celular: val("celular"),
+        envio: { tipo: selectedShipping, dac: dacMode || null, direccion: val("direccion"), localidad: val("localidad") },
+        pago: selectedPayment,
+        subtotal: orderSubtotal()
+      };
+    }
+    function enviarReserva(codigo) {
+      try {
+        // text/plain para que el navegador no pida permiso previo y el envío no se corte al abrir WhatsApp
+        fetch(ERP_RESERVAS, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(reservaPayload(codigo)), keepalive: true }).catch(() => {});
+      } catch (e) { /* si falla la reserva, el pedido igual llega por WhatsApp */ }
     }
 
     function upsellHTML(pack) {
@@ -680,7 +715,9 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           return;
         }
         if (typeof fbq === "function") fbq("track", "Contact");
-        window.open(buildWhatsAppLink(), "_blank");
+        const codigo = nuevoCodigo();
+        enviarReserva(codigo);
+        window.open(buildWhatsAppLink(codigo), "_blank");
       });
 
       updateSendState();
