@@ -510,6 +510,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         }
       }
       if (val("celular")) lines.push(`Mi celular es ${val("celular")}.`);
+      const giftEl = document.getElementById("gift-check");
+      if (giftEl && giftEl.checked) lines.push("Es para regalo, quiero que me lo preparen para regalar 🎁");
 
       lines.push("");
       lines.push(payment.message);
@@ -664,6 +666,15 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           </div>
           <div class="section-error" id="payment-error"></div>
         </div>
+        <div class="component-block">
+          <h3>¿Es para regalo? 🎁</h3>
+          <label class="option-card" id="gift-card">
+            <input type="checkbox" id="gift-check">
+            <div class="option-text">
+              <strong>Marcá esta casilla si es para regalar</strong>
+            </div>
+          </label>
+        </div>
         <div class="send-bar">
           <button class="send-btn" id="send-btn">Enviar info por WhatsApp</button>
           <div class="send-progress" id="send-progress"></div>
@@ -683,6 +694,10 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           renderShippingDetails();
           updateSendState();
         });
+      });
+
+      document.getElementById("gift-check").addEventListener("change", e => {
+        document.getElementById("gift-card").classList.toggle("selected", e.target.checked);
       });
 
       root.querySelectorAll('input[name="payment"]').forEach(radio => {
