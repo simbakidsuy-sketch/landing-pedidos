@@ -784,3 +784,11 @@ footer.site-footer {
 .addon-block + .addon-block {
   margin-top: 16px;
 }
+
+.option-card input[type="checkbox"] {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--simba-purple);
+  flex-shrink: 0;
+}
