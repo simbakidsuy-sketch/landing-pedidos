@@ -118,7 +118,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     let fields = {};
 
     function fieldKeys() {
-      if (selectedShipping === "pickup") return ["nombre"];
+      if (selectedShipping === "pickup") return ["nombre", "celular"];
       if (selectedShipping === "montevideo") return ["nombre", "direccion", "celular"];
       if (selectedShipping === "interior") {
         if (dacMode === "agencia") return ["nombre", "localidad", "celular"];
