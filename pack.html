@@ -122,12 +122,31 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return [];
     }
 
+    // Nombre y celular son obligatorios en todas las opciones (retiro, Montevideo y DAC):
+    // se necesitan para avisar que el pedido está listo o coordinar el envío.
+    const REQUIRED_SHIPPING_FIELDS = ["nombre", "celular"];
+    const REQUIRED_FIELD_MSG = {
+      nombre: "Completá tu nombre y apellido",
+      celular: "Completá tu celular de contacto"
+    };
+
+    function fieldMissing(k) {
+      const v = (shippingFields[k] || "").trim();
+      return k === "celular" ? v.replace(/[^0-9]/g, "").length < 8 : !v;
+    }
+
+    function missingShippingField() {
+      const keys = shippingFieldKeys() || [];
+      return REQUIRED_SHIPPING_FIELDS.find(k => keys.includes(k) && fieldMissing(k)) || null;
+    }
+
     function shippingFieldsHTML(keys) {
       if (!keys || keys.length === 0) return "";
       return `<div class="shipping-fields">` + keys.map(k => `
         <div class="field-group">
-          <label>${SHIPPING_FIELD_LABELS[k]}</label>
-          <input type="text" class="field-input" data-key="${k}" value="${(shippingFields[k] || "").replace(/"/g, "&quot;")}" placeholder="${SHIPPING_FIELD_LABELS[k]}">
+          <label>${SHIPPING_FIELD_LABELS[k]}${REQUIRED_SHIPPING_FIELDS.includes(k) ? " *" : ""}</label>
+          <input type="text" class="field-input" data-key="${k}" ${k === "celular" ? 'inputmode="tel"' : ""} value="${(shippingFields[k] || "").replace(/"/g, "&quot;")}" placeholder="${SHIPPING_FIELD_LABELS[k]}">
+          <div class="section-error" id="field-error-${k}"></div>
         </div>`).join("") + `</div>`;
     }
 
@@ -417,6 +436,11 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         return { el: document.getElementById("shipping-options"),
           show: () => setSectionError("shipping-error", "shipping-options", "Elegí retiro en agencia o envío a domicilio") };
       }
+      const missing = missingShippingField();
+      if (missing) {
+        return { el: document.querySelector(`.field-input[data-key="${missing}"]`),
+          show: () => setSectionError(`field-error-${missing}`, null, REQUIRED_FIELD_MSG[missing]) };
+      }
       if (!selectedPayment) {
         return { el: document.getElementById("payment-options"),
           show: () => setSectionError("payment-error", "payment-options", "Elegí un medio de pago") };
@@ -435,6 +459,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       });
       if (selectedShipping && !(selectedShipping === "interior" && !dacMode)) clearSectionError("shipping-error", "shipping-options");
       if (selectedPayment) clearSectionError("payment-error", "payment-options");
+      REQUIRED_SHIPPING_FIELDS.forEach(k => { if (!fieldMissing(k)) clearSectionError(`field-error-${k}`); });
 
       let blocking = null;
       if (unmetIndex !== -1) {
@@ -446,6 +471,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         blocking = "Elegí el envío o retiro";
       } else if (selectedShipping === "interior" && !dacMode) {
         blocking = "Elegí retiro en agencia o envío a domicilio";
+      } else if (missingShippingField()) {
+        blocking = REQUIRED_FIELD_MSG[missingShippingField()];
       }
 
       if (!blocking && !selectedPayment) blocking = "Elegí el medio de pago";
