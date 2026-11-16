@@ -47,6 +47,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-playa",
+    "multiple": "promo",
     "category": "agua",
     "name": "Promo Playa",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Chica",
@@ -73,6 +74,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-matro",
+    "multiple": "promo",
     "category": "agua",
     "name": "Promo Matro",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Mediana",
@@ -99,6 +101,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-verano",
+    "multiple": "promo",
     "category": "agua",
     "name": "Promo Verano",
     "subtitle": "Pañal para el Agua + Bolsa Impermeable Chica + Remera UV",
