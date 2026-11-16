@@ -227,8 +227,9 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       if (total > 0) clearSectionError("items-error");
     }
 
-    function buildWhatsAppLink() {
+    function buildWhatsAppLink(codigo) {
       const lines = ["Hola, quiero hacer un pedido mayorista:"];
+      if (codigo) lines.push(`Código de reserva: *${codigo}*`);
 
       lines.push("");
       lines.push("Ya vi los diseños, me gustarían estos:");
@@ -261,6 +262,38 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
       const text = encodeURIComponent(lines.join("\n"));
       return `https://wa.me/${window.SIMBA_CONFIG.whatsappNumber}?text=${text}`;
+    }
+
+    // Pedido en el ERP de Simba: entra como Mayoristas, sin precio, y aparta los diseños elegidos
+    const ERP_RESERVAS = "https://erp.simbakidsuy.com/api/reservas";
+    function nuevoCodigo() {
+      const letras = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let c = "R-";
+      for (let i = 0; i < 5; i++) c += letras[Math.floor(Math.random() * letras.length)];
+      return c;
+    }
+    function reservaPayload(codigo) {
+      const keys = shippingFieldKeys() || [];
+      const val = k => (keys.includes(k) ? (shippingFields[k] || "").trim() : "");
+      return {
+        codigo,
+        pack: { slug: "mayorista", name: "Pedido mayorista" },
+        componentes: COMPONENTS.map((c, ci) => ({
+          product: c.product, label: c.label,
+          items: Object.entries(selections[ci] || {}).filter(([, n]) => n > 0).map(([title, count]) => ({ title, count }))
+        })),
+        agregados: [],
+        cliente: val("nombre"), celular: val("celular"),
+        envio: { tipo: selectedShipping, dac: dacMode || null, direccion: val("direccion"), localidad: val("localidad") },
+        pago: "",
+        subtotal: 0
+      };
+    }
+    function enviarReserva(codigo) {
+      try {
+        // text/plain para que el navegador no pida permiso previo y el envío no se corte al abrir WhatsApp
+        fetch(ERP_RESERVAS, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(reservaPayload(codigo)), keepalive: true }).catch(() => {});
+      } catch (e) { /* si falla, el pedido igual llega por WhatsApp */ }
     }
 
     function firstUnmetTarget() {
@@ -355,7 +388,9 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           return;
         }
         if (typeof fbq === "function") fbq("track", "Contact");
-        window.open(buildWhatsAppLink(), "_blank");
+        const codigo = nuevoCodigo();
+        enviarReserva(codigo);
+        window.open(buildWhatsAppLink(codigo), "_blank");
       });
 
       updateProgress();
