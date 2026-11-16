@@ -735,3 +735,9 @@ footer.site-footer {
   accent-color: var(--simba-purple);
   flex-shrink: 0;
 }
+
+.qty-stepper.pack-qty .qty-btn {
+  border-color: var(--simba-purple);
+  color: var(--simba-purple);
+}
+.pack-qty-block .qty-stepper { margin: 4px 0 10px; }
