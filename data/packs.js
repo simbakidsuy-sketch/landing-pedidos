@@ -57,6 +57,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-playa",
+    "multiple": "promo",
     "category": "agua",
     "name": "Promo Playa",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Chica",
@@ -83,6 +84,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-matro",
+    "multiple": "promo",
     "category": "agua",
     "name": "Promo Matro",
     "subtitle": "2 Pañales para el Agua + Bolsa Impermeable Mediana",
@@ -109,6 +111,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-verano",
+    "multiple": "promo",
     "category": "agua",
     "name": "Promo Verano",
     "subtitle": "Pañal para el Agua + Bolsa Impermeable Chica + Remera UV",
@@ -423,6 +426,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-primeros-pasos",
+    "multiple": "set",
     "category": "panales",
     "name": "Set Primeros Pasos 2 Pañales",
     "subtitle": "2 Pañales Estándar + 4 Absorbentes + Rollo de Bambú",
@@ -445,6 +449,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "descubrimiento",
+    "multiple": "pack",
     "category": "panales",
     "name": "Pack \"Descubrimiento\" 4 Pañales",
     "subtitle": "2 Estándar + 1 Premium DryFit Café + 1 Premium Carbón de Bambú",
