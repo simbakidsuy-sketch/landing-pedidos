@@ -106,6 +106,8 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     const SEL = {};               // id del selector -> { diseño: cantidad }
     const ADDON_STATE = [];       // por extra: { open, qty } (qty solo para extras sin diseños)
     let selectedShipping = "";
+    let PACK_QTY = 1;             // cuántas unidades del pack lleva el cliente (solo packs con "multiple")
+    const MAX_PACK_QTY = 5;
     let selectedPayment = "";
     let selectedUpsell = null;
     let dacMode = "";
@@ -258,12 +260,20 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return total >= qty ? `✅ Elegiste tus ${qty} diseño${qty > 1 ? "s" : ""}` : `Elegiste ${total} de ${qty}`;
     }
 
-    function selectorHTML(id, prod, qty, sizeChart, hintText) {
-      const hint = hintText || ((qty === null || qty > 1)
+    function hintFor(qty) {
+      return (qty === null || qty > 1)
         ? "Tocá una foto para elegirla. Si querés el mismo diseño más de una vez, tocala de nuevo."
-        : "Tocá una foto para elegirla.");
+        : "Tocá una foto para elegirla.";
+    }
+
+    function qtyLabel(qty) {
+      return qty === null ? " (elegí los que quieras)" : ` (elegí ${qty})`;
+    }
+
+    function selectorHTML(id, prod, qty, sizeChart, hintText) {
+      const hint = hintText || hintFor(qty);
       return `
-        <div class="hint">${hint}</div>
+        <div class="hint" id="hint-${id}">${hint}</div>
         ${sizeChart ? sizeChartHTML(sizeChart) : ""}
         <div class="gallery" id="gallery-${id}">${galleryHTML(prod.variants, id)}</div>
         <div class="comp-footer">
@@ -302,8 +312,55 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       });
     }
 
+    // Cantidad de diseños que hay que elegir de un componente (se multiplica por la cantidad de packs).
+    function effQty(comp) {
+      return comp.qty === null ? null : comp.qty * PACK_QTY;
+    }
+
     function componentSatisfied(comp, total) {
-      return comp.qty === null ? total >= 1 : total >= comp.qty;
+      const q = effQty(comp);
+      return q === null ? total >= 1 : total >= q;
+    }
+
+    function trimSelection(id, max) {
+      let excess = selTotal(id) - max;
+      Object.keys(SEL[id]).reverse().forEach(title => {
+        if (excess <= 0) return;
+        const take = Math.min(SEL[id][title], excess);
+        SEL[id][title] -= take;
+        excess -= take;
+        if (SEL[id][title] <= 0) delete SEL[id][title];
+      });
+    }
+
+    function setPackQty(n) {
+      PACK_QTY = Math.min(MAX_PACK_QTY, Math.max(1, n));
+      document.getElementById("packqty-value").textContent = String(PACK_QTY);
+      PACK.components.forEach((comp, ci) => {
+        const id = `c${ci}`;
+        const q = effQty(comp);
+        SELECTORS[id].qty = q;
+        if (q !== null) trimSelection(id, q);
+        document.getElementById(`comp-title-${ci}`).textContent = `${comp.label}${qtyLabel(q)}`;
+        document.getElementById(`hint-${id}`).textContent = hintFor(q);
+        paint(id);
+      });
+      updateSendState();
+    }
+
+    function quantityHTML(pack) {
+      if (!pack.multiple) return "";
+      const fem = pack.multiple === "promo";
+      return `
+        <div class="component-block pack-qty-block">
+          <h3>¿${fem ? "Cuántas" : "Cuántos"} ${pack.multiple}s querés?</h3>
+          <div class="qty-stepper pack-qty">
+            <button type="button" class="qty-btn" id="packqty-minus">−</button>
+            <strong id="packqty-value">1</strong>
+            <button type="button" class="qty-btn" id="packqty-plus">+</button>
+          </div>
+          <div class="hint" style="text-align:center">Viene 1. Si querés más, sumá ${fem ? "otra" : "otro"} y elegís los diseños de cada ${fem ? "una" : "uno"}.</div>
+        </div>`;
     }
 
     // ---------- Extras con descuento ----------
@@ -389,7 +446,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function orderSubtotal() {
       const base = PACK.mode === "individual"
         ? PACK.unitPrice * PACK.components.reduce((sum, c, ci) => sum + selTotal(`c${ci}`), 0)
-        : PACK.price;
+        : PACK.price * PACK_QTY;
       const upsellOpt = selectedUpsellOption();
       const addons = ADDONS.reduce((sum, a, k) => sum + addonUnits(k) * addonUnitPrice(a), 0);
       return base + (upsellOpt ? upsellOpt.price : 0) + addons;
@@ -424,7 +481,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
             show: () => setSectionError(`comp-error-${ci}`, null,
               comp.qty === null
                 ? "Elegí al menos un diseño"
-                : `Te faltan diseños: elegiste ${total} de ${comp.qty}`)
+                : `Te faltan diseños: elegiste ${total} de ${effQty(comp)}`)
           };
         }
       }
@@ -466,7 +523,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         const comp = PACK.components[unmetIndex];
         blocking = comp.qty === null
           ? "Elegí al menos un diseño"
-          : `Elegiste ${selTotal(`c${unmetIndex}`)} de ${comp.qty} diseño${comp.qty > 1 ? "s" : ""}`;
+          : `Elegiste ${selTotal(`c${unmetIndex}`)} de ${effQty(comp)} diseño${effQty(comp) > 1 ? "s" : ""}`;
       } else if (!selectedShipping) {
         blocking = "Elegí el envío o retiro";
       } else if (selectedShipping === "interior" && !dacMode) {
@@ -489,7 +546,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
 
       if (PACK.components.length > 0) {
         lines.push("");
-        lines.push(`Quiero encargar: *${PACK.name}*`);
+        lines.push(`Quiero encargar: *${PACK.name}*${PACK_QTY > 1 ? ` (x${PACK_QTY})` : ""}`);
         lines.push("");
         lines.push("Ya vi los diseños, me gustarían estos:");
         PACK.components.forEach((comp, ci) => {
@@ -583,6 +640,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       return {
         codigo,
         pack: { slug: PACK.slug, name: PACK.name },
+        cantidad: PACK_QTY,
         componentes: PACK.components.map((c, ci) => ({ product: c.product, label: c.label, items: items(SEL[`c${ci}`]) })),
         agregados: ADDONS.map((a, k) => (addonUnits(k) <= 0 ? null : a.type === "plain"
           ? { label: a.label, type: "plain", qty: ADDON_STATE[k].qty }
@@ -591,8 +649,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         cliente: val("nombre"), celular: val("celular"),
         envio: { tipo: selectedShipping, dac: dacMode || null, direccion: val("direccion"), localidad: val("localidad") },
         pago: selectedPayment,
-        subtotal: orderSubtotal(),
-        regalo: !!(document.getElementById("gift-check") && document.getElementById("gift-check").checked)
+        subtotal: orderSubtotal()
       };
     }
     function enviarReserva(codigo) {
@@ -660,10 +717,9 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       });
 
       const componentBlocks = pack.components.map((comp, ci) => {
-        const qtyLabel = comp.qty === null ? " (elegí los que quieras)" : ` (elegí ${comp.qty})`;
         return `
           <div class="component-block">
-            <h3>${comp.label}${qtyLabel}</h3>
+            <h3 id="comp-title-${ci}">${comp.label}${qtyLabel(comp.qty)}</h3>
             ${selectorHTML(`c${ci}`, products[comp.product], comp.qty, comp.sizeChart)}
             <div class="section-error" id="comp-error-${ci}"></div>
           </div>`;
@@ -677,6 +733,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
             <div class="subtitle">${pack.subtitle}</div>
           </div>
         </div>
+        ${quantityHTML(pack)}
         ${componentBlocks}
         ${upsellHTML(pack)}
         ${ADDONS.map((a, k) => addonHTML(k, a.type === "plain" ? null : products[a.product])).join("")}
@@ -709,6 +766,10 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         </div>
       `;
 
+      if (pack.multiple) {
+        document.getElementById("packqty-minus").addEventListener("click", () => setPackQty(PACK_QTY - 1));
+        document.getElementById("packqty-plus").addEventListener("click", () => setPackQty(PACK_QTY + 1));
+      }
       pack.components.forEach((comp, ci) => bindSelector(`c${ci}`));
       ADDONS.forEach((a, k) => wireAddon(k));
 
