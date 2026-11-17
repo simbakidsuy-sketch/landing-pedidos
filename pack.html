@@ -648,6 +648,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         upsell: upsellOpt ? upsellOpt.message : null,
         cliente: val("nombre"), celular: val("celular"),
         envio: { tipo: selectedShipping, dac: dacMode || null, direccion: val("direccion"), localidad: val("localidad") },
+        regalo: !!(document.getElementById("gift-check") || {}).checked,
         pago: selectedPayment,
         subtotal: orderSubtotal()
       };
