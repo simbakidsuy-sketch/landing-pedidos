@@ -809,3 +809,23 @@ footer.site-footer {
   font-size: 26px;
   color: var(--simba-purple);
 }
+
+/* Precio en las tarjetas de la portada */
+.pack-card .card-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 2px 0 4px;
+}
+
+.pack-card .card-price s {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.pack-card .card-price strong {
+  font-family: 'Jost', sans-serif;
+  font-size: 18px;
+  color: var(--simba-purple);
+}
