@@ -348,6 +348,18 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       updateSendState();
     }
 
+    // Precio como en la web: precio de comparación tachado y precio real al lado.
+    function webMoney(n) {
+      return "$" + n.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function priceHTML(pack) {
+      const price = pack.mode === "individual" ? pack.unitPrice : pack.price;
+      if (!price) return "";
+      const compare = pack.comparePrice > price ? `<s>${webMoney(pack.comparePrice)}</s>` : "";
+      return `<div class="pack-price">${compare}<strong>${webMoney(price)}</strong></div>`;
+    }
+
     function quantityHTML(pack) {
       if (!pack.multiple) return "";
       const fem = pack.multiple === "promo";
@@ -741,6 +753,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           <img src="${pack.image}" alt="${pack.name}" class="${pack.imageStyle === "logo" ? "logo-image" : ""}">
           <div class="meta">
             <h1>${pack.name}</h1>
+            ${priceHTML(pack)}
             <div class="subtitle">${pack.subtitle}</div>
           </div>
         </div>
