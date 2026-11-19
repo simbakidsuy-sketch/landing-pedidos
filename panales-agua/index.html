@@ -58,6 +58,18 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
   <script src="data/packs.js"></script>
   <script src="assets/js/data-source.js"></script>
   <script>
+    // Precio como en la web: precio de comparación tachado + precio real.
+    function webMoney(n) {
+      return "$" + n.toLocaleString("es-UY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function cardPriceHTML(pack) {
+      const price = pack.mode === "individual" ? pack.unitPrice : pack.price;
+      if (!price) return "";
+      const compare = pack.comparePrice > price ? `<s>${webMoney(pack.comparePrice)}</s>` : "";
+      return `<div class="card-price">${compare}<strong>${webMoney(price)}</strong></div>`;
+    }
+
     function cardHTML(pack) {
       const badge = pack.badge ? `<span class="badge">${pack.badge}</span>` : "";
       return `
@@ -66,6 +78,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
           <img src="${pack.image}" alt="${pack.name}" loading="lazy">
           <div class="info">
             <div class="name">${pack.name}</div>
+            ${cardPriceHTML(pack)}
             <div class="subtitle">${pack.subtitle}</div>
           </div>
         </a>`;
