@@ -392,11 +392,21 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
       }
       return `
         <div class="addon-block" id="addon-block-${k}">
-          <div class="addon-question">¿Querés sumar ${a.noun} con ${a.discount}% de descuento?</div>
-          <div class="addon-price">Con el descuento: <strong>${formatMoney(addonUnitPrice(a))} c/u</strong> <s>${formatMoney(a.basePrice)}</s></div>
-          ${a.media ? `<video class="upsell-media" src="${a.media}" autoplay loop muted playsinline></video>` : ""}
+          <div class="addon-row">
+            <div class="addon-text">
+              <div class="addon-question">Sumá ${a.noun} con ${a.discount}% de descuento</div>
+              <div class="addon-price"><s>${formatMoney(a.basePrice)}</s> <strong>${formatMoney(addonUnitPrice(a))}</strong></div>
+            </div>
+            <div class="addon-media">
+              ${a.media
+                ? `<video src="${a.media}" poster="${a.image || ""}" autoplay loop muted playsinline></video>`
+                : (a.image ? `<img src="${a.image}" alt="${a.label}" loading="lazy">` : "")}
+            </div>
+          </div>
           ${a.description ? `<p class="upsell-desc">${a.description}</p>` : ""}
-          <button type="button" class="addon-btn" id="addon-btn-${k}">Sí, quiero</button>
+          <div class="addon-actions">
+            <button type="button" class="addon-btn" id="addon-btn-${k}">Sí, quiero</button>
+          </div>
           <div class="addon-panel" id="addon-panel-${k}" hidden>${panel}</div>
         </div>`;
     }
@@ -737,6 +747,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
         ${quantityHTML(pack)}
         ${componentBlocks}
         ${upsellHTML(pack)}
+        ${ADDONS.length ? '<div class="oportunidad"><span>👇 Oportunidad Única 👇</span></div>' : ""}
         ${ADDONS.map((a, k) => addonHTML(k, a.type === "plain" ? null : products[a.product])).join("")}
         <div class="component-block">
           <h3>Retiro o Envío (gratis para compras mayores a $3.500)</h3>
