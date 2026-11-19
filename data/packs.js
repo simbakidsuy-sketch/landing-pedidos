@@ -27,9 +27,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340 },
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
+      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/BOLSAS_IMPERMEABLES_CHICAS_PARA_PANALES_PARA_EL_AGUA_BALLENITAS_AZUL.png?v=1786708124" },
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" }
     ]
   },
   {
@@ -51,8 +51,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340 },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/BOLSAS_IMPERMEABLES_CHICAS_PARA_PANALES_PARA_EL_AGUA_BALLENITAS_AZUL.png?v=1786708124" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -78,8 +78,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -105,8 +105,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -138,9 +138,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -214,7 +214,7 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" }
     ]
   },
   {
@@ -235,9 +235,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/INSERTO_COMBINADO_DE_4_CAPAS_PARA_LA_WEB_EN_FORMATO_INDIVIDUAL.jpg?v=1787230331" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   },
   {
@@ -258,9 +258,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/INSERTO_COMBINADO_DE_4_CAPAS_PARA_LA_WEB_EN_FORMATO_INDIVIDUAL.jpg?v=1787230331" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   },
   {
@@ -281,9 +281,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "plain", "label": "Absorbente Combinado de 4 capas", "noun": "un absorbente combinado de 4 capas suelto", "discount": 20, "basePrice": 250, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/INSERTO_COMBINADO_DE_4_CAPAS_PARA_LA_WEB_EN_FORMATO_INDIVIDUAL.jpg?v=1787230331" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   },
   {
@@ -303,9 +303,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_DE_4_INSERTOS_COMBINADOS_DE_MAXIMA_ABSORCION_SIMBA.jpg?v=1787232336" }
     ]
   },
   {
@@ -325,9 +325,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_DE_4_INSERTOS_COMBINADOS_DE_MAXIMA_ABSORCION_SIMBA.jpg?v=1787232336" }
     ]
   },
   {
@@ -347,9 +347,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "plain", "label": "Pack x4 Absorbentes Combinados de 4 capas", "noun": "un pack de 4 absorbentes combinados", "discount": 11, "basePrice": 890, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_DE_4_INSERTOS_COMBINADOS_DE_MAXIMA_ABSORCION_SIMBA.jpg?v=1787232336" }
     ]
   },
   {
@@ -442,9 +442,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   },
   {
@@ -476,9 +476,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   },
   {
@@ -498,8 +498,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" }
     ]
   },
   {
@@ -519,8 +519,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "plain", "label": "Rollo de Bambú (100 toallitas)", "noun": "un rollo de bambú", "discount": 15, "basePrice": 389, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/ROLLO_DE_TOALLITAS_DE_BAMBU_INDIVUDUAL.jpg?v=1787227420" }
     ]
   },
   {
@@ -567,9 +567,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
-      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690 }
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X3_ROLLOS_TE_TOALLITAS_BIODEGRADABLES.jpg?v=1787227420" },
+      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_DE_8_INSERTOS_COMBINADOS_DE_4_CAPAS_PARA_PANALES_ECOLOGICOS_SIMBA.jpg?v=1787233621" }
     ]
   },
   {
@@ -594,9 +594,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
-      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690 }
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X3_ROLLOS_TE_TOALLITAS_BIODEGRADABLES.jpg?v=1787227420" },
+      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_DE_8_INSERTOS_COMBINADOS_DE_4_CAPAS_PARA_PANALES_ECOLOGICOS_SIMBA.jpg?v=1787233621" }
     ]
   },
   {
@@ -621,9 +621,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
-      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690 }
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X3_ROLLOS_TE_TOALLITAS_BIODEGRADABLES.jpg?v=1787227420" },
+      { "type": "plain", "label": "Pack x8 Absorbentes Combinados de 4 capas", "noun": "un pack de 8 absorbentes combinados", "discount": 10, "basePrice": 1690, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_DE_8_INSERTOS_COMBINADOS_DE_4_CAPAS_PARA_PANALES_ECOLOGICOS_SIMBA.jpg?v=1787233621" }
     ]
   },
   {
@@ -648,9 +648,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490 },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
-      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." }
+      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X12_INSERTOS_SIMBA_DE_MAXIMA_ABSORCION_WEBSITE.jpg?v=1787233903" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X3_ROLLOS_TE_TOALLITAS_BIODEGRADABLES.jpg?v=1787227420" }
     ]
   },
   {
@@ -675,9 +675,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490 },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
-      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." }
+      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X12_INSERTOS_SIMBA_DE_MAXIMA_ABSORCION_WEBSITE.jpg?v=1787233903" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X3_ROLLOS_TE_TOALLITAS_BIODEGRADABLES.jpg?v=1787227420" }
     ]
   },
   {
@@ -702,9 +702,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490 },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 },
-      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." }
+      { "type": "plain", "label": "Pack x12 Absorbentes Combinados de 4 capas", "noun": "un pack de 12 absorbentes combinados", "discount": 10, "basePrice": 2490, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X12_INSERTOS_SIMBA_DE_MAXIMA_ABSORCION_WEBSITE.jpg?v=1787233903" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" },
+      { "type": "plain", "label": "Pack x3 Rollos de Bambú", "noun": "un pack de 3 rollos de bambú", "discount": 11, "basePrice": 1099, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X3_ROLLOS_TE_TOALLITAS_BIODEGRADABLES.jpg?v=1787227420" }
     ]
   },
   {
@@ -739,9 +739,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "noun": "una bolsa impermeable grande", "discount": 10, "basePrice": 980 },
-      { "type": "plain", "label": "Pack x5 Rollos de Bambú", "noun": "un pack de 5 rollos de bambú", "discount": 10, "basePrice": 1590, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "noun": "una bolsa impermeable grande", "discount": 10, "basePrice": 980, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PARA_BOLSAS_GRANDES_SIMBA_ECOLOGICOS.png?v=1787234142" },
+      { "type": "plain", "label": "Pack x5 Rollos de Bambú", "noun": "un pack de 5 rollos de bambú", "discount": 10, "basePrice": 1590, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X5_LINERS_DE_BAMBOO_BIODEGRADABLES_PARA_PANALES.jpg?v=1787227673" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   },
   {
@@ -781,9 +781,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "noun": "una bolsa impermeable grande", "discount": 10, "basePrice": 980 },
-      { "type": "plain", "label": "Pack x5 Rollos de Bambú", "noun": "un pack de 5 rollos de bambú", "discount": 10, "basePrice": 1590, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro." },
-      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-grande", "label": "Bolsa Impermeable Grande 40x70", "noun": "una bolsa impermeable grande", "discount": 10, "basePrice": 980, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_WEB_PARA_BOLSAS_GRANDES_SIMBA_ECOLOGICOS.png?v=1787234142" },
+      { "type": "plain", "label": "Pack x5 Rollos de Bambú", "noun": "un pack de 5 rollos de bambú", "discount": 10, "basePrice": 1590, "media": "https://cdn.shopify.com/videos/c/o/v/3443180122974b0fb050d9df8ba29e69.mp4", "mediaType": "video", "description": "Se colocan sobre la tela interna del pañal y sirven para contener materia. Es biodegradable, se tira directo en el inodoro.", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PACK_X5_LINERS_DE_BAMBOO_BIODEGRADABLES_PARA_PANALES.jpg?v=1787227673" },
+      { "type": "designs", "product": "protectores-mamarios", "label": "Protectores Mamarios", "noun": "un set de protectores mamarios", "discount": 10, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PROTECTOR_DE_LACTANCIA_PARA_AHORRAR.png?v=1773080459" }
     ]
   }
 ]
