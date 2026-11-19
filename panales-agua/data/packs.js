@@ -47,6 +47,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-playa",
+    "comparePrice": 1520,
     "multiple": "promo",
     "category": "agua",
     "name": "Promo Playa",
@@ -74,6 +75,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-matro",
+    "comparePrice": 1770,
     "multiple": "promo",
     "category": "agua",
     "name": "Promo Matro",
@@ -101,6 +103,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-verano",
+    "comparePrice": 1820,
     "multiple": "promo",
     "category": "agua",
     "name": "Promo Verano",
