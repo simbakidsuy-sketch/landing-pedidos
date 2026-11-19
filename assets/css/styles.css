@@ -789,3 +789,23 @@ footer.site-footer {
   color: var(--simba-purple);
 }
 .pack-qty-block .qty-stepper { margin: 4px 0 10px; }
+
+/* Precio del pack debajo del título (precio de comparación tachado + precio real) */
+.pack-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 4px 0 8px;
+}
+
+.pack-price s {
+  font-size: 17px;
+  color: var(--text-muted);
+}
+
+.pack-price strong {
+  font-family: 'Jost', sans-serif;
+  font-size: 26px;
+  color: var(--simba-purple);
+}
