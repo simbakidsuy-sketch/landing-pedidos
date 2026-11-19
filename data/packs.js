@@ -57,6 +57,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-playa",
+    "comparePrice": 1520,
     "multiple": "promo",
     "category": "agua",
     "name": "Promo Playa",
@@ -84,6 +85,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-matro",
+    "comparePrice": 1770,
     "multiple": "promo",
     "category": "agua",
     "name": "Promo Matro",
@@ -111,6 +113,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "promo-verano",
+    "comparePrice": 1820,
     "multiple": "promo",
     "category": "agua",
     "name": "Promo Verano",
@@ -163,6 +166,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-x3-panal-ninos",
+    "comparePrice": 3570,
     "category": "ninos",
     "name": "Set x3 Pañales para Niños",
     "subtitle": "3 Pañales Estándar XL + 6 Absorbentes",
@@ -180,6 +184,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-x6-panal-ninos",
+    "comparePrice": 7140,
     "category": "ninos",
     "name": "Set x6 Pañales para Niños",
     "subtitle": "6 Pañales Estándar XL + 12 Absorbentes",
@@ -288,6 +293,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-x4-panal-estandar",
+    "comparePrice": 2360,
     "category": "panales",
     "name": "Set x4 Pañales Estándar",
     "subtitle": "4 Pañales Estándar + 4 Absorbentes",
@@ -310,6 +316,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-x4-panal-dryfit-cafe",
+    "comparePrice": 3160,
     "category": "panales",
     "name": "Set x4 Pañales DryFit Café",
     "subtitle": "4 Pañales Premium DryFit Café + 4 Absorbentes",
@@ -332,6 +339,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-x4-panal-carbon-bambu",
+    "comparePrice": 3400,
     "category": "panales",
     "name": "Set x4 Pañales Carbón de Bambú",
     "subtitle": "4 Pañales Premium Carbón de Bambú + 4 Absorbentes",
@@ -426,6 +434,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "set-primeros-pasos",
+    "comparePrice": 2069,
     "multiple": "set",
     "category": "panales",
     "name": "Set Primeros Pasos 2 Pañales",
@@ -449,6 +458,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "descubrimiento",
+    "comparePrice": 4209,
     "multiple": "pack",
     "category": "panales",
     "name": "Pack \"Descubrimiento\" 4 Pañales",
@@ -483,6 +493,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "chau-dermatitis",
+    "comparePrice": 4789,
     "category": "panales",
     "name": "PACK x4 Chau Dermatitis",
     "subtitle": "4 Pañales Premium Carbón de Bambú + 8 Absorbentes",
@@ -504,6 +515,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-noche",
+    "comparePrice": 2700,
     "category": "panales",
     "name": "PACK Noche x2 Pañales",
     "subtitle": "2 Pañales Premium Carbón de Bambú + 6 Absorbentes",
@@ -547,6 +559,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x8-estandar",
+    "comparePrice": 5699,
     "category": "panales",
     "name": "PACK x8 Pañales Estándar",
     "subtitle": "8 Pañales Estándar + Bolsa Impermeable Mediana de regalo",
@@ -574,6 +587,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x8-dryfit-cafe",
+    "comparePrice": 7299,
     "category": "panales",
     "name": "PACK x8 Pañales DryFit Café",
     "subtitle": "8 Pañales Premium DryFit Café + Bolsa Impermeable Mediana de regalo",
@@ -601,6 +615,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x8-carbon-bambu",
+    "comparePrice": 7779,
     "category": "panales",
     "name": "PACK x8 Pañales Carbón de Bambú",
     "subtitle": "8 Pañales Premium Carbón de Bambú + Bolsa Impermeable Mediana de regalo",
@@ -628,6 +643,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x12-estandar",
+    "comparePrice": 8059,
     "category": "panales",
     "name": "PACK x12 Pañales Estándar",
     "subtitle": "12 Pañales Estándar + Bolsa Impermeable Mediana de regalo",
@@ -655,6 +671,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x12-dryfit-cafe",
+    "comparePrice": 10459,
     "category": "panales",
     "name": "PACK x12 Pañales DryFit Café",
     "subtitle": "12 Pañales Premium DryFit Café + Bolsa Impermeable Mediana de regalo",
@@ -682,6 +699,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x12-carbon-bambu",
+    "comparePrice": 11179,
     "category": "panales",
     "name": "PACK x12 Pañales Carbón de Bambú",
     "subtitle": "12 Pañales Premium Carbón de Bambú + Bolsa Impermeable Mediana de regalo",
@@ -709,6 +727,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x10-panaleo-mixto",
+    "comparePrice": 10759,
     "category": "panales",
     "name": "PACK x10 Pañaleo Mixto",
     "subtitle": "4 Estándar + 3 DryFit Café + 3 Carbón de Bambú + Bolsa Mediana de regalo",
@@ -746,6 +765,7 @@ window.SIMBA_PACKS = [
   },
   {
     "slug": "pack-x20-maxima-experiencia",
+    "comparePrice": 21808,
     "category": "panales",
     "name": "PACK x20 Máxima Experiencia",
     "subtitle": "8 Estándar + 6 DryFit Café + 6 Carbón de Bambú + 3 Bolsas de regalo",
