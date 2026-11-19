@@ -17,9 +17,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340 },
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" }
+      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/BOLSAS_IMPERMEABLES_CHICAS_PARA_PANALES_PARA_EL_AGUA_BALLENITAS_AZUL.png?v=1786708124" },
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" }
     ]
   },
   {
@@ -41,8 +41,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340 },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-chica", "label": "Bolsa Impermeable Chica 20x25", "noun": "una bolsa impermeable chica", "discount": 20, "basePrice": 340, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/BOLSAS_IMPERMEABLES_CHICAS_PARA_PANALES_PARA_EL_AGUA_BALLENITAS_AZUL.png?v=1786708124" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -68,8 +68,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -95,8 +95,8 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   },
   {
@@ -128,9 +128,9 @@ window.SIMBA_PACKS = [
       }
     ],
     "addons": [
-      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590 },
-      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235" },
-      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590 }
+      { "type": "designs", "product": "bolsa-mediana", "label": "Bolsa Impermeable Mediana 30x40", "noun": "una bolsa impermeable mediana", "discount": 16, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/SAFARI.png?v=1785934254" },
+      { "type": "designs", "product": "remera-uv", "label": "Remera UV", "noun": "una remera UV adicional", "discount": 25, "basePrice": 890, "sizeChart": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/TABLA_DE_TALLES_PARA_LAS_FOTOS_DE_LAS_DESCRIPCION.png?v=1786962235", "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PORTADA_PARA_REMERAS_DE_VERANO.jpg?v=1786734575" },
+      { "type": "designs", "product": "panal-agua", "label": "Pañal de Agua", "noun": "un pañal para el agua adicional", "discount": 20, "basePrice": 590, "image": "https://cdn.shopify.com/s/files/1/0930/9575/6095/files/PANAL_PARA_EL_AGUA_VERDE_OASIS.jpg?v=1764337025" }
     ]
   }
 ]
