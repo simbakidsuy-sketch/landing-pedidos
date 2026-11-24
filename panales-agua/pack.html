@@ -215,7 +215,7 @@ src="https://www.facebook.com/tr?id=511844655087071&ev=PageView&noscript=1"
     function galleryHTML(variants, id) {
       return sortedVariants(variants).map(v => {
         const out = v.stock <= 0;
-        const low = !out && v.stock <= 3;
+        const low = !out && v.stock <= 10;
         return `
         <div class="thumb-wrap ${out ? "out" : ""}" data-id="${id}" data-title="${v.title}">
           <div class="thumb ${out ? "out" : ""}">
